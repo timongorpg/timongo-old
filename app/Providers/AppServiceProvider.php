@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Auth;
+use View;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +16,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('*', function ($view) {
+            //If the user is logged in bind it to the view
+            if ($user = Auth::user()) {
+                $view->with([
+                    'user' => $user,
+                    'current_time' => Carbon::now()
+                ]);
+            }
+
+        });
     }
 
     /**

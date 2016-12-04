@@ -3,11 +3,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <link rel="icon" href="/favicon.png" type="image/png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="The best Web based RPG game you are going to find.">
+    <meta name="author" content="Hudson Pereira">
 
     <title>Timongo RPG - Web Based</title>
 
@@ -27,9 +28,7 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">About</a></li>
-            <li role="presentation"><a href="#">Contact</a></li>
+            <li role="presentation" class="active"><a href="{{ url('/login') }}">Sign In</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">Timongo RPG</h3>
@@ -43,17 +42,24 @@
 
       <div class="row marketing">
         <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+          <h2>Latest News</h2>
 
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+          <hr />
 
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          <h4>Beta version is available!</h4>
+          <p>To be a beta tester is to strongly support the game. If you're a beta tester, you'll get a badge on your character that will stand you out from anothers.</p>
+
+          <h4>Enemies are coming</h4>
+          <p>Our backs are agains the wall, but this is when we fight harder. Prepare to face the first raid of an age of war.</p>
+
+          <h4>Designers. We need you.</h4>
+          <p>Are you an experienced designer? Wanna to contribute? We need you.</p>
         </div>
 
         <div class="col-lg-6">
+          <h2>Newcomers</h2>
+
+          <hr />
           <h4>Subheading</h4>
           <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
 

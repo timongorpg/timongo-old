@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
+use Auth;
+use App\User;
 
 class LoginController extends Controller
 {
-    public function __construct()
+    protected $users;
+
+    public function __construct(User $users)
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->users = $users;
     }
 
     /**
@@ -30,8 +34,24 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('facebook')->user();
+        $socialite = Socialite::driver('facebook')->user();
 
-        dd($user);
+        $user = $this->users->whereEmail($socialite->getEmail())->first() ?:
+            $this->users->newInstance($socialite->getRaw());
+
+        $user->picture = $user->picture ?: $socialite->getAvatar();
+
+        $user->save();
+
+        Auth::loginUsingId($user->id);
+
+        return redirect('/me');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/');
     }
 }

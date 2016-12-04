@@ -7,3 +7,36 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.level-up-button {
+    margin-bottom: 10px;
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0.5 }
+}
+
+.progress-bar {
+    animation-name: fillBar;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+}
+
+@keyframes fillBar{
+
+    50% {width: 30%; opacity:0.2}
+    100% {opacity: 0}
+}
+
+.health-bar-safe{
+    background-color: #277212;
+}
+
+.health-bar-danger{
+    background-color: $brand-danger;
+}
+
+.stamina-bar{
+    background-color: #d1920a;
+}

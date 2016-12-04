@@ -1,0 +1,83 @@
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-6">
+                    Hero Lv. <span class="badge label-primary">{{ $user->level }}</span>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <span class="label label-warning">{{ $user->gold }} Gold</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <a href="{{ url('/me') }}">
+
+                  <img class="img-responsive" src="{{ $user->picture }}" alt="{{ $user->name }}">
+                    </a>
+                </div>
+                <div class="col-md-7">
+                    <h4 class="media-heading">{{ $user->name }}</h4>
+                    {{ $user->getProfessionName() }}
+                </div>
+            </div>
+
+            <hr />
+
+            <label for="experience">Experience</label>
+
+            @if($user->hasEnoughExperience())
+
+                <div class="level-up-button">
+
+                    <form action="/level-up" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-primary">
+                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Level Up
+                        </button>
+                    </form>
+                </div>
+
+            @else
+
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active progress-bar-info" role="progressbar" aria-valuenow="{{ $user->experience_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->experience_percentage }}%;">
+                        {{ $user->experience_percentage }}%
+                    </div>
+                </div>
+
+            @endif
+
+            <label for="health">Health</label>
+
+            <div class="button">
+                <img src="/img/items/life-potion.gif" alt="">
+            </div>
+
+            <div class="progress">
+                <div class="progress-bar health-bar progress-bar-striped active {{ $user->health_percentage > 30 ? 'health-bar-safe' : 'health-bar-danger' }}" role="progressbar" aria-valuenow="{{ $user->health_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->health_percentage }}%;">
+                    {{ $user->health_percentage }}%
+                </div>
+            </div>
+
+            <label for="">Mana</label>
+
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{ $user->mana_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->mana_percentage }}%;">
+                    {{ $user->mana_percentage }}%
+                </div>
+            </div>
+
+            <label for="">Stamina</label>
+
+            <div class="progress">
+                <div class="progress-bar stamina-bar progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="{{ $user->stamina_percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->stamina_percentage}}%;">
+                    {{ $user->stamina_percentage}}%
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
