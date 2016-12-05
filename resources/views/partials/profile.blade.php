@@ -25,8 +25,7 @@
                 </div>
             </div>
 
-            <hr />
-
+            <hr>
             <label for="experience">Experience</label>
 
             @if($user->hasEnoughExperience())
@@ -51,11 +50,27 @@
 
             @endif
 
-            <label for="health">Health</label>
+            <hr />
 
-            <div class="button">
-                <img src="/img/items/life-potion.gif" alt="">
+            <div class="row potions-row">
+                <form action="{{ url('use-potion') }}" method="POST" id="use-potion-form">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="potion_id">
+                </form>
+                <div class="col-md-4" onClick="setUsePotion(1)">
+                    <img src="/img/items/life-flask.gif" alt="Life Potion">x{{$user->life_potions}}
+                </div>
+                <div class="col-md-4" onClick="setUsePotion(2)">
+                    <img src="/img/items/mana-flask.gif" alt="Mana Potion">x{{$user->mana_potions}}
+                </div>
+                <div class="col-md-4" onClick="setUsePotion(3)">
+                    <img src="/img/items/stamina-flask.gif" alt="Stamina Potion">x{{$user->stamina_potions}}
+                </div>
             </div>
+
+            <hr>
+
+            <label for="health">Health</label>
 
             <div class="progress">
                 <div class="progress-bar health-bar progress-bar-striped active {{ $user->health_percentage > 30 ? 'health-bar-safe' : 'health-bar-danger' }}" role="progressbar" aria-valuenow="{{ $user->health_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->health_percentage }}%;">
@@ -63,7 +78,7 @@
                 </div>
             </div>
 
-            <label for="">Mana</label>
+            <label for="mana">Mana</label>
 
             <div class="progress">
                 <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{ $user->mana_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->mana_percentage }}%;">
@@ -71,7 +86,7 @@
                 </div>
             </div>
 
-            <label for="">Stamina</label>
+            <label for="stamina">Stamina</label>
 
             <div class="progress">
                 <div class="progress-bar stamina-bar progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="{{ $user->stamina_percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->stamina_percentage}}%;">

@@ -51,9 +51,8 @@ class PvE {
             $results = $this->battleLoss($hero, $opponent);
         }
 
-        $hero->dropStamina();
-
-        $hero->save();
+        $hero->dropStamina()
+            ->save();
 
         return [
             'fight' => $rounds,

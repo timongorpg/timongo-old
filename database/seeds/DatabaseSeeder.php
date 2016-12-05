@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProfessionTableSeeder::class);
         $this->call(CreatureTableSeeder::class);
         $this->call(MasteryTableSeeder::class);
+        $this->call(PotionTableSeeder::class);
     }
 }

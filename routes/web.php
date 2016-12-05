@@ -11,20 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/me', 'GameController@profile');
     Route::get('/adventures', 'GameController@adventures');
-    Route::get('/inventory', 'GameController@inventory');
+    Route::get('/treasures', 'GameController@treasures');
     Route::get('/arena', 'GameController@arena');
     Route::post('/battle', 'GameController@battle');
     Route::post('/level-up', 'GameController@levelUp');
     Route::patch('/profession', 'GameController@profession');
     Route::post('/mastery', 'GameController@mastery');
     Route::post('/train', 'GameController@train');
+    Route::post('/potion', 'GameController@potion');
+    Route::post('/use-potion', 'GameController@usePotion');
     Route::post('/logout', 'Auth\LoginController@logout');
 });
 

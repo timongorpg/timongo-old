@@ -8,3 +8,4 @@ require('./bootstrap');
 
 require('./moment');
 require('./blink-title');
+require('./form-functions');

@@ -39,6 +39,9 @@ class CreateUsersTable extends Migration
             $table->integer('luck_level')->unsigned()->default(1);
             $table->integer('learning_level')->unsigned()->default(1);
             $table->integer('thievery_level')->unsigned()->default(1);
+            $table->integer('life_potions')->unsigned()->default(1);
+            $table->integer('mana_potions')->unsigned()->default(1);
+            $table->integer('stamina_potions')->unsigned()->default(1);
             $table->integer('training_mastery')->unsigned()->nullable();
             $table->integer('gold')->unsigned()->default(100);
             $table->datetime('end_training')->nullable();

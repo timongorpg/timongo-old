@@ -17,6 +17,8 @@
 <div class="panel panel-default">
     <div class="panel-heading">Masteries</div>
     <div class="panel-body">
+        <div class="alert alert-info">{{ $masteryTip }}</div>
+
         <form action="{{ url('mastery') }}" method="POST" id="mastery-form">
             {{ csrf_field() }}
             <input type="hidden" name="mastery_id">

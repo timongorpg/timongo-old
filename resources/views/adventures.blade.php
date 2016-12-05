@@ -6,6 +6,10 @@
     <div class="panel-body">
         <div class="alert alert-info" role="alert">{!! $adventureTip !!}</div>
 
+        @if(session()->has('error'))
+            <div class="alert alert-danger" role="alert">{!! session('error') !!}</div>
+        @endif
+
         <table class="table">
             <thead>
                 <tr>
@@ -40,6 +44,7 @@
 @endsection
 
 @section('scripts')
+    @parent
     <script>
         function setCreature(creatureId) {
             document.querySelector('[name=creature_id]').value = creatureId;
@@ -49,6 +54,7 @@
 @endsection
 
 @section('styles')
+    @parent
     <style>
         .adventure-panel img:hover {
             cursor: url('/img/icons/attack.png'), auto;

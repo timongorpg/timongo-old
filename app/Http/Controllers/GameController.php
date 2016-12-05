@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Creature;
 use App\Mastery;
+use App\Potion;
 use App\Timongo\Battle\PvE;
 use Auth;
 
@@ -14,19 +15,23 @@ class GameController extends Controller
 
     protected $masteries;
 
+    protected $potions;
+
     protected $pve;
 
-    public function __construct(Creature $creatures, Mastery $masteries, PvE $pve)
+    public function __construct(Creature $creatures, Mastery $masteries, Potion $potions,  PvE $pve)
     {
         $this->creatures = $creatures;
         $this->masteries = $masteries;
+        $this->potions = $potions;
         $this->pve = $pve;
     }
 
     public function profile()
     {
         return view('me', [
-            'masteries' => $this->masteries->orderBy('name')->get()
+            'masteries' => $this->masteries->orderBy('name')->get(),
+            'masteryTip' => $this->getMasteryTip()
         ]);
     }
 
@@ -38,9 +43,11 @@ class GameController extends Controller
         ]);
     }
 
-    public function inventory()
+    public function treasures()
     {
-        return view('inventory');
+        return view('treasures', [
+            'potions' => $this->potions->orderBy('name')->get()
+        ]);
     }
 
     public function arena()
@@ -53,6 +60,11 @@ class GameController extends Controller
         $this->validate($request, [
             'creature_id' => 'required'
         ]);
+
+        if (Auth::user()->current_stamina < 6) {
+            return redirect()->back()
+                ->with('error', '<strong>Not enough stamina</strong>. It restores over time.');
+        }
 
         $log = $this->pve->battle($request->creature_id);
 
@@ -134,6 +146,30 @@ class GameController extends Controller
         return redirect('/me');
     }
 
+    public function potion(Request $request)
+    {
+        $this->validate($request, [
+            'potion_id' => 'required'
+        ]);
+
+        Auth::user()->buyPotion($request->potion_id)
+            ->save();
+
+        return redirect()->back();
+    }
+
+    public function usePotion(Request $request)
+    {
+        $this->validate($request, [
+            'potion_id' => 'required'
+        ]);
+
+        Auth::user()->usePotion($request->potion_id)
+            ->save();
+
+        return redirect('/adventures');
+    }
+
     private function getAdventureTip()
     {
         $level = Auth::user()->level;
@@ -147,5 +183,20 @@ class GameController extends Controller
         }
 
         return 'You are such a good hunter. Do not forget to make some friends.';
+    }
+
+    private function getMasteryTip()
+    {
+        $level = Auth::user()->level;
+
+        if ($level == 1) {
+            return 'Make sure to come back here when you hit level 2.';
+        }
+
+        if ($level <= 2) {
+            return 'Choose what to master and come back later when you are ready.';
+        }
+
+        return 'Masteries are important to tell what your character is capable of. Think twice when picking one of them.';
     }
 }

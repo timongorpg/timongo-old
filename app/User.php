@@ -100,7 +100,52 @@ class User extends Authenticatable
 
     public function dropStamina()
     {
-        $this->current_stamina -= 3;
+        $this->current_stamina -= 6;
+
+        return $this;
+    }
+
+    public function buyPotion($potionId)
+    {
+        $potion = Potion::findOrFail($potionId);
+
+        if ($this->gold >= $potion->price) {
+            $this->gold -= $potion->price;
+
+            $this->{$potion->field}++;
+        }
+
+        return $this;
+    }
+
+    public function usePotion($potionId)
+    {
+        $potion = Potion::findOrFail($potionId);
+
+        if ($this->{$potion->field} >= 1) {
+            $this->{$potion->field}--;
+
+            $this->applyPotionEffect($potion);
+        }
+
+        return $this;
+    }
+
+    protected function applyPotionEffect(Potion $potion)
+    {
+        switch ($potion->id) {
+            case 1:
+                $this->current_health += $this->total_health * 0.3;
+                break;
+            case 2:
+                $this->current_mana += $this->total_mana * 0.3;
+                break;
+            case 3:
+                $this->current_stamina += $this->total_stamina * 0.3;
+                break;
+
+            default:
+        }
     }
 
     public function levelUp()
@@ -176,5 +221,32 @@ class User extends Authenticatable
         if ($level <= 49) return 'Veteran';
 
         return 'Lord';
+    }
+
+    public function setCurrentHealthAttribute($value)
+    {
+        if ($value > $this->total_health) {
+            $value = $this->total_health;
+        }
+
+        $this->attributes['current_health'] = $value >= 0 ? $value : 0;
+    }
+
+    public function setCurrentManaAttribute($value)
+    {
+        if ($value > $this->total_mana) {
+            $value = $this->total_mana;
+        }
+
+        $this->attributes['current_mana'] = $value >= 0 ? $value : 0;
+    }
+
+    public function setCurrentStaminaAttribute($value)
+    {
+        if ($value > $this->total_stamina) {
+            $value = $this->total_stamina;
+        }
+
+        $this->attributes['current_stamina'] = $value >= 0 ? $value : 0;
     }
 }

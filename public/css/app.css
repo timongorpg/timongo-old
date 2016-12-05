@@ -7747,4 +7747,8 @@ button.close {
   background-color: #d1920a;
 }
 
+.potions-row .col-md-4:hover {
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=app.css.map */

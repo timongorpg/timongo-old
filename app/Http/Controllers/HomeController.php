@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
+    protected $users;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $users)
     {
-        $this->middleware('auth');
+        $this->users = $users;
     }
 
     /**
@@ -23,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('welcome', [
+            'newcomers' => $this->users->orderBy('id', 'DESC')->limit(3)->get()
+        ]);
     }
 }

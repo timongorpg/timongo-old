@@ -60,19 +60,16 @@
           <h2>Newcomers</h2>
 
           <hr />
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
 
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          @foreach($newcomers as $newcomer)
+            <h4>Welcome, {{ $newcomer->name }}! </h4>
+            <p>The <strong>{{ $newcomer->getProfessionName() }}</strong> {{ $newcomer->name }} is level {{ $newcomer->level }} {{ $newcomer->level > 1 ? 'already' : '' }}.</p>
+          @endforeach
         </div>
       </div>
 
       <footer class="footer">
-        <p>&copy; 2016 Company, Inc.</p>
+        <p><a href="mail:hudson.byte@gmail.com">Send me feedback</a>.</p>
       </footer>
 
     </div> <!-- /container -->

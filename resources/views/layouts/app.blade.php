@@ -65,7 +65,7 @@
                             <a href="{{ url('/adventures') }}">Adventures</a>
                         </li>
                         <li>
-                            <a href="{{ url('/inventory') }}">Inventory</a>
+                            <a href="{{ url('/treasures') }}">Treasures</a>
                         </li>
                         <li>
                             <a href="{{ url('/arena') }}">Arena</a>
