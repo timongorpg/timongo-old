@@ -13,17 +13,6 @@
                 </div>
             </form>
 
-            @foreach(array_get($log, 'fight') as $message)
-                <div class="alert {{ $message['hero'] ? 'alert-info' : 'alert-warning'}} clearfix">
-                    @if($message['hero'])
-                        <img src="/img/icons/attack.png" class="battle-icon" alt="">
-                        </object>
-                    @endif
-
-                    {!! $message['message'] !!}
-                </div>
-            @endforeach
-
             @if($log['results']['win'])
                 <div class="alert alert-success">
                     <p>{{ $log['results']['message'] }} You have earned <strong>{{ $log['results']['gold'] }} gold piece(s)</strong>.</p>
@@ -37,6 +26,21 @@
                     <p>{{ $log['results']['message'] }}</p>
                 </div>
             @endif
+
+            <h2>Fight turns</h2>
+
+            <hr>
+
+            @foreach(array_get($log, 'fight') as $message)
+                <div class="alert {{ $message['hero'] ? 'alert-info' : 'alert-warning'}} clearfix">
+                    @if($message['hero'])
+                        <img src="/img/icons/attack.png" class="battle-icon" alt="">
+                        </object>
+                    @endif
+
+                    {!! $message['message'] !!}
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection

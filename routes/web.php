@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/me', 'GameController@profile');
+    Route::patch('/pick-nickname', 'GameController@pickNickname');
     Route::get('/adventures', 'GameController@adventures');
     Route::get('/treasures', 'GameController@treasures');
     Route::get('/arena', 'GameController@arena');

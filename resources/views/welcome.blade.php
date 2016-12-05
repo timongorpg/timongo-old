@@ -62,8 +62,8 @@
           <hr />
 
           @foreach($newcomers as $newcomer)
-            <h4>Welcome, {{ $newcomer->name }}! </h4>
-            <p>The <strong>{{ $newcomer->getProfessionName() }}</strong> {{ $newcomer->name }} is level {{ $newcomer->level }} {{ $newcomer->level > 1 ? 'already' : '' }}.</p>
+            <h4>Welcome, {{ $newcomer->nickname }}! </h4>
+            <p>The <strong>{{ $newcomer->getProfessionName() }}</strong> {{ $newcomer->nickname }} is level {{ $newcomer->level }} {{ $newcomer->level > 1 ? 'already' : '' }}.</p>
           @endforeach
         </div>
       </div>

@@ -16,11 +16,11 @@
                 <div class="col-md-5">
                     <a href="{{ url('/me') }}">
 
-                  <img class="img-responsive" src="{{ $user->picture }}" alt="{{ $user->name }}">
+                  <img class="img-responsive" src="{{ $user->picture }}" alt="{{ $user->nickname }}">
                     </a>
                 </div>
                 <div class="col-md-7">
-                    <h4 class="media-heading">{{ $user->name }}</h4>
+                    <h4 class="media-heading">{{ $user->nickname }}</h4>
                     {{ $user->getProfessionName() }}
                 </div>
             </div>

@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $user->name }} - {{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $user->nickname }} - {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -81,7 +81,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->nickname }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -119,6 +119,9 @@
         </div>
     </div>
 
+    @if(! $user->hasNickname())
+        @include('modals/ask-name-modal')
+    @endif
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     @yield('scripts')
@@ -133,6 +136,17 @@
             window.onload = function(){
                 var audio = new Audio('/sounds/level-up.wav');
                 audio.play();
+            }
+        @endif
+
+        @if(! $user->hasNickname())
+            window.onload = function(){
+
+                $('#ask-name-modal').on('show.bs.modal', function (event) {
+                    $('#nickname').focus();
+                });
+
+                $('#ask-name-modal').modal();
             }
         @endif
     </script>
