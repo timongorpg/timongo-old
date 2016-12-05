@@ -62,7 +62,7 @@ class GameController extends Controller
         ]);
 
         if (Auth::user()->current_stamina < 6) {
-            return redirect()->back()
+            return redirect('/adventures')
                 ->with('error', '<strong>Not enough stamina</strong>. It restores over time.');
         }
 
