@@ -21,7 +21,7 @@ class CreatureTableSeeder extends Seeder
                 'attack' => 2,
                 'armor' => 0,
                 'magic_resistance' => 0,
-                'experience' => 8,
+                'experience' => 25,
                 'gold' => 2
             ],
             [
@@ -32,7 +32,7 @@ class CreatureTableSeeder extends Seeder
                 'attack' => 3,
                 'armor' => 1,
                 'magic_resistance' => 0,
-                'experience' => 10,
+                'experience' => 32,
                 'gold' => 3
             ],
             [
@@ -43,7 +43,7 @@ class CreatureTableSeeder extends Seeder
                 'attack' => 5,
                 'armor' => 2,
                 'magic_resistance' => 1,
-                'experience' => 18,
+                'experience' => 40,
                 'gold' => 4
             ],
             [
@@ -54,7 +54,7 @@ class CreatureTableSeeder extends Seeder
                 'attack' => 8,
                 'armor' => 1,
                 'magic_resistance' => 0,
-                'experience' => 25,
+                'experience' => 47,
                 'gold' => 5
             ],
         ];
