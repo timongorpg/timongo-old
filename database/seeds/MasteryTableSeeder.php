@@ -47,6 +47,11 @@ class MasteryTableSeeder extends Seeder
                 'name' => 'Quick Learning',
                 'icon' => 'quick_learning.png',
                 'field' => 'learning_level',
+            ],
+            [
+                'name' => 'Self Defence',
+                'icon' => 'self_defence.png',
+                'field' => 'self_defence_level',
             ]
         ];
 

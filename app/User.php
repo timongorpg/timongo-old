@@ -69,6 +69,12 @@ class User extends Authenticatable
         return "<strong>{$this->name}</strong>";
     }
 
+    public function getMeleeDefenceAttribute()
+    {
+        return ($this->strength * 0.3) + ($this->level * 0.3)
+            * ($this->self_defence_level * 0.2);
+    }
+
     public function hasEnoughExperience()
     {
         return $this->experience >= $this->toNextLevel();

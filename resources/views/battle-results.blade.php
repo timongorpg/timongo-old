@@ -28,6 +28,10 @@
                 <div class="alert alert-success">
                     <p>{{ $log['results']['message'] }} You have earned <strong>{{ $log['results']['gold'] }} gold piece(s)</strong>.</p>
                 </div>
+
+                <div class="alert alert-success">
+                    You have earned <strong>{{ $log['results']['experience'] }} points of experience</strong>.
+                </div>
             @else
                 <div class="alert alert-danger">
                     <p>{{ $log['results']['message'] }}</p>
