@@ -30,4 +30,9 @@ class HomeController extends Controller
             'newcomers' => $this->users->orderBy('id', 'DESC')->limit(3)->get()
         ]);
     }
+
+    public function privacy()
+    {
+        return view('privacy');
+    }
 }

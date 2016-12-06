@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/me', 'GameController@profile');
+    // Route::get('/donations', 'GameController@donations');
     Route::patch('/pick-nickname', 'GameController@pickNickname');
     Route::get('/adventures', 'GameController@adventures');
     Route::get('/treasures', 'GameController@treasures');
@@ -30,5 +31,6 @@ Route::group(['middleware' => 'auth'], function(){
 });
 
 Route::get('/home', 'HomeController@index');
+Route::get('/privacy', 'HomeController@privacy');
 Route::get('/login', 'Auth\LoginController@redirectToProvider');
 Route::get('/facebook', 'Auth\LoginController@handleProviderCallback');
