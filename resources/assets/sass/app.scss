@@ -41,6 +41,30 @@
     background-color: #d1920a;
 }
 
-.potions-row .col-md-4:hover{
+.potions-row .col-xs-4:hover{
     cursor: pointer;
+}
+
+#chat {
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+    width: 40%;
+
+    .panel-body {
+        height: 300px;
+        overflow: scroll;
+    }
+
+    .inputRow {
+        padding: 15px;
+    }
+
+    .sender {
+        font-weight: bold;
+    }
+
+    .message-box {
+        padding: 10px 0px;
+    }
 }

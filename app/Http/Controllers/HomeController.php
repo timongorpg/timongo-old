@@ -32,7 +32,7 @@ class HomeController extends Controller
         }
 
         return view('welcome', [
-            'newcomers' => $this->users->orderBy('id', 'DESC')->limit(3)->get()
+            'elite' => $this->users->orderBy('level', 'DESC')->take(3)->get()
         ]);
     }
 

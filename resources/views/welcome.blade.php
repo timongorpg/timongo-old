@@ -42,7 +42,7 @@
       </div>
 
       <div class="row marketing">
-        <div class="col-lg-6">
+        <div class="col-md-6">
           <h2>Latest News</h2>
 
           <hr />
@@ -57,24 +57,24 @@
           <p>Are you an experienced designer? Wanna to contribute? We need you.</p>
         </div>
 
-        <div class="col-lg-6">
-          <h2>Newcomers</h2>
+        <div class="col-md-6">
+          <h2>Realm's Elite</h2>
 
           <hr />
 
-          @foreach($newcomers as $newcomer)
-            <h4>Welcome, {{ $newcomer->nickname }}! </h4>
-            <p>The <strong>{{ $newcomer->getProfessionName() }}</strong> {{ $newcomer->nickname }} is level {{ $newcomer->level }} {{ $newcomer->level > 1 ? 'already' : '' }}.</p>
+          @foreach($elite as $user)
+            <h4>{{ $user->nickname }}, {{ $user->getProfessionName() }}</h4>
+            <p>The <strong></strong> {{ $user->nickname }} is level {{ $user->level }} {{ $user->level > 1 ? 'already' : '' }}.</p>
           @endforeach
         </div>
       </div>
 
       <footer class="footer">
-        <div class="col-md-6 text-left">
+        <div class="col-xs-6 text-left">
           <a href="mail:hudson.byte@gmail.com">Send me feedback</a>
         </div>
 
-        <div class="col-md-6 text-right">
+        <div class="col-xs-6 text-right">
           <a href="/privacy" target="_blank">Privacy Policy</a>
         </div>
       </footer>

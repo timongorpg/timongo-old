@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c66e9d54dbaffbd9936821c05b654ea7",
-    "content-hash": "c2e29be08e0881b16ff7c04ec9784da6",
+    "hash": "5f33432c244ba2d2cc8c2ca5200bd368",
+    "content-hash": "ccbaa75c23ff701dba3bb0810fc81147",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2156,6 +2156,42 @@
                 "dump"
             ],
             "time": "2016-11-03 08:04:31"
+        },
+        {
+            "name": "timongorpg/creatures",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/timongorpg/creatures.git",
+                "reference": "74993ebb46cb5a867325e3ffef3be851c73cab3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/timongorpg/creatures/zipball/74993ebb46cb5a867325e3ffef3be851c73cab3a",
+                "reference": "74993ebb46cb5a867325e3ffef3be851c73cab3a",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Timongo\\Creatures\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hudson Pereira",
+                    "email": "hudson.byte@gmail.com"
+                }
+            ],
+            "description": "Creatures package for Timongo",
+            "time": "2016-12-06 14:17:11"
         },
         {
             "name": "vlucas/phpdotenv",

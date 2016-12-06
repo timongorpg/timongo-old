@@ -7747,8 +7747,32 @@ button.close {
   background-color: #d1920a;
 }
 
-.potions-row .col-md-4:hover {
+.potions-row .col-xs-4:hover {
   cursor: pointer;
+}
+
+#chat {
+  position: fixed;
+  bottom: 0px;
+  right: 20px;
+  width: 40%;
+}
+
+#chat .panel-body {
+  height: 300px;
+  overflow: scroll;
+}
+
+#chat .inputRow {
+  padding: 15px;
+}
+
+#chat .sender {
+  font-weight: bold;
+}
+
+#chat .message-box {
+  padding: 10px 0px;
 }
 
 /*# sourceMappingURL=app.css.map */

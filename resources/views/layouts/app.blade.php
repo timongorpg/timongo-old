@@ -115,10 +115,16 @@
 
                 <div class="col-md-8">
                     @yield('content')
+
                 </div>
             </div>
         </div>
+
+        <chat></chat>
     </div>
+
+
+
 
     @if(! $user->hasNickname())
         @include('modals/ask-name-modal')

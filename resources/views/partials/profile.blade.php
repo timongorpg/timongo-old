@@ -3,7 +3,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-6">
-                    Hero Lv. <span class="badge label-primary">{{ $user->level }}</span>
+                    Hero Lv. <span class="badge label-primary" id="profile-level">{{ $user->level }}</span>
                 </div>
                 <div class="col-xs-6 text-right">
                     <span class="label label-warning">{{ $user->gold }} Gold</span>
@@ -20,7 +20,7 @@
                     </a>
                 </div>
                 <div class="col-xs-7">
-                    <h4>{{ $user->nickname }}</h4>
+                    <h4 id="profile-nickname">{{ $user->nickname }}</h4>
                     {{ $user->getProfessionName() }}
                 </div>
             </div>
