@@ -70,9 +70,11 @@
       </div>
 
       <footer class="footer">
-        <p><a href="mail:hudson.byte@gmail.com">Send me feedback</a>.</p>
+        <div class="col-md-6 text-left">
+          <a href="mail:hudson.byte@gmail.com">Send me feedback</a>
+        </div>
 
-        <div class="pull-right">
+        <div class="col-md-6 text-right">
           <a href="/privacy" target="_blank">Privacy Policy</a>
         </div>
       </footer>
