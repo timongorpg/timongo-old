@@ -19,7 +19,7 @@ class GameController extends Controller
 
     protected $pve;
 
-    public function __construct(Creature $creatures, Mastery $masteries, Potion $potions,  PvE $pve)
+    public function __construct(Creature $creatures, Mastery $masteries, Potion $potions, PvE $pve)
     {
         $this->creatures = $creatures;
         $this->masteries = $masteries;
@@ -170,6 +170,21 @@ class GameController extends Controller
         return redirect('/adventures');
     }
 
+    public function pickNickname(Request $request)
+    {
+        $this->validate($request, [
+            'nickname' => 'required|min:3|unique:users|max:16|alpha'
+        ]);
+
+        $user = Auth::user();
+
+        $user->nickname = $request->nickname;
+
+        $user->save();
+
+        return redirect('/me');
+    }
+
     private function getAdventureTip()
     {
         $level = Auth::user()->level;
@@ -190,7 +205,7 @@ class GameController extends Controller
         $level = Auth::user()->level;
 
         if ($level == 1) {
-            return 'Make sure to come back here when you hit level 2.';
+            return 'Make sure to come back when you hit level 2.';
         }
 
         if ($level <= 2) {

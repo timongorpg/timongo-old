@@ -37,6 +37,16 @@ class User extends Authenticatable
         return $this->belongsTo(Profession::class);
     }
 
+    public function hasNickname()
+    {
+        return $this->attributes['nickname'] != null;
+    }
+
+    public function getNicknameAttribute($value)
+    {
+        return $value ?: 'Mysterious Wanderer';
+    }
+
     public function getExperiencePercentageAttribute()
     {
         return round($this->experience / ($this->level * 100) * 100);
@@ -66,7 +76,7 @@ class User extends Authenticatable
 
     public function getFancyNameAttribute()
     {
-        return "<strong>{$this->name}</strong>";
+        return "<strong>{$this->nickname}</strong>";
     }
 
     public function getMeleeDefenceAttribute()
@@ -227,6 +237,17 @@ class User extends Authenticatable
         if ($level <= 49) return 'Veteran';
 
         return 'Lord';
+    }
+
+    public function setExperienceAttribute($value)
+    {
+        $total = $this->level * 100;
+
+        if ($value > $total) {
+            $value = $total;
+        }
+
+        $this->attributes['experience'] = $value >= 0 ? $value : 0;
     }
 
     public function setCurrentHealthAttribute($value)

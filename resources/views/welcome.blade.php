@@ -9,6 +9,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="The best Web based RPG game you are going to find.">
     <meta name="author" content="Hudson Pereira">
+    <meta name="google-site-verification" content="MBHwyhHzsE2Z2LjDNulm6opKNuRgtYlugEZUo5GdHVQ" />
 
     <title>Timongo RPG - Web Based</title>
 
@@ -62,14 +63,18 @@
           <hr />
 
           @foreach($newcomers as $newcomer)
-            <h4>Welcome, {{ $newcomer->name }}! </h4>
-            <p>The <strong>{{ $newcomer->getProfessionName() }}</strong> {{ $newcomer->name }} is level {{ $newcomer->level }} {{ $newcomer->level > 1 ? 'already' : '' }}.</p>
+            <h4>Welcome, {{ $newcomer->nickname }}! </h4>
+            <p>The <strong>{{ $newcomer->getProfessionName() }}</strong> {{ $newcomer->nickname }} is level {{ $newcomer->level }} {{ $newcomer->level > 1 ? 'already' : '' }}.</p>
           @endforeach
         </div>
       </div>
 
       <footer class="footer">
         <p><a href="mail:hudson.byte@gmail.com">Send me feedback</a>.</p>
+
+        <div class="pull-right">
+          <a href="/privacy" target="_blank">Privacy Policy</a>
+        </div>
       </footer>
 
     </div> <!-- /container -->
