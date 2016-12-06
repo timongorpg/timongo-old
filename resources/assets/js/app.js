@@ -9,3 +9,12 @@ require('./bootstrap');
 require('./moment');
 require('./blink-title');
 require('./form-functions');
+
+var db = require('./vuefire');
+
+Vue.component('example', require('./components/Example.vue'));
+Vue.component('chat', require('./components/Chat.vue'));
+
+const app = new Vue({
+    el: '#app'
+});

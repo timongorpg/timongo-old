@@ -10,7 +10,7 @@
         git pull origin master
     @endif
 
-    php artisan migrate
+    php artisan migrate --force
 
     @if($seed)
         php artisan db:seed

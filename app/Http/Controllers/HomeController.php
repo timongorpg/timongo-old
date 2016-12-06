@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -26,8 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (Auth::user()) {
+            return redirect('/me');
+        }
+
         return view('welcome', [
-            'newcomers' => $this->users->orderBy('id', 'DESC')->limit(3)->get()
+            'elite' => $this->users->orderBy('level', 'DESC')->take(3)->get()
         ]);
     }
 
