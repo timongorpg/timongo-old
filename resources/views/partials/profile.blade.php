@@ -12,15 +12,15 @@
         </div>
 
         <div class="panel-body">
-            <div class="row">
-                <div class="col-md-5">
+            <div class="row profile-pic-row">
+                <div class="col-xs-5">
                     <a href="{{ url('/me') }}">
 
                   <img class="img-responsive" src="{{ $user->picture }}" alt="{{ $user->nickname }}">
                     </a>
                 </div>
-                <div class="col-md-7">
-                    <h4 class="media-heading">{{ $user->nickname }}</h4>
+                <div class="col-xs-7">
+                    <h4>{{ $user->nickname }}</h4>
                     {{ $user->getProfessionName() }}
                 </div>
             </div>
@@ -57,13 +57,13 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="potion_id">
                 </form>
-                <div class="col-md-4" onClick="setUsePotion(1)">
+                <div class="col-xs-4" onClick="setUsePotion(1)">
                     <img src="/img/items/life-flask.gif" alt="Life Potion">x{{$user->life_potions}}
                 </div>
-                <div class="col-md-4" onClick="setUsePotion(2)">
+                <div class="col-xs-4" onClick="setUsePotion(2)">
                     <img src="/img/items/mana-flask.gif" alt="Mana Potion">x{{$user->mana_potions}}
                 </div>
-                <div class="col-md-4" onClick="setUsePotion(3)">
+                <div class="col-xs-4" onClick="setUsePotion(3)">
                     <img src="/img/items/stamina-flask.gif" alt="Stamina Potion">x{{$user->stamina_potions}}
                 </div>
             </div>
