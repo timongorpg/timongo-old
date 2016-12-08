@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="The best Web based RPG game you are going to find.">
+    <meta name="description" content="Timongo RPg is the best Web based RPG game you are going to find. If you like old fashioned browser RPG. Join us.">
     <meta name="author" content="Hudson Pereira">
     <meta name="google-site-verification" content="MBHwyhHzsE2Z2LjDNulm6opKNuRgtYlugEZUo5GdHVQ" />
 
