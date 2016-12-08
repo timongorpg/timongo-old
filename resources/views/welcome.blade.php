@@ -64,14 +64,14 @@
 
           @foreach($elite as $user)
             <h4>{{ $user->nickname }}, {{ $user->getProfessionName() }}</h4>
-            <p>The <strong></strong> {{ $user->nickname }} is level {{ $user->level }} {{ $user->level > 1 ? 'already' : '' }}.</p>
+            <p><strong>{{ $user->nickname }}</strong> is level {{ $user->level }} {{ $user->level > 1 ? 'already' : '' }}.</p>
           @endforeach
         </div>
       </div>
 
       <footer class="footer">
         <div class="col-xs-6 text-left">
-          <a href="mail:hudson.byte@gmail.com">Send me feedback</a>
+          <a href="mailto:hudson.byte@gmail.com">Send me feedback</a>
         </div>
 
         <div class="col-xs-6 text-right">
