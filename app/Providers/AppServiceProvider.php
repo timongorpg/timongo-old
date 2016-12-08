@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Auth;
 use View;
 use Carbon\Carbon;
+use Config;
 
 class AppServiceProvider extends ServiceProvider
 {

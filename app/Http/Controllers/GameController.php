@@ -185,6 +185,11 @@ class GameController extends Controller
         return redirect('/me');
     }
 
+    public function donations()
+    {
+        return view('pages.donations');
+    }
+
     private function getAdventureTip()
     {
         $level = Auth::user()->level;
