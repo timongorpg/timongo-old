@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Creature;
+use Timongo\Creatures\FileCreaturesRepository;
 
 class CreatureTableSeeder extends Seeder
 {
@@ -12,55 +13,13 @@ class CreatureTableSeeder extends Seeder
      */
     public function run()
     {
-        $creatures = [
-            [
-                'name' => 'Snake',
-                'image' => 'cobra.gif',
-                'level' => 1,
-                'health' => 10,
-                'attack' => 2,
-                'armor' => 0,
-                'magic_resistance' => 0,
-                'experience' => 25,
-                'gold' => 2
-            ],
-            [
-                'name' => 'Toad',
-                'image' => 'toad.gif',
-                'level' => 1,
-                'health' => 13,
-                'attack' => 3,
-                'armor' => 1,
-                'magic_resistance' => 0,
-                'experience' => 32,
-                'gold' => 3
-            ],
-            [
-                'name' => 'Crawler',
-                'image' => 'crawler.gif',
-                'level' => 2,
-                'health' => 20,
-                'attack' => 5,
-                'armor' => 2,
-                'magic_resistance' => 1,
-                'experience' => 40,
-                'gold' => 4
-            ],
-            [
-                'name' => 'Angry Sheep',
-                'image' => 'sheep.gif',
-                'level' => 3,
-                'health' => 33,
-                'attack' => 8,
-                'armor' => 1,
-                'magic_resistance' => 0,
-                'experience' => 47,
-                'gold' => 5
-            ],
-        ];
+        $creatures = (new FileCreaturesRepository)->fetchAll();
 
-        foreach ($creatures as $creature) {
-            Creature::create($creature);
+        foreach ($creatures as $row) {
+            $creature = Creature::whereImage($row->image)->first() ?: new Creature;
+
+            $creature->fill((array)$row)
+                ->save();
         }
     }
 }
