@@ -63,13 +63,14 @@ class PvE {
     protected function battleWin($hero, $opponent)
     {
         $goldDrop = $opponent->getGoldDrop();
-        $hero->experience += $opponent->experience;
+        $expEarned = ceil(($opponent->experience) + ($opponent->experience * 0.05 * $hero->learning_level));
+        $hero->experience += $expEarned;
         $hero->gold += $goldDrop;
 
         return [
             'message' => "{$opponent->name} is dead!",
             'win' => true,
-            'experience' => $opponent->experience,
+            'experience' => $expEarned,
             'gold' => $goldDrop
         ];
     }

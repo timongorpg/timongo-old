@@ -7753,7 +7753,7 @@ button.close {
 
 #chat {
   position: fixed;
-  bottom: 0px;
+  bottom: -300px;
   right: 20px;
   width: 40%;
 }

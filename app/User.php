@@ -69,8 +69,8 @@ class User extends Authenticatable
 
     public function getOpponents()
     {
-        return Creature::where('level', '>=', $this->level -3)
-            ->where('level', '<=', $this->level +3)
+        return Creature::where('level', '>=', $this->level -2)
+            ->where('level', '<=', $this->level +1)
             ->get();
     }
 
@@ -81,7 +81,7 @@ class User extends Authenticatable
 
     public function getMeleeDefenceAttribute()
     {
-        return ($this->strength * 0.3) + ($this->level * 0.3)
+        return ($this->strength * $this->level * 0.3)
             * ($this->self_defence_level * 0.2);
     }
 
@@ -108,10 +108,25 @@ class User extends Authenticatable
             $roll *= 2;
         }
 
-        $damage = ceil($this->strength * 0.2 + ($roll * 0.5));
+        $damage = ceil($this->getBonusDamage() * $this->level + ($roll * 0.5));
         $creature->health -= $damage;
 
         return $damage;
+    }
+
+    public function getBonusDamage()
+    {
+        switch ($this->profession_id) {
+            case 3:
+                return $this->secret_level;
+                break;
+            case 4:
+                return $this->thievery_level;
+                break;
+            default:
+                return $this->strength;
+                break;
+        }
     }
 
     public function dropStamina()
