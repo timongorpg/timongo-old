@@ -71,6 +71,7 @@ class User extends Authenticatable
     {
         return Creature::where('level', '>=', $this->level -2)
             ->where('level', '<=', $this->level +1)
+            ->orderBy('level')
             ->get();
     }
 
