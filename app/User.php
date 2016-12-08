@@ -166,13 +166,13 @@ class User extends Authenticatable
     {
         switch ($potion->id) {
             case 1:
-                $this->current_health += $this->total_health * 0.3;
+                $this->current_health += $this->total_health * 0.4;
                 break;
             case 2:
-                $this->current_mana += $this->total_mana * 0.3;
+                $this->current_mana += $this->total_mana * 0.4;
                 break;
             case 3:
-                $this->current_stamina += $this->total_stamina * 0.3;
+                $this->current_stamina += $this->total_stamina * 0.4;
                 break;
 
             default:
