@@ -149,10 +149,11 @@ class GameController extends Controller
     public function potion(Request $request)
     {
         $this->validate($request, [
-            'potion_id' => 'required'
+            'potion_id' => 'required',
+            'amount' => 'required'
         ]);
 
-        Auth::user()->buyPotion($request->potion_id)
+        Auth::user()->buyPotion($request->potion_id, $request->amount)
             ->save();
 
         return redirect()->back();

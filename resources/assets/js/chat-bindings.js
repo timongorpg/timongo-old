@@ -44,8 +44,6 @@ $(function(){
         if (event.keyCode == 13) {
             $('#chat .sendMessageButton').click();
         }
-
-        console.log('ae');
     });
 
     Chat.focus();

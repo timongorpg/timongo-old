@@ -137,14 +137,15 @@ class User extends Authenticatable
         return $this;
     }
 
-    public function buyPotion($potionId)
+    public function buyPotion($potionId, $amount = 1)
     {
         $potion = Potion::findOrFail($potionId);
+        $totalCost = $potion->price * $amount;
 
-        if ($this->gold >= $potion->price) {
-            $this->gold -= $potion->price;
+        if ($this->gold >= $totalCost) {
+            $this->gold -= $totalCost;
 
-            $this->{$potion->field}++;
+            $this->{$potion->field} += $amount;
         }
 
         return $this;

@@ -4,6 +4,7 @@
         <form action="{{ url('/potion') }}" method="POST" id="potions-form">
             {{ csrf_field() }}
             <input type="hidden" name="potion_id">
+            <input type="hidden" name="amount">
         </form>
         <table class="table">
             <thead>
@@ -22,8 +23,9 @@
                         </td>
                         <td>{{ $potion->name }}</td>
                         <td><span class="label label-warning">{{ $potion->price }} gold</span></td>
-                        <td>
+                        <td class="text-center">
                             <button onClick="setPotion({{ $potion->id }})" class="btn btn-primary">Buy</button>
+                            <button onClick="setPotion({{ $potion->id }}, 3)" class="btn btn-primary">Buy 3</button>
                         </td>
                     </tr>
                 @endforeach
