@@ -18,7 +18,7 @@
 
             </div>
             <div class="row inputRow">
-                <div class="col-md-9 col-lg-10" >
+                <div class="col-md-9 col-lg-9" >
                     <input type="text" class="form-control message-input" maxlength="50" v-model="message" placeholder="Send a message to everybody">
                 </div>
                 <div class="col-md-3 col-lg-2">
