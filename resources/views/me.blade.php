@@ -34,18 +34,18 @@
             <tbody>
                 @foreach($masteries as $mastery)
                 <tr>
-                    <td>{{ $mastery->name }}</td>
+                    <td>{{ trans('masteries.' . $mastery->id) }}</td>
                     <td>{{ $user->getTitleName($user->{$mastery->field}) }} <span class="label label-success">{{ $user->{$mastery->field} }}</span></td>
                     <td>
                         @if($user->mastery_points && ! $user->isTraining())
-                            <button onClick="setMastery({{ $mastery->id }})" class="btn btn-success">Train</button>
+                            <button onClick="setMastery({{ $mastery->id }})" class="btn btn-success">{{ trans('buttons.train') }}</button>
                         @endif
 
                         @if($user->isTraining($mastery->id))
                             @if($user->trainFinished())
                                 <form action="{{ url('/train') }}" method="POST">
                                     {{ csrf_field() }}
-                                    <button class="btn btn-success">Finish</button>
+                                    <button class="btn btn-success">{{ trans('buttons.finish') }}</button>
                                 </form>
                             @else
                                 {{ $user->end_training->diffForHumans(null, true) }} left

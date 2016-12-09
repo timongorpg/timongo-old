@@ -22,10 +22,10 @@
                             <img src="/img/items/{{ $potion->icon }}" alt="">
                         </td>
                         <td>{{ $potion->name }}</td>
-                        <td><span class="label label-warning">{{ $potion->price }} gold</span></td>
+                        <td><span class="label label-warning">{{ $potion->price }} {{ trans('profile.gold') }}</span></td>
                         <td class="text-center">
-                            <button onClick="setPotion({{ $potion->id }})" class="btn btn-primary">Buy</button>
-                            <button onClick="setPotion({{ $potion->id }}, 3)" class="btn btn-primary">Buy 3</button>
+                            <button onClick="setPotion({{ $potion->id }})" class="btn btn-primary">{{ trans('buttons.buy') }}</button>
+                            <button onClick="setPotion({{ $potion->id }}, 3)" class="btn btn-primary">{{ trans('buttons.buy') }} 3</button>
                         </td>
                     </tr>
                 @endforeach
