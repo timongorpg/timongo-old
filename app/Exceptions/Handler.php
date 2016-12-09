@@ -49,6 +49,10 @@ class Handler extends ExceptionHandler
             return response()->redirect('/');
         }
 
+        //Render exception page is just too uggly. We want to avoid that
+        return response()->redirect('/');
+
+
         return parent::render($request, $exception);
     }
 
