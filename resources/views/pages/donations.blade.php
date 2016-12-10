@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="panel panel-default">
-    <div class="panel-heading">Donation</div>
+    <div class="panel-heading">Doações</div>
     <div class="panel-body">
-        <p>If you feel like supporting this game project.</p>
+        <p>Se você quiser fazer uma doação para o projeto.</p>
 
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">

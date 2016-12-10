@@ -28,53 +28,53 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="{{ url('/login') }}">Sign In</a></li>
+            <li role="presentation" class="active"><a href="{{ url('/login') }}">Entrar</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">Timongo RPG</h3>
       </div>
 
       <div class="jumbotron">
-        <h1>Embrace yourselves</h1>
-        <p class="lead">Join the army! Build up your character, join a guild, make some trading around the city. In a world full of magic and mysterious creatures, You are the hero.</p>
-        <p><a class="btn btn-lg btn-primary" href="{{ url('/login') }}" role="button"> <i class="fa fa-facebook-official" aria-hidden="true"></i> Sign up today</a></p>
+        <h1>Preparem-se</h1>
+        <p class="lead">Junte-se ao exército! Construa seu personagem, junte-se a um clã, faça trocas pela cidade. Em um mundo repleto de magia e criaturas misteriosas: Você é o herói.</p>
+        <p><a class="btn btn-lg btn-primary" href="{{ url('/login') }}" role="button"> <i class="fa fa-facebook-official" aria-hidden="true"></i> Eu sou o herói</a></p>
       </div>
 
       <div class="row marketing">
         <div class="col-md-6">
-          <h2>Latest News</h2>
+          <h2>Boletins</h2>
 
           <hr />
 
-          <h4>Beta version is available!</h4>
-          <p>To be a beta tester is to strongly support the game. If you're a beta tester, you'll get a badge on your character that will stand you out from anothers.</p>
+          <h4>A versão beta está disponível!</h4>
+          <p>Ser um beta tester é contribuir em peso para a construção do game. Se você é um beta tester, você receberá um ícone que te diferenciará dos demais.</p>
 
-          <h4>Enemies are coming</h4>
-          <p>Our backs are agains the wall, but this is when we fight harder. Prepare to face the first raid of an age of war.</p>
+          <h4>Os inimigos estão chegando</h4>
+          <p>Estamos sem saída, mas agora é quando temos que usar todas as nossas forças. Prepare-se para o primeiro combate de uma era de guerra.</p>
 
-          <h4>Designers. We need you.</h4>
-          <p>Are you an experienced designer? Wanna to contribute? We need you.</p>
+          <h4>Ilustradores. Precisamos de vocês.</h4>
+          <p>Você é um designer experiente? Quer contribuir? <a href="mailto:help@timongo.com">Clique aqui para entrar em contato.</a></p>
         </div>
 
         <div class="col-md-6">
-          <h2>Realm's Elite</h2>
+          <h2>Os mais poderosos</h2>
 
           <hr />
 
           @foreach($elite as $user)
-            <h4>{{ $user->nickname }}, {{ $user->getProfessionName() }}</h4>
-            <p><strong>{{ $user->nickname }}</strong> is level {{ $user->level }} {{ $user->level > 1 ? 'already' : '' }}.</p>
+            <h4>{{ $user->nickname }}</h4><span class="label label-success">{{ $user->getProfessionName() }}</span>
+            <p><strong>{{ $user->nickname }}</strong> {{ $user->level > 1 ? 'já' : '' }} está level {{ $user->level }}.</p>
           @endforeach
         </div>
       </div>
 
       <footer class="footer">
         <div class="col-xs-6 text-left">
-          <a href="mailto:hudson.byte@gmail.com">Send me feedback</a>
+          <a href="mailto:help@timongo.com">Envie feedback</a>
         </div>
 
         <div class="col-xs-6 text-right">
-          <a href="/privacy" target="_blank">Privacy Policy</a>
+          <a href="/privacy" target="_blank">Políticas de privacidade</a>
         </div>
       </footer>
 

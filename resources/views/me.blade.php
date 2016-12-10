@@ -5,7 +5,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Level Up</div>
             <div class="panel-body">
-                <div class="alert alert-info"><strong>You made it! </strong>Welcome to the next level.</div>
+                <div class="alert alert-info"><strong>Você conseguiu! </strong>Bem vindo ao próximo level.</div>
             </div>
         </div>
     @endif
@@ -15,7 +15,7 @@
     @endif
 
 <div class="panel panel-default">
-    <div class="panel-heading">Masteries</div>
+    <div class="panel-heading">Habilidades</div>
     <div class="panel-body">
         <div class="alert alert-info">{{ $masteryTip }}</div>
 
@@ -26,9 +26,9 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Mastery</th>
+                    <th>Habilidade</th>
                     <th>Level</th>
-                    <th>Actions</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>

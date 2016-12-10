@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function getNicknameAttribute($value)
     {
-        return $value ?: 'Mysterious Wanderer';
+        return $value ?: 'Andarilho Misterioso';
     }
 
     public function getExperiencePercentageAttribute()
@@ -240,20 +240,20 @@ class User extends Authenticatable
             return $this->profession->name;
         }
 
-        return "{$this->getTitleName()} {$this->profession->name}";
+        return "{$this->profession->name} {$this->getTitleName()}";
     }
 
     public function getTitleName($level = null)
     {
         $level = $level ?: $this->level;
 
-        if ($level <= 9) return 'Apprentice';
-        if ($level <= 19) return 'Initiate';
-        if ($level <= 29) return 'Journeyman';
-        if ($level <= 39) return 'Adept';
-        if ($level <= 49) return 'Veteran';
+        if ($level <= 9) return trans('titles.1');
+        if ($level <= 19) return trans('titles.2');
+        if ($level <= 29) return trans('titles.3');
+        if ($level <= 39) return trans('titles.4');
+        if ($level <= 49) return trans('titles.5');
 
-        return 'Lord';
+        return trans('titles.6');
     }
 
     public function setExperienceAttribute($value)

@@ -31,7 +31,9 @@ class HomeController extends Controller
             return redirect('/me');
         }
 
-        return view('welcome', [
+        $welcomeView = config('app.locale') == 'pt-br' ? 'welcome' : 'welcome-en';
+
+        return view($welcomeView, [
             'elite' => $this->users->orderBy('level', 'DESC')->take(3)->get()
         ]);
     }

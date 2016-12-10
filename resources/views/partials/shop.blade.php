@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading">Potions</div>
+    <div class="panel-heading">Poções</div>
     <div class="panel-body">
         <form action="{{ url('/potion') }}" method="POST" id="potions-form">
             {{ csrf_field() }}
@@ -9,17 +9,17 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Actions</th>
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($potions as $potion)
                     <tr>
                         <td>
-                            <img src="/img/items/{{ $potion->icon }}" alt="">
+                            <img src="/img/items/{{ $potion->icon }}" alt="{{ $potion->name }}">
                         </td>
                         <td>{{ $potion->name }}</td>
                         <td><span class="label label-warning">{{ $potion->price }} {{ trans('profile.gold') }}</span></td>
