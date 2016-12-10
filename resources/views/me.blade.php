@@ -5,7 +5,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Level Up</div>
             <div class="panel-body">
-                <div class="alert alert-info"><strong>You made it! </strong>Welcome to the next level.</div>
+                <div class="alert alert-info"><strong>Você conseguiu! </strong>Bem vindo ao próximo level.</div>
             </div>
         </div>
     @endif
@@ -15,7 +15,7 @@
     @endif
 
 <div class="panel panel-default">
-    <div class="panel-heading">Masteries</div>
+    <div class="panel-heading">Habilidades</div>
     <div class="panel-body">
         <div class="alert alert-info">{{ $masteryTip }}</div>
 
@@ -26,26 +26,26 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Mastery</th>
+                    <th>Habilidade</th>
                     <th>Level</th>
-                    <th>Actions</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($masteries as $mastery)
                 <tr>
-                    <td>{{ $mastery->name }}</td>
+                    <td>{{ trans('masteries.' . $mastery->id) }}</td>
                     <td>{{ $user->getTitleName($user->{$mastery->field}) }} <span class="label label-success">{{ $user->{$mastery->field} }}</span></td>
                     <td>
                         @if($user->mastery_points && ! $user->isTraining())
-                            <button onClick="setMastery({{ $mastery->id }})" class="btn btn-success">Train</button>
+                            <button onClick="setMastery({{ $mastery->id }})" class="btn btn-success">{{ trans('buttons.train') }}</button>
                         @endif
 
                         @if($user->isTraining($mastery->id))
                             @if($user->trainFinished())
                                 <form action="{{ url('/train') }}" method="POST">
                                     {{ csrf_field() }}
-                                    <button class="btn btn-success">Finish</button>
+                                    <button class="btn btn-success">{{ trans('buttons.finish') }}</button>
                                 </form>
                             @else
                                 {{ $user->end_training->diffForHumans(null, true) }} left

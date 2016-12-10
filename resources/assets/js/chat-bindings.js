@@ -2,13 +2,13 @@ var Chat = {
     minimize: function(){
         console.log('minimize called');
         $('#chat').css('bottom', $('#chat .panel-heading').outerHeight() - $('#chat').height());
-        $('.toggleChatButton').html('Maximize');
+        $('.toggleChatButton').html('Maximizar');
     },
 
     maximize: function(){
         console.log('maximize called');
         $('#chat').css('bottom', 0);
-        $('.toggleChatButton').html('Minimize');
+        $('.toggleChatButton').html('Minimizar');
 
         this.focus();
     },
@@ -44,8 +44,6 @@ $(function(){
         if (event.keyCode == 13) {
             $('#chat .sendMessageButton').click();
         }
-
-        console.log('ae');
     });
 
     Chat.focus();

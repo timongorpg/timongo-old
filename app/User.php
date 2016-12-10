@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function getNicknameAttribute($value)
     {
-        return $value ?: 'Mysterious Wanderer';
+        return $value ?: 'Andarilho Misterioso';
     }
 
     public function getExperiencePercentageAttribute()
@@ -69,8 +69,9 @@ class User extends Authenticatable
 
     public function getOpponents()
     {
-        return Creature::where('level', '>=', $this->level -2)
+        return Creature::where('level', '>=', $this->level -1)
             ->where('level', '<=', $this->level +1)
+            ->orderBy('level')
             ->get();
     }
 
@@ -136,14 +137,15 @@ class User extends Authenticatable
         return $this;
     }
 
-    public function buyPotion($potionId)
+    public function buyPotion($potionId, $amount = 1)
     {
         $potion = Potion::findOrFail($potionId);
+        $totalCost = $potion->price * $amount;
 
-        if ($this->gold >= $potion->price) {
-            $this->gold -= $potion->price;
+        if ($this->gold >= $totalCost) {
+            $this->gold -= $totalCost;
 
-            $this->{$potion->field}++;
+            $this->{$potion->field} += $amount;
         }
 
         return $this;
@@ -166,13 +168,13 @@ class User extends Authenticatable
     {
         switch ($potion->id) {
             case 1:
-                $this->current_health += $this->total_health * 0.3;
+                $this->current_health += $this->total_health * 0.4;
                 break;
             case 2:
-                $this->current_mana += $this->total_mana * 0.3;
+                $this->current_mana += $this->total_mana * 0.4;
                 break;
             case 3:
-                $this->current_stamina += $this->total_stamina * 0.3;
+                $this->current_stamina += $this->total_stamina * 0.4;
                 break;
 
             default:
@@ -238,20 +240,20 @@ class User extends Authenticatable
             return $this->profession->name;
         }
 
-        return "{$this->getTitleName()} {$this->profession->name}";
+        return "{$this->profession->name} {$this->getTitleName()}";
     }
 
     public function getTitleName($level = null)
     {
         $level = $level ?: $this->level;
 
-        if ($level <= 9) return 'Apprentice';
-        if ($level <= 19) return 'Initiate';
-        if ($level <= 29) return 'Journeyman';
-        if ($level <= 39) return 'Adept';
-        if ($level <= 49) return 'Veteran';
+        if ($level <= 9) return trans('titles.1');
+        if ($level <= 19) return trans('titles.2');
+        if ($level <= 29) return trans('titles.3');
+        if ($level <= 39) return trans('titles.4');
+        if ($level <= 49) return trans('titles.5');
 
-        return 'Lord';
+        return trans('titles.6');
     }
 
     public function setExperienceAttribute($value)

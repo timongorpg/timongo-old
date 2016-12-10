@@ -3,10 +3,10 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-6">
-                    Hero Lv. <span class="badge label-primary" id="profile-level">{{ $user->level }}</span>
+                    {{ trans('profile.hero_lv') }} <span class="badge label-primary" id="profile-level">{{ $user->level }}</span>
                 </div>
                 <div class="col-xs-6 text-right">
-                    <span class="label label-warning">{{ $user->gold }} Gold</span>
+                    <span class="label label-warning">{{ $user->gold }} {{ trans('profile.gold') }}</span>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
             </div>
 
             <hr>
-            <label for="experience">Experience</label>
+            <label for="experience">{{ trans('profile.experience') }}</label>
 
             @if($user->hasEnoughExperience())
 
@@ -70,7 +70,7 @@
 
             <hr>
 
-            <label for="health">Health</label>
+            <label for="health">{{ trans('profile.health') }}</label>
 
             <div class="progress">
                 <div class="progress-bar health-bar progress-bar-striped active {{ $user->health_percentage > 30 ? 'health-bar-safe' : 'health-bar-danger' }}" role="progressbar" aria-valuenow="{{ $user->health_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->health_percentage }}%;">
@@ -78,7 +78,7 @@
                 </div>
             </div>
 
-            <label for="mana">Mana</label>
+            <label for="mana">{{ trans('profile.mana') }}</label>
 
             <div class="progress">
                 <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{ $user->mana_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->mana_percentage }}%;">
@@ -86,7 +86,7 @@
                 </div>
             </div>
 
-            <label for="stamina">Stamina</label>
+            <label for="stamina">{{ trans('profile.stamina') }}</label>
 
             <div class="progress">
                 <div class="progress-bar stamina-bar progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="{{ $user->stamina_percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->stamina_percentage}}%;">

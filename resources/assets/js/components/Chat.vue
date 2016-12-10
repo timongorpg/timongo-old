@@ -3,10 +3,10 @@
         <div class="panel panel-default">
             <div class="panel-heading clearfix">
                 <div class="col-md-6 text-left">
-                    Global Chat
+                    Chat Global
                 </div>
                 <div class="col-md-6 text-right">
-                    <button class="btn btn-primary toggleChatButton">Maximize</button>
+                    <button class="btn btn-primary toggleChatButton">Maximizar</button>
                 </div>
             </div>
 
@@ -18,11 +18,11 @@
 
             </div>
             <div class="row inputRow">
-                <div class="col-md-9 col-lg-10" >
-                    <input type="text" class="form-control message-input" maxlength="50" v-model="message" placeholder="Send a message to everybody">
+                <div class="col-md-9 col-lg-9" >
+                    <input type="text" class="form-control message-input" maxlength="50" v-model="message" placeholder="Envie mensagem pra todos">
                 </div>
                 <div class="col-md-3 col-lg-2">
-                    <button class="btn btn-primary sendMessageButton" @click="sendMessage">Send</button>
+                    <button class="btn btn-primary sendMessageButton" @click="sendMessage">Enviar</button>
                 </div>
             </div>
         </div>

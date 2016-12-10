@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ config('app.locale') }}">
 <head>
     <meta charset="utf-8">
     <link rel="icon" href="/favicon.png" type="image/png">
@@ -47,9 +47,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="{{ url('/me') }}">Status
+                            <a href="{{ url('/me') }}">{{ trans('menus.status') }}
                             @if($user->trainFinished())
-                                <span class="label label-success">completed</span>
+                                <span class="label label-success">{{ trans('menus.completed') }}</span>
                             @else
                                 @if($user->isTraining())
                                     <span class="glyphicon glyphicon-time"></span>
@@ -62,13 +62,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('/adventures') }}">Adventures</a>
+                            <a href="{{ url('/adventures') }}">{{ trans('menus.adventures') }}</a>
                         </li>
                         <li>
-                            <a href="{{ url('/treasures') }}">Treasures</a>
+                            <a href="{{ url('/treasures') }}">{{ trans('menus.treasures') }}</a>
                         </li>
                         <li>
-                            <a href="{{ url('/arena') }}">Arena</a>
+                            <a href="{{ url('/arena') }}">{{ trans('menus.arena') }}</a>
                         </li>
                     </ul>
 
@@ -86,6 +86,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{{ url('donations') }}">{{ trans('menus.donations') }}</a>
                                         <a href="#">Feedback</a>
                                         {{-- <a href="{{ url('/donation') }}">Donation</a> --}}
                                     </li>

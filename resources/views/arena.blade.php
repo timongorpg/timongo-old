@@ -5,7 +5,7 @@
     <div class="panel-heading">Arena</div>
     <div class="panel-body">
         <div class="alert alert-info">
-            Only the mighty can enter.
+            Em construção
         </div>
     </div>
 </div>
