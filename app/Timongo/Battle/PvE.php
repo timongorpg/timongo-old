@@ -25,7 +25,7 @@ class PvE {
             $damage = $hero->strikes($opponent);
 
             array_push($rounds, [
-                'message' => "{$hero->fancyName} causes $damage to {$opponent->fancyName}",
+                'message' => "{$hero->fancyName} causou $damage de dano em {$opponent->fancyName}",
                 'hero' => true
             ]);
 
@@ -34,7 +34,7 @@ class PvE {
             $damage = $opponent->strikes($hero);
 
             array_push($rounds, [
-                'message' => "{$opponent->fancyName} causes $damage to {$hero->fancyName}",
+                'message' => "{$opponent->fancyName} causou $damage de dano em {$hero->fancyName}",
                 'hero' => false
             ]);
 
@@ -68,7 +68,7 @@ class PvE {
         $hero->gold += $goldDrop;
 
         return [
-            'message' => "{$opponent->name} is dead!",
+            'message' => "{$opponent->name} foi derrotado!",
             'win' => true,
             'experience' => $expEarned,
             'gold' => $goldDrop
@@ -82,7 +82,7 @@ class PvE {
         $hero->current_health = $hero->total_health * 0.2;
 
         return [
-            'message' => 'You have fainted!',
+            'message' => 'Você foi derrotado!',
             'win' => false,
             'gold' => 0
         ];

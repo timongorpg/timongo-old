@@ -2,24 +2,24 @@
 
 @section('content')
     <div class="panel panel-default">
-        <div class="panel-heading clearfix">Battle Results</div>
+        <div class="panel-heading clearfix">Resultado da Luta</div>
         <div class="panel-body">
             <form method="POST">
                 {{ csrf_field()}}
                 <input type="hidden" name="creature_id" value="{{ $creature_id }}">
 
                 <div class="clearfix">
-                    <button class="btn btn-success pull-right"><span class="glyphicon glyphicon-refresh"></span> Fight again!</button>
+                    <button class="btn btn-success pull-right"><span class="glyphicon glyphicon-refresh"></span> Lutar novamente</button>
                 </div>
             </form>
 
             @if($log['results']['win'])
                 <div class="alert alert-success">
-                    <p>{{ $log['results']['message'] }} You have earned <strong>{{ $log['results']['gold'] }} gold piece(s)</strong>.</p>
+                    <p>{{ $log['results']['message'] }} Você encontrou <strong>{{ $log['results']['gold'] }} peças de ouro</strong>.</p>
                 </div>
 
                 <div class="alert alert-success">
-                    You have earned <strong>{{ $log['results']['experience'] }} points of experience</strong>.
+                    Você recebeu <strong>{{ $log['results']['experience'] }} pontos de experiência</strong>.
                 </div>
             @else
                 <div class="alert alert-danger">
@@ -27,7 +27,7 @@
                 </div>
             @endif
 
-            <h2>Fight turns</h2>
+            <h2>Turnos da luta</h2>
 
             <hr>
 
