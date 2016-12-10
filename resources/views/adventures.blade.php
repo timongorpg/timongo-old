@@ -33,7 +33,7 @@
                             @elseif ($user->level < $creature->level)
                                 <button onClick="setCreature({{ $creature->id }})" class="btn btn-danger" data-toggle="popover" data-trigger="hover" data-placement="left" title="{{ $creature->name }}" data-content="Level {{ $creature->level }} recomendado.">{{ trans('buttons.fight') }}</button>
                             @else
-                                <button onClick="setCreature({{ $creature->id }})" class="btn btn-danger" data-toggle="popover" data-trigger="hover" data-placement="left" title="{{ $creature->name }}" data-content="You're stronger than this.">{{ trans('buttons.fight') }}</button>
+                                <button onClick="setCreature({{ $creature->id }})" class="btn btn-danger" data-toggle="popover" data-trigger="hover" data-placement="left" title="{{ $creature->name }}" data-content="Você é mais forte que isso.">{{ trans('buttons.fight') }}</button>
                             @endif
                         </td>
                     </tr>

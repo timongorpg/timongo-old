@@ -118,21 +118,23 @@ class User extends Authenticatable
     public function getBonusDamage()
     {
         switch ($this->profession_id) {
-            case 3:
+            case 3: //Mage
+                // $manaPower = rand(1, $this->secret_level);
+                // $this->current_mana -= $manaPower;
+
                 return $this->secret_level;
                 break;
-            case 4:
+            case 4: //Hunter
                 return $this->thievery_level;
                 break;
-            default:
+            default: //Apprentice & Knight
                 return $this->strength;
-                break;
         }
     }
 
     public function dropStamina()
     {
-        $this->current_stamina -= 6;
+        $this->current_stamina -= 5;
 
         return $this;
     }
@@ -186,6 +188,9 @@ class User extends Authenticatable
         $this->level += 1;
         $this->experience = 0;
         $this->mastery_points += 1;
+
+        $this->total_health += (20 * $this->strength) + (10 * $this->level);
+        $this->current_mana += 20 * $this->secret_level;
 
         $this->current_health = $this->total_health;
         $this->current_stamina = $this->total_stamina;
