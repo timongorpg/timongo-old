@@ -23,7 +23,18 @@ class Creature extends Model
 
     public function strikes($hero)
     {
-        $damage = ceil($this->attack + (rand($this->level * 0.3, $this->level) * 0.3));
+        $levelPlusAttack = $this->level + $this->attack;
+
+        $minRoll = $levelPlusAttack * 0.5;
+        $maxRoll = $levelPlusAttack;
+
+        $damage = rand($minRoll, $maxRoll);
+
+        // Critical hit
+        if ($damage == $maxRoll) {
+            $damage += $damage * 0.2;
+        }
+
         $damage -= $hero->melee_defence;
 
         $hero->current_health -= $damage;

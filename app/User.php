@@ -82,8 +82,12 @@ class User extends Authenticatable
 
     public function getMeleeDefenceAttribute()
     {
-        return ($this->strength * $this->level * 0.3)
-            * ($this->self_defence_level * 0.2);
+        $selfDefence = ($this->self_defence_level * 0.3);
+        $toughness = ($this->strength * $this->level * 0.5);
+
+        $totalMeleeDefence = ceil($selfDefence + $toughness);
+
+        return $totalMeleeDefence;
     }
 
     public function hasEnoughExperience()
@@ -103,14 +107,24 @@ class User extends Authenticatable
 
     public function strikes($creature)
     {
-        $roll = rand(1, 6);
+        $bonusPlusLevel = $this->getBonusDamage() + $this->level;
+        $minRoll = $bonusPlusLevel;
+        $maxRoll = $bonusPlusLevel * 2;
 
-        if ($roll == 6) {
-            $roll *= 2;
+        $damage = rand($minRoll, $maxRoll);
+
+        if ($damage == $maxRoll) {
+            $damage *= 2;
         }
 
-        $damage = ceil($this->getBonusDamage() * $this->level + ($roll * 0.5));
-        $creature->health -= $damage;
+        $creatureDefence = $creature->armor;
+
+        // Cause mages use magic
+        if ($this->profession_id == 3) {
+            $creatureDefence = $creature->magic_resistance;
+        }
+
+        $creature->health -= $damage - $creatureDefence;
 
         return $damage;
     }
