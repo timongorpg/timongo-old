@@ -63,7 +63,7 @@ class GameController extends Controller
 
         if (Auth::user()->current_stamina < 6) {
             return redirect('/adventures')
-                ->with('error', '<strong>Not enough stamina</strong>. It restores over time.');
+                ->with('error', '<strong>Você não tem energia o suficiente</strong>. Compre uma poção na loja.');
         }
 
         $log = $this->pve->battle($request->creature_id);
