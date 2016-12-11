@@ -46,11 +46,15 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($exception instanceof InvalidStateException) {
-            return response()->redirect('/');
+            return redirect('/');
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            return redirect()->guest('login');
         }
 
         //Render exception page is just too uggly. We want to avoid that
-        return response()->redirect('/');
+        return redirect('/');
 
 
         return parent::render($request, $exception);

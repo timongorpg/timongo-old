@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth:web'], function(){
     Route::get('/me', 'GameController@profile');
     Route::get('/donations', 'GameController@donations');
     Route::patch('/pick-nickname', 'GameController@pickNickname');
