@@ -6,5 +6,6 @@ return [
     'treasures' => 'Treasures',
     'arena' => 'Arena',
     'completed' => 'completed',
-    'donations' => 'Doações',
+    'donations' => 'Donations',
+    'ranking' => 'Ranking',
 ];

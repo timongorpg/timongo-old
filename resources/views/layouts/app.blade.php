@@ -70,6 +70,9 @@
                         <li>
                             <a href="{{ url('/arena') }}">{{ trans('menus.arena') }}</a>
                         </li>
+                        <li>
+                            <a href="{{ url('/ranking') }}">{{ trans('menus.ranking') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

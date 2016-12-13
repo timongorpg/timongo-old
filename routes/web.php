@@ -20,6 +20,7 @@ Route::group(['middleware' => 'auth:web'], function(){
     Route::get('/adventures', 'GameController@adventures');
     Route::get('/treasures', 'GameController@treasures');
     Route::get('/arena', 'GameController@arena');
+    Route::get('/ranking', 'GameController@ranking');
     Route::post('/battle', 'GameController@battle');
     Route::post('/level-up', 'GameController@levelUp');
     Route::patch('/profession', 'GameController@profession');

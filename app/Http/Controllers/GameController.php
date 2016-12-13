@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Creature;
 use App\Mastery;
 use App\Potion;
@@ -11,6 +12,8 @@ use Auth;
 
 class GameController extends Controller
 {
+    protected $users;
+
     protected $creatures;
 
     protected $masteries;
@@ -19,8 +22,9 @@ class GameController extends Controller
 
     protected $pve;
 
-    public function __construct(Creature $creatures, Mastery $masteries, Potion $potions, PvE $pve)
+    public function __construct(User $users, Creature $creatures, Mastery $masteries, Potion $potions, PvE $pve)
     {
+        $this->users = $users;
         $this->creatures = $creatures;
         $this->masteries = $masteries;
         $this->potions = $potions;
@@ -53,6 +57,13 @@ class GameController extends Controller
     public function arena()
     {
         return view('arena');
+    }
+
+    public function ranking()
+    {
+        return view('ranking', [
+            'users' => $this->users->with('profession')->orderBy('level', 'DESC')->take(10)->get()
+        ]);
     }
 
     public function battle(Request $request)
