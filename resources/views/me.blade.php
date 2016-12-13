@@ -34,7 +34,7 @@
             <tbody>
                 @foreach($masteries as $mastery)
                 <tr>
-                    <td>{{ trans('masteries.' . $mastery->id) }}</td>
+                    <td>{{ trans('masteries.' . $mastery->id) }} <a role="button" tabindex="0" data-trigger="focus" data-content="{{ trans('masteries.help.' . $mastery->id) }}" data-toggle="popover" ><span class="glyphicon glyphicon-question-sign"></span></a></td>
                     <td>{{ $user->getTitleName($user->{$mastery->field}) }} <span class="label label-success">{{ $user->{$mastery->field} }}</span></td>
                     <td>
                         @if($user->mastery_points && ! $user->isTraining())
@@ -66,5 +66,9 @@
             document.querySelector('[name=mastery_id]').value = masteryId;
             document.querySelector('#mastery-form').submit();
         }
+
+        $(function () {
+          $('[data-toggle="popover"]').popover();
+        });
     </script>
 @endsection
