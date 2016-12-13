@@ -7,4 +7,5 @@ return [
     'arena' => 'Arena',
     'completed' => 'completo',
     'donations' => 'Doações',
+    'ranking' => 'Ranking',
 ];

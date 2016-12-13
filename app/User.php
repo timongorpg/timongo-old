@@ -82,8 +82,12 @@ class User extends Authenticatable
 
     public function getMeleeDefenceAttribute()
     {
-        return ($this->strength * $this->level * 0.3)
-            * ($this->self_defence_level * 0.2);
+        $selfDefence = ($this->self_defence_level * 0.3);
+        $toughness = ($this->strength * $this->level * 0.5);
+
+        $totalMeleeDefence = ceil($selfDefence + $toughness);
+
+        return $totalMeleeDefence;
     }
 
     public function hasEnoughExperience()
@@ -103,14 +107,24 @@ class User extends Authenticatable
 
     public function strikes($creature)
     {
-        $roll = rand(1, 6);
+        $bonusPlusLevel = $this->getBonusDamage() + $this->level;
+        $minRoll = $bonusPlusLevel;
+        $maxRoll = $bonusPlusLevel * 2;
 
-        if ($roll == 6) {
-            $roll *= 2;
+        $damage = rand($minRoll, $maxRoll);
+
+        if ($damage == $maxRoll) {
+            $damage *= 2;
         }
 
-        $damage = ceil($this->getBonusDamage() * $this->level + ($roll * 0.5));
-        $creature->health -= $damage;
+        $creatureDefence = $creature->armor;
+
+        // Cause mages use magic
+        if ($this->profession_id == 3) {
+            $creatureDefence = $creature->magic_resistance;
+        }
+
+        $creature->health -= $damage - $creatureDefence;
 
         return $damage;
     }
@@ -118,21 +132,23 @@ class User extends Authenticatable
     public function getBonusDamage()
     {
         switch ($this->profession_id) {
-            case 3:
+            case 3: //Mage
+                // $manaPower = rand(1, $this->secret_level);
+                // $this->current_mana -= $manaPower;
+
                 return $this->secret_level;
                 break;
-            case 4:
+            case 4: //Hunter
                 return $this->thievery_level;
                 break;
-            default:
+            default: //Apprentice & Knight
                 return $this->strength;
-                break;
         }
     }
 
     public function dropStamina()
     {
-        $this->current_stamina -= 6;
+        $this->current_stamina -= 5;
 
         return $this;
     }
@@ -186,6 +202,9 @@ class User extends Authenticatable
         $this->level += 1;
         $this->experience = 0;
         $this->mastery_points += 1;
+
+        $this->total_health += (20 * $this->strength) + (10 * $this->level);
+        $this->current_mana += 20 * $this->secret_level;
 
         $this->current_health = $this->total_health;
         $this->current_stamina = $this->total_stamina;

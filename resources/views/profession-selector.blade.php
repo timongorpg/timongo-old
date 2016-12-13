@@ -11,19 +11,19 @@
         <div class="col-md-4 text-center" onClick="selectProfession(2)">
             <img src="/img/icons/pointy-sword.png" alt="Knight">
 
-            <h4>Knight</h4>
+            <h4>{{ trans('professions.2') }}</h4>
         </div>
 
         <div class="col-md-4 text-center" onClick="selectProfession(3)">
             <img src="/img/icons/wizard-staff.png" alt="Mage">
 
-            <h4>Mage</h4>
+            <h4>{{ trans('professions.3') }}</h4>
         </div>
 
         <div class="col-md-4 text-center" onClick="selectProfession(4)">
             <img src="/img/icons/pocket-bow.png" alt="Hunter">
 
-            <h4>Hunter</h4>
+            <h4>{{ trans('professions.4') }}</h4>
         </div>
 
     </div>

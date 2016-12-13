@@ -13,13 +13,14 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth:web'], function(){
     Route::get('/me', 'GameController@profile');
     Route::get('/donations', 'GameController@donations');
     Route::patch('/pick-nickname', 'GameController@pickNickname');
     Route::get('/adventures', 'GameController@adventures');
     Route::get('/treasures', 'GameController@treasures');
     Route::get('/arena', 'GameController@arena');
+    Route::get('/ranking', 'GameController@ranking');
     Route::post('/battle', 'GameController@battle');
     Route::post('/level-up', 'GameController@levelUp');
     Route::patch('/profession', 'GameController@profession');
