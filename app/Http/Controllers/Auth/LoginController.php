@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use Auth;
 use App\User;
+use App\Events\UserRegistered;
 
 class LoginController extends Controller
 {
@@ -47,6 +48,8 @@ class LoginController extends Controller
         $user->picture = $user->picture ?: asset('/img/no-pic-character.png');
 
         $user->save();
+
+        event(new UserRegistered($user));
 
         Auth::loginUsingId($user->id);
 
