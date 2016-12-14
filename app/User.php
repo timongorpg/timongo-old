@@ -82,8 +82,8 @@ class User extends Authenticatable
 
     public function getMeleeDefenceAttribute()
     {
-        $selfDefence = ($this->self_defence_level * 0.3);
-        $toughness = ($this->strength * $this->level * 0.5);
+        $selfDefence = ($this->self_defence_level * 0.2);
+        $toughness = ($this->strength * $this->level * 0.15);
 
         $totalMeleeDefence = ceil($selfDefence + $toughness);
 
@@ -124,7 +124,11 @@ class User extends Authenticatable
             $creatureDefence = $creature->magic_resistance;
         }
 
-        $creature->health -= $damage - $creatureDefence;
+        $damage = $damage - $creatureDefence;
+
+        $damage = $damage > 0 ? $damage : rand(1, 2);
+
+        $creature->health -= $damage;
 
         return $damage;
     }
