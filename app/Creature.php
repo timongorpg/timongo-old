@@ -36,6 +36,7 @@ class Creature extends Model
         }
 
         $damage -= $hero->melee_defence;
+        $damage = ($damage > 0) ? $damage : rand(1, 2);
 
         $hero->current_health -= $damage;
 
