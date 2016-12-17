@@ -22,7 +22,7 @@
                         </td>
                         <td>{{ $ranked->nickname }}</td>
                         <td><span class="label label-success">{{ $ranked->level }}</span></td>
-                        <td>{{ $ranked->profession->name }}</td>
+                        <td>{{ $ranked->getProfessionName() }}</td>
                     </tr>
                 @endforeach
             </tbody>
