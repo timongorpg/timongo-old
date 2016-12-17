@@ -7,6 +7,7 @@ use Auth;
 use View;
 use Carbon\Carbon;
 use Config;
+use App\Mastery;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,8 +21,10 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             //If the user is logged in bind it to the view
             if ($user = Auth::user()) {
+                $masteries = Mastery::orderBy('name')->get();
                 $view->with([
                     'user' => $user,
+                    'masteries' => $masteries,
                     'current_time' => Carbon::now()
                 ]);
             }
