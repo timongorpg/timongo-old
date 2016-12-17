@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Laravel\Socialite\Two\InvalidStateException;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -54,7 +55,10 @@ class Handler extends ExceptionHandler
         }
 
         //Render exception page is just too uggly. We want to avoid that
-        return redirect('/');
+        if (! $exception instanceof ValidationException) {
+            return redirect('/');
+        }
+
 
 
         return parent::render($request, $exception);

@@ -10,6 +10,7 @@
         git pull origin master
     @endif
 
+    composer install
     php artisan migrate --force
 
     @if($seed)
@@ -27,4 +28,9 @@
     @endif
 
     php artisan migrate:refresh --seed
+@endtask
+
+@task('creatures', ['on' => 'web'])
+    cd timongo
+    php artisan db:seed --class=CreatureTableSeeder
 @endtask
