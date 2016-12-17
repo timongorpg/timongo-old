@@ -24,7 +24,26 @@
                     {{ $user->getProfessionName() }}
                 </div>
             </div>
-
+            <hr>
+            <label>Habilidades</label>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td><img src="/img/icons/dungeon.png" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="@lang('masteries.3')"></td>
+                        <td><img src="/img/icons/luck.png" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="@lang('masteries.6')"></td>
+                        <td><img src="/img/icons/learning.png" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="@lang('masteries.7')"></td>
+                        <td><img src="/img/icons/magical-arts.png" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="@lang('masteries.5')"></td>
+                        <td><img src="/img/icons/ability-sword.png" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="@lang('masteries.1')"></td>
+                        <td><img src="/img/icons/cash.png" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="@lang('masteries.4')"></td>
+                        <td><img src="/img/icons/body-strength.png" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="@lang('masteries.2')"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($masteries as $mastery)
+                        <td><span class="label label-success">{{ $user->{$mastery->field} }}</span></td>
+                    @endforeach
+                </tbody>
+            </table>
             <hr>
             <label for="experience">{{ trans('profile.experience') }}</label>
 
@@ -71,7 +90,9 @@
             <hr>
 
             <label for="health">{{ trans('profile.health') }}</label>
-
+            <div class="pull-right">
+                <img src='/img/icons/health.png'> {{ $user->total_health }}
+            </div>
             <div class="progress">
                 <div class="progress-bar health-bar progress-bar-striped active {{ $user->health_percentage > 30 ? 'health-bar-safe' : 'health-bar-danger' }}" role="progressbar" aria-valuenow="{{ $user->health_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->health_percentage }}%;">
                     {{ $user->health_percentage }}%
@@ -79,7 +100,9 @@
             </div>
 
             <label for="mana">{{ trans('profile.mana') }}</label>
-
+            <div class="pull-right">
+                <img src='/img/icons/mana.png'> {{ $user->total_mana }}
+            </div>
             <div class="progress">
                 <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{ $user->mana_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->mana_percentage }}%;">
                     {{ $user->mana_percentage }}%
@@ -87,7 +110,9 @@
             </div>
 
             <label for="stamina">{{ trans('profile.stamina') }}</label>
-
+            <div class="pull-right">
+                <img src='/img/icons/stamina.png'> {{ $user->total_stamina }}
+            </div>
             <div class="progress">
                 <div class="progress-bar stamina-bar progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="{{ $user->stamina_percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->stamina_percentage}}%;">
                     {{ $user->stamina_percentage}}%
