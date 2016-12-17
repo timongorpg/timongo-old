@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "73e9758f9791ff1fa246d2bdfb17f4e6",
-    "content-hash": "86016759b6678c31418324eff0d22514",
+    "hash": "caecaec186a9aff41470fbad46b97711",
+    "content-hash": "06363e9425b1dcba285dcce169958125",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2159,16 +2159,16 @@
         },
         {
             "name": "timongorpg/creatures",
-            "version": "0.1.3",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/timongorpg/creatures.git",
-                "reference": "7e2e61c19898c51efc7f6f911a46d0595e748837"
+                "reference": "4504a034e4b08c941eb1737e4ac62cdcef348ce0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/timongorpg/creatures/zipball/7e2e61c19898c51efc7f6f911a46d0595e748837",
-                "reference": "7e2e61c19898c51efc7f6f911a46d0595e748837",
+                "url": "https://api.github.com/repos/timongorpg/creatures/zipball/4504a034e4b08c941eb1737e4ac62cdcef348ce0",
+                "reference": "4504a034e4b08c941eb1737e4ac62cdcef348ce0",
                 "shasum": ""
             },
             "require": {
@@ -2191,7 +2191,7 @@
                 }
             ],
             "description": "Creatures package for Timongo",
-            "time": "2016-12-08 02:13:45"
+            "time": "2016-12-17 22:58:15"
         },
         {
             "name": "vlucas/phpdotenv",
