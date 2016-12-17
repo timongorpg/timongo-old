@@ -79,7 +79,7 @@ class PvE {
     {
         $hero->experience -= round($hero->experience * 0.2);
 
-        $hero->current_health = $hero->total_health * 0.2;
+        $hero->current_health = $hero->total_health * 0.4;
 
         return [
             'message' => 'Você foi derrotado!',
