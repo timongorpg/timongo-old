@@ -32,5 +32,5 @@
 
 @task('creatures', ['on' => 'web'])
     cd timongo
-    php artisan db:seed --class=CreatureTableSeeder
+    php artisan db:seed --class=CreatureTableSeeder --force
 @endtask
