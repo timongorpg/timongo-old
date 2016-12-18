@@ -207,8 +207,22 @@ class User extends Authenticatable
         $this->experience = 0;
         $this->mastery_points += 1;
 
-        $this->total_health += (20 * $this->strength) + (10 * $this->level);
-        $this->current_mana += 20 * $this->secret_level;
+        $healthPerLevel = 20;
+
+        switch ($this->profession_id) {
+            case 2:
+                $healthPerLevel = 40;
+                break;
+            case 3:
+                $healthPerLevel = 25;
+                break;
+            case 4:
+                $healthPerLevel = 30;
+                break;
+        }
+
+        $this->total_health = (40 * $this->strength) + ($healthPerLevel * $this->level);
+        $this->total_mana = 20 * $this->secret_level;
 
         $this->current_health = $this->total_health;
         $this->current_stamina = $this->total_stamina;
