@@ -19,7 +19,7 @@
             </div>
             <div class="row inputRow">
                 <div class="col-md-9 col-lg-9" >
-                    <input type="text" class="form-control message-input" maxlength="50" v-model="message" placeholder="Envie mensagem pra todos">
+                    <input type="text" class="form-control message-input" v-model="message" placeholder="Envie mensagem pra todos">
                 </div>
                 <div class="col-md-3 col-lg-2">
                     <button class="btn btn-primary sendMessageButton" @click="sendMessage">Enviar</button>
