@@ -137,10 +137,16 @@ class User extends Authenticatable
     {
         switch ($this->profession_id) {
             case 3: //Mage
-                // $manaPower = rand(1, $this->secret_level);
-                // $this->current_mana -= $manaPower;
+                $damage = $this->secret_level;
 
-                return $this->secret_level;
+                if ($this->current_mana >= 15) {
+                    $manaPower = rand(1, $this->secret_level);
+
+                    $this->current_mana -= 15;
+                    $damage += $manaPower;
+                }
+
+                return $damage;
                 break;
             case 4: //Hunter
                 return $this->thievery_level;
