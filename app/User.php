@@ -227,8 +227,8 @@ class User extends Authenticatable
                 break;
         }
 
-        $this->total_health = (40 * $this->strength) + ($healthPerLevel * $this->level);
-        $this->total_mana = 20 * $this->secret_level;
+        $this->total_health = (8 * $this->strength) + ($healthPerLevel * $this->level);
+        $this->total_mana = 15 * $this->secret_level;
 
         $this->current_health = $this->total_health;
         $this->current_stamina = $this->total_stamina;
