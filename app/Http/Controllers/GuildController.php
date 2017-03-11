@@ -47,4 +47,17 @@ class GuildController extends Controller
         return redirect()->back();
     }
 
+    public function apply($guildId)
+    {
+        $guild = $this->guilds->with('leader', 'candidates')->findOrFail($guildId);
+        $user = $this->guard->user();
+
+        if (! $guild->candidates->find($user->id)) {
+            $guild->candidates()->save($user);
+        }
+
+        return redirect()->back()
+            ->withMessage("Your invite was sent to {$guild->leader->nickname} leader of the $guild->name.");
+    }
+
 }

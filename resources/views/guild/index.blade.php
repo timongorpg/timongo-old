@@ -43,12 +43,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($availableGuilds as $guild)
+                    @forelse ($availableGuilds as $availableGuild)
                         <tr>
-                            <th>{{ $guild->name }}</th>
-                            <th>{{ $guild->leader->nickname }}</th>
+                            <th>{{ $availableGuild->name }}</th>
+                            <th>{{ $availableGuild->leader->nickname }}</th>
                             <th>
-                                <form action="{{ route('guild.apply', $guild->id) }}">
+                                <form method="POST" action="{{ route('guild.apply', $availableGuild->id) }}">
                                     {{ csrf_field() }}
                                     <button type="submit" class="btn btn-success">Apply</button>
                                 </form>

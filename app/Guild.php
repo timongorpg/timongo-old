@@ -20,4 +20,10 @@ class Guild extends Model
     {
         return $this->hasOne(User::class, 'id', 'leader_id');
     }
+
+    public function candidates()
+    {
+        return $this->belongsToMany(User::class, 'guild_candidates')
+            ->withTimestamps();
+    }
 }

@@ -121,8 +121,8 @@
                 @include('partials/profile')
 
                 <div class="col-md-8">
+                    @include('partials/flash')
                     @yield('content')
-
                 </div>
             </div>
         </div>
