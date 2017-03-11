@@ -54,10 +54,7 @@ class Handler extends ExceptionHandler
         }
 
         //Render exception page is just too uggly. We want to avoid that
-        return redirect('/');
-
-
-        return parent::render($request, $exception);
+        return env('APP_DEBUG') ? parent::render($request, $exception) : redirect('/');
     }
 
     /**

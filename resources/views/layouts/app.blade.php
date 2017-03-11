@@ -73,6 +73,9 @@
                         <li>
                             <a href="{{ url('/ranking') }}">{{ trans('menus.ranking') }}</a>
                         </li>
+                        <li>
+                            <a href="{{ url('/guild') }}">{{ trans('menus.guild') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

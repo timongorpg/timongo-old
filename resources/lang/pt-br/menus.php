@@ -8,4 +8,5 @@ return [
     'completed' => 'completo',
     'donations' => 'Doações',
     'ranking' => 'Ranking',
+    'guild' => 'Guild',
 ];
