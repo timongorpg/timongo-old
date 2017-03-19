@@ -71,7 +71,7 @@ class User extends Authenticatable
     {
         return Creature::where('level', '>=', $this->level - 10)
             ->where('level', '<=', $this->level +1)
-            ->orderBy('level')
+            ->orderBy('level', 'DESC')
             ->get();
     }
 
@@ -213,22 +213,25 @@ class User extends Authenticatable
         $this->experience = 0;
         $this->mastery_points += 1;
 
-        $healthPerLevel = 20;
+        $healthPerLevel = 0;
 
         switch ($this->profession_id) {
             case 2:
-                $healthPerLevel = 40;
+                //Knight
+                $healthPerLevel = 20;
                 break;
             case 3:
-                $healthPerLevel = 25;
+                //Mage
+                $healthPerLevel = 7;
                 break;
             case 4:
-                $healthPerLevel = 30;
+                //Hunter
+                $healthPerLevel = 10;
                 break;
         }
 
-        $this->total_health = (8 * $this->strength) + ($healthPerLevel * $this->level);
-        $this->total_mana = 15 * $this->secret_level;
+        $this->total_health = 150 + ($healthPerLevel * $this->level);
+        $this->total_mana = 100 + 15;
 
         $this->current_health = $this->total_health;
         $this->current_stamina = $this->total_stamina;
@@ -346,14 +349,14 @@ class User extends Authenticatable
 
     public function increaseHealth()
     {
-        $this->current_health += 5;
+        $this->current_health += $this->total_health * ($this->constitution / 10);
 
         return $this;
     }
 
     public function increaseMana()
     {
-        $this->current_mana += 5;
+        $this->current_mana += $this->total_mana * ($this->intelligence / 10);
 
         return $this;
     }

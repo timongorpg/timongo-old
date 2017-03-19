@@ -71,7 +71,7 @@
 
             <div class="progress">
                 <div class="progress-bar health-bar progress-bar-striped active {{ $user->health_percentage > 30 ? 'health-bar-safe' : 'health-bar-danger' }}" role="progressbar" aria-valuenow="{{ $user->health_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->health_percentage }}%;">
-                    {{ $user->health_percentage }}%
+                    {{ $user->current_health }}/{{ $user->total_health }}
                 </div>
             </div>
 
@@ -79,7 +79,7 @@
 
             <div class="progress">
                 <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{ $user->mana_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->mana_percentage }}%;">
-                    {{ $user->mana_percentage }}%
+                    {{ $user->current_mana }}/{{ $user->total_mana }}
                 </div>
             </div>
 
@@ -87,7 +87,7 @@
 
             <div class="progress">
                 <div class="progress-bar stamina-bar progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="{{ $user->stamina_percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->stamina_percentage}}%;">
-                    {{ $user->stamina_percentage}}%
+                    {{ $user->current_stamina }}/{{ $user->total_stamina }}
                 </div>
             </div>
         </div>
