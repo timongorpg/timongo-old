@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth:web'], function(){
     Route::post('/potion', 'GameController@potion');
     Route::post('/use-potion', 'GameController@usePotion');
     Route::post('/logout', 'Auth\LoginController@logout');
+    Route::post('/change-theme', 'ThemesController@changeTheme');
 });
 
 Route::get('/home', 'HomeController@index');

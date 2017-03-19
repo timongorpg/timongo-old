@@ -14,6 +14,10 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
+    @if($user->theme == 1)
+        <link rel="stylesheet" href="/css/themes/stale-bootstrap.min.css">
+    @endif
+
     @yield('styles')
 
     <!-- Scripts -->
@@ -82,6 +86,13 @@
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
+                            <li class="navbar-form">
+                                <form method="POST" action="{{ url('change-theme') }}">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="theme" value="{{ $user->theme == 1 ? 0 : 1}}">
+                                    <button class="btn btn-default" type="submit">Trocar Tema</button>
+                                </form>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->nickname }} <span class="caret"></span>
