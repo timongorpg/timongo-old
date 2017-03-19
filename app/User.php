@@ -218,15 +218,15 @@ class User extends Authenticatable
         switch ($this->profession_id) {
             case 2:
                 //Knight
-                $healthPerLevel = 20;
+                $healthPerLevel = 30;
                 break;
             case 3:
                 //Mage
-                $healthPerLevel = 7;
+                $healthPerLevel = 17;
                 break;
             case 4:
                 //Hunter
-                $healthPerLevel = 10;
+                $healthPerLevel = 20;
                 break;
         }
 
