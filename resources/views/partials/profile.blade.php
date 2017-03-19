@@ -44,7 +44,7 @@
 
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped active progress-bar-info" role="progressbar" aria-valuenow="{{ $user->experience_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->experience_percentage }}%;">
-                        {{ $user->experience_percentage }}%
+                        {{ $user->experience }}/{{ $user->toNextLevel() }}
                     </div>
                 </div>
 
