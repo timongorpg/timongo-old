@@ -46,10 +46,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if (env('APP_DEBUG') == true) {
-            return parent::render($request, $exception);
-        }
-
         if ($exception instanceof InvalidStateException) {
             return redirect('/');
         }
@@ -58,12 +54,11 @@ class Handler extends ExceptionHandler
             return redirect()->guest('login');
         }
 
-        //Render exception page is just too uggly. We want to avoid that
         if (! $exception instanceof ValidationException) {
             return redirect('/');
         }
 
-        return parent::render($request, $exception);
+        return env('APP_DEBUG') ? parent::render($request, $exception) : redirect('/');
     }
 
     /**
