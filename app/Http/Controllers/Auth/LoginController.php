@@ -44,7 +44,7 @@ class LoginController extends Controller
         $user = $this->users->whereEmail($socialite->getEmail())->first() ?:
             $this->users->newInstance($socialite->getRaw());
 
-        $user->picture = $user->picture ?: asset('/img/no-pic-character.png');
+        $user->picture = $socialite->getAvatar();
 
         $user->save();
 

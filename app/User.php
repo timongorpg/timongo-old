@@ -139,10 +139,10 @@ class User extends Authenticatable
             case 3: //Mage
                 $damage = $this->secret_level;
 
-                if ($this->current_mana >= 15) {
+                if ($this->current_mana >= 5) {
                     $manaPower = rand(1, $this->secret_level);
 
-                    $this->current_mana -= 15;
+                    $this->current_mana -= 5;
                     $damage += $manaPower;
                 }
 
@@ -218,15 +218,15 @@ class User extends Authenticatable
         switch ($this->profession_id) {
             case 2:
                 //Knight
-                $healthPerLevel = 20;
+                $healthPerLevel = 30;
                 break;
             case 3:
                 //Mage
-                $healthPerLevel = 7;
+                $healthPerLevel = 17;
                 break;
             case 4:
                 //Hunter
-                $healthPerLevel = 10;
+                $healthPerLevel = 20;
                 break;
         }
 
@@ -319,7 +319,7 @@ class User extends Authenticatable
             $value = $this->total_health;
         }
 
-        $this->attributes['current_health'] = $value >= 0 ? $value : 0;
+        $this->attributes['current_health'] = $value >= 0 ? intval($value) : 0;
     }
 
     public function setCurrentManaAttribute($value)
