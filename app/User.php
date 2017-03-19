@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Carbon\Carbon;
+use App\Events\UserRegistered;
 
 class User extends Authenticatable
 {
@@ -30,6 +31,10 @@ class User extends Authenticatable
 
     protected $dates = [
         'end_training'
+    ];
+
+    protected $events = [
+        'created' => UserRegistered::class,
     ];
 
     public function profession()
