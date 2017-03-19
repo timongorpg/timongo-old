@@ -336,4 +336,25 @@ class User extends Authenticatable
 
         $this->attributes['current_stamina'] = $value >= 0 ? $value : 0;
     }
+
+    public function increaseStamina()
+    {
+        $this->current_stamina += 5;
+
+        return $this;
+    }
+
+    public function increaseHealth()
+    {
+        $this->current_health += 5;
+
+        return $this;
+    }
+
+    public function increaseMana()
+    {
+        $this->current_mana += 5;
+
+        return $this;
+    }
 }
