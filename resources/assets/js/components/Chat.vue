@@ -12,7 +12,7 @@
 
             <div class="panel-body messages">
                 <div class="message-box" v-for="message in messages">
-                    <span class="sender">{{ message.sender }}</span><span class="badge">{{message.senderLv}}</span>
+                    <span class="label label-info">{{ message.createdAt | date }}</span> <span class="sender">{{ message.sender }} </span><span class="label label-success">{{message.senderLv}}</span>
                     <div class="body">{{ message.message }}</div>
                 </div>
 
@@ -30,7 +30,10 @@
 </template>
 
 <script>
-    let db = require('../vuefire');
+    let vuefire = require('../vuefire');
+    let db = vuefire.database;
+    let firebase = require('firebase');
+    let timestamp = firebase.database.ServerValue.TIMESTAMP;
     var Chat = require('../chat-bindings');
 
     export default {
@@ -53,10 +56,12 @@
             sendMessage(){
                 if (this.message.length == 0) { return; }
 
+                console.log(db);
                 this.$firebaseRefs.messages.push({
                     message: this.message,
                     sender: $('#profile-nickname').html(),
-                    senderLv: $('#profile-level').html()
+                    senderLv: $('#profile-level').html(),
+                    createdAt: timestamp
                 });
 
                 this.message = '';

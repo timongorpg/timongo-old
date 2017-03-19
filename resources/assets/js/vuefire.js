@@ -1,5 +1,5 @@
-var vuefire = require('vuefire')
-var firebase = require('firebase')
+var vuefire = require('vuefire');
+var firebase = require('firebase');
 
 Vue.use(vuefire);
 
@@ -33,4 +33,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   // ...
 });
 
-module.exports = firebase.database();
+module.exports = {
+  firebase: firebase,
+  database: firebase.database()
+};
