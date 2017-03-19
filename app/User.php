@@ -139,10 +139,10 @@ class User extends Authenticatable
             case 3: //Mage
                 $damage = $this->secret_level;
 
-                if ($this->current_mana >= 15) {
+                if ($this->current_mana >= 5) {
                     $manaPower = rand(1, $this->secret_level);
 
-                    $this->current_mana -= 15;
+                    $this->current_mana -= 5;
                     $damage += $manaPower;
                 }
 
