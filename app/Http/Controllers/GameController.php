@@ -67,9 +67,9 @@ class GameController extends Controller
             'creature_id' => 'required'
         ]);
 
-        if (Auth::user()->current_stamina < 6) {
+        if (Auth::user()->current_stamina < 5) {
             return redirect('/adventures')
-                ->with('error', '<strong>Você não tem energia o suficiente</strong>. Compre uma poção na loja.');
+                ->with('error', '<strong>Você não tem energia o suficiente</strong>. A energia recupera com o tempo.');
         }
 
         $log = $this->pve->battle($request->creature_id);
