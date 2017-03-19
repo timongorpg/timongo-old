@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\EnergyUp::class,
-        \App\Console\Commands\ResetCharacters::class
+        // \App\Console\Commands\ResetCharacters::class,
+        // \App\Console\Commands\OpenArena::class,
     ];
 
     /**
@@ -25,8 +26,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $arenaSchedule = env('APP_ARENA', 'everyMinute');
+
         $schedule->command('energy:up')
             ->everyMinute();
+
+        $schedule->command('open:arena')
+                ->$arenaSchedule();
     }
 
     /**

@@ -77,6 +77,9 @@
                         <li>
                             <a href="{{ url('/ranking') }}">{{ trans('menus.ranking') }}</a>
                         </li>
+                        {{-- <li> --}}
+                            {{-- <a href="{{ url('/guild') }}">{{ trans('menus.guild') }}</a> --}}
+                        {{-- </li> --}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -125,12 +128,12 @@
         </nav>
 
         <div class="container">
+            @include ('partials/flash')
             <div class="row">
                 @include('partials/profile')
 
                 <div class="col-md-8">
                     @yield('content')
-
                 </div>
             </div>
         </div>

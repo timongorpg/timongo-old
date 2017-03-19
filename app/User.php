@@ -37,6 +37,11 @@ class User extends Authenticatable
         return $this->belongsTo(Profession::class);
     }
 
+    public function guild()
+    {
+        return $this->belongsTo(Guild::class);
+    }
+
     public function hasNickname()
     {
         return $this->attributes['nickname'] != null;

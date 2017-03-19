@@ -20,7 +20,12 @@
                         <td>
                             <img src="{{ $ranked->picture }}" alt="{{ $ranked->nickname }}" class="img-responsive img-rounded">
                         </td>
-                        <td>{{ $ranked->nickname }}</td>
+                        <td>
+                            @if ($ranked->guild)
+                                <span class="label label-info">{{ $ranked->guild->name }}</span>
+                            @endif
+                            {{ $ranked->nickname }}
+                        </td>
                         <td><span class="label label-success">{{ $ranked->level }}</span></td>
                         <td>{{ $ranked->getProfessionName() }}</td>
                     </tr>
