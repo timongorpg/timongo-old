@@ -23,10 +23,23 @@ class GuildController extends Controller
     {
         $user = $this->guard->user();
         $guild = $user->guild;
-        $members = $guild ? $guild->members : new Collection;
-        $availableGuilds = $guild ? new Collection : $this->guilds->with('leader')->orderBy('name', 'ASC')->get();
 
-        return view('guild.index', compact(['user', 'guild', 'members', 'availableGuilds']));
+        return $guild ? $this->renderGuildDashboard($guild) : $this->renderGuildIndex();
+    }
+
+    protected function renderGuildIndex()
+    {
+        $availableGuilds = $this->guilds->with('leader')->orderBy('name', 'ASC')->get();
+
+        return view('guilds.index', compact('availableGuilds'));
+    }
+
+    protected function renderGuildDashboard($guild)
+    {
+        $members = $guild->members;
+        $candidates = $guild->candidates;
+
+        return view('guilds.dashboard', compact(['guild', 'members', 'candidates']));
     }
 
     public function create(Request $request)

@@ -22,9 +22,9 @@ Route::group(['middleware' => 'auth:web'], function(){
     Route::get('/arena', 'ArenaController@index');
     Route::post('/arena', 'ArenaController@signUp');
     Route::get('/ranking', 'GameController@ranking');
-    Route::get('/guild', 'GuildController@index');
-    Route::post('guild', ['as' => 'guild.create', 'uses' => 'GuildController@create']);
-    Route::post('guild/{guildId}', ['as' => 'guild.apply', 'uses' => 'GuildController@apply']);
+    // Route::get('/guild', 'GuildController@index');
+    // Route::post('guild', ['as' => 'guild.create', 'uses' => 'GuildController@create']);
+    // Route::post('guild/{guildId}', ['as' => 'guild.apply', 'uses' => 'GuildController@apply']);
     Route::post('/battle', 'GameController@battle');
     Route::post('/level-up', 'GameController@levelUp');
     Route::patch('/profession', 'GameController@profession');
