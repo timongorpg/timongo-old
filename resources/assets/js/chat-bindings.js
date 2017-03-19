@@ -1,12 +1,10 @@
 var Chat = {
     minimize: function(){
-        console.log('minimize called');
         $('#chat').css('bottom', $('#chat .panel-heading').outerHeight() - $('#chat').height());
         $('.toggleChatButton').html('Maximizar');
     },
 
     maximize: function(){
-        console.log('maximize called');
         $('#chat').css('bottom', 0);
         $('.toggleChatButton').html('Minimizar');
 

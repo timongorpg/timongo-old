@@ -69,7 +69,7 @@ class User extends Authenticatable
 
     public function getOpponents()
     {
-        return Creature::where('level', '>=', $this->level -1)
+        return Creature::where('level', '>=', $this->level - 10)
             ->where('level', '<=', $this->level +1)
             ->orderBy('level')
             ->get();
@@ -137,10 +137,16 @@ class User extends Authenticatable
     {
         switch ($this->profession_id) {
             case 3: //Mage
-                // $manaPower = rand(1, $this->secret_level);
-                // $this->current_mana -= $manaPower;
+                $damage = $this->secret_level;
 
-                return $this->secret_level;
+                if ($this->current_mana >= 15) {
+                    $manaPower = rand(1, $this->secret_level);
+
+                    $this->current_mana -= 15;
+                    $damage += $manaPower;
+                }
+
+                return $damage;
                 break;
             case 4: //Hunter
                 return $this->thievery_level;
@@ -207,8 +213,22 @@ class User extends Authenticatable
         $this->experience = 0;
         $this->mastery_points += 1;
 
-        $this->total_health += (20 * $this->strength) + (10 * $this->level);
-        $this->current_mana += 20 * $this->secret_level;
+        $healthPerLevel = 20;
+
+        switch ($this->profession_id) {
+            case 2:
+                $healthPerLevel = 40;
+                break;
+            case 3:
+                $healthPerLevel = 25;
+                break;
+            case 4:
+                $healthPerLevel = 30;
+                break;
+        }
+
+        $this->total_health = (8 * $this->strength) + ($healthPerLevel * $this->level);
+        $this->total_mana = 15 * $this->secret_level;
 
         $this->current_health = $this->total_health;
         $this->current_stamina = $this->total_stamina;

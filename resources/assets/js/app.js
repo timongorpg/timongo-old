@@ -12,6 +12,12 @@ require('./form-functions');
 
 var db = require('./vuefire');
 
+Vue.filter('date', function(value) {
+    if (value) {
+        return window.moment(new Date(value)).fromNow();
+    }
+});
+
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('chat', require('./components/Chat.vue'));
 
