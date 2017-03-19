@@ -7,5 +7,4 @@
         <div class="alert alert-info">A arena estará disponível em breve</div>
     </div>
 </div>
-</div>
 @endsection
