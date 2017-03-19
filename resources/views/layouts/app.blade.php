@@ -128,16 +128,11 @@
         </nav>
 
         <div class="container">
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
+            @include ('partials/flash')
             <div class="row">
                 @include('partials/profile')
 
                 <div class="col-md-8">
-                    @include('partials/flash')
                     @yield('content')
                 </div>
             </div>

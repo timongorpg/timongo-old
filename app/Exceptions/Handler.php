@@ -54,8 +54,8 @@ class Handler extends ExceptionHandler
             return redirect()->guest('login');
         }
 
-        if (! $exception instanceof ValidationException) {
-            return redirect('/');
+        if ($exception instanceof ValidationException) {
+            return parent::render($request, $exception);
         }
 
         return env('APP_DEBUG') ? parent::render($request, $exception) : redirect('/');

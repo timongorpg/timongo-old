@@ -33,6 +33,10 @@ class GuildController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|alpha|unique:guilds'
+        ], [
+            'name.required' => 'O nome da guild é obrigatório',
+            'name.alpha' => 'O nome da guild deve conter somente letras',
+            'name.unique' => 'O nome da guild deve ser único'
         ]);
 
         $user = $this->guard->user();
@@ -57,7 +61,7 @@ class GuildController extends Controller
         }
 
         return redirect()->back()
-            ->withMessage("Your invite was sent to {$guild->leader->nickname} leader of the $guild->name.");
+            ->withMessage("Sua aplicação foi enviada para {$guild->leader->nickname}, líder da $guild->name.");
     }
 
 }
