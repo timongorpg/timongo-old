@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\User;
+use Log;
 
 class EnergyUp extends Command
 {
@@ -41,7 +42,7 @@ class EnergyUp extends Command
      */
     public function handle()
     {
-        \Log::info('energy up');
+        Log::info('energy up');
         $users = $this->users->all();
 
         $users->each(function($user) {

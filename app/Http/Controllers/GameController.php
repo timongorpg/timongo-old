@@ -54,11 +54,6 @@ class GameController extends Controller
         ]);
     }
 
-    public function arena()
-    {
-        return view('arena');
-    }
-
     public function ranking()
     {
         return view('ranking', [
