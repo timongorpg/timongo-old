@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\EnergyUp::class
+        \App\Console\Commands\EnergyUp::class,
+        \App\Console\Commands\ResetCharacters::class
     ];
 
     /**

@@ -349,7 +349,7 @@ class User extends Authenticatable
 
     public function increaseHealth()
     {
-        $this->current_health += $this->total_health * ($this->constitution / 10);
+        $this->current_health += $this->total_health * ($this->strength / 10);
 
         return $this;
     }
@@ -357,6 +357,40 @@ class User extends Authenticatable
     public function increaseMana()
     {
         $this->current_mana += $this->total_mana * ($this->intelligence / 10);
+
+        return $this;
+    }
+
+    public function reset()
+    {
+        $this->level = 1;
+        $this->profession_id = 1;
+        $this->gold = 100;
+        $this->total_health = $this->current_health = 150;
+        $this->total_mana = $this->current_mana = 100;
+        $this->total_stamina = $this->current_stamina = 100;
+        $this->mastery_points = 0;
+        $this->experience = 0;
+        $this->life_potions = 1;
+        $this->mana_potions = 1;
+        $this->stamina_potions = 1;
+        $this->end_training = null;
+        $this->training_mastery = null;
+
+        $masteries = [
+            'sword_level',
+            'strength',
+            'dungeon_level',
+            'thievery_level',
+            'secret_level',
+            'luck_level',
+            'learning_level',
+            'self_defence_level',
+        ];
+
+        foreach ($masteries as $mastery) {
+            $this->$mastery = 1;
+        }
 
         return $this;
     }
