@@ -57,14 +57,11 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="potion_id">
                 </form>
-                <div class="col-xs-4" onClick="setUsePotion(1)">
+                <div class="col-xs-6" onClick="setUsePotion(1)">
                     <img src="/img/items/life-flask.gif" alt="Life Potion">x{{$user->life_potions}}
                 </div>
-                <div class="col-xs-4" onClick="setUsePotion(2)">
+                <div class="col-xs-6" onClick="setUsePotion(2)">
                     <img src="/img/items/mana-flask.gif" alt="Mana Potion">x{{$user->mana_potions}}
-                </div>
-                <div class="col-xs-4" onClick="setUsePotion(3)">
-                    <img src="/img/items/stamina-flask.gif" alt="Stamina Potion">x{{$user->stamina_potions}}
                 </div>
             </div>
 

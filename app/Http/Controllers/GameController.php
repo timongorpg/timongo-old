@@ -50,7 +50,7 @@ class GameController extends Controller
     public function treasures()
     {
         return view('treasures', [
-            'potions' => $this->potions->orderBy('name')->get()
+            'potions' => $this->potions->whereAvailableOnShop(true)->orderBy('name')->get()
         ]);
     }
 
@@ -160,7 +160,8 @@ class GameController extends Controller
     public function potion(Request $request)
     {
         $this->validate($request, [
-            'potion_id' => 'required',
+            //TODO: change to validate if it's available on shop
+            'potion_id' => 'required|in:1, 2',
             'amount' => 'required'
         ]);
 
@@ -173,7 +174,7 @@ class GameController extends Controller
     public function usePotion(Request $request)
     {
         $this->validate($request, [
-            'potion_id' => 'required'
+            'potion_id' => 'required|in:1,2'
         ]);
 
         Auth::user()->usePotion($request->potion_id)
