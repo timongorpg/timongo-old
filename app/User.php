@@ -319,7 +319,7 @@ class User extends Authenticatable
             $value = $this->total_health;
         }
 
-        $this->attributes['current_health'] = $value >= 0 ? $value : 0;
+        $this->attributes['current_health'] = $value >= 0 ? intval($value) : 0;
     }
 
     public function setCurrentManaAttribute($value)
