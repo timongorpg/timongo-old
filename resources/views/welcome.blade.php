@@ -2,12 +2,18 @@
 <html lang="{{ config('app.locale') }}">
   <head>
     <meta charset="utf-8">
-    <link rel="icon" href="/favicon.png" type="image/png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Timongo RPg is the best Web based RPG game you are going to find. If you like old fashioned browser RPG. Join us.">
+    <meta name="description" content="Timongo RPG is the best Web based RPG game you are going to find. If you like old fashioned browser RPG. Join us.">
     <meta name="author" content="Hudson Pereira">
+
+    <meta property="og:title" content="Timongo RPG é o melhor RPG baseado em browser que você vai encontrar. Se você gosta de RPG. Junte-se a nós." />
+    <meta property="og:description" content="" />
+    <meta property="og:url" content="https://timongo.com" />
+    <meta property="og:image" content="/img/rpg-image.jpg" />
+
+    <link rel="icon" href="/favicon.png" type="image/png">
     <meta name="google-site-verification" content="MBHwyhHzsE2Z2LjDNulm6opKNuRgtYlugEZUo5GdHVQ" />
 
     <title>Timongo RPG - Web Based</title>
