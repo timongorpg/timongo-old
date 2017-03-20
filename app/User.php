@@ -79,7 +79,7 @@ class User extends Authenticatable
 
     public function getOpponents()
     {
-        return Creature::where('level', '>=', $this->level - 10)
+        return Creature::where('level', '>=', $this->level - 30)
             ->where('level', '<=', $this->level +1)
             ->orderBy('level', 'DESC')
             ->get();
