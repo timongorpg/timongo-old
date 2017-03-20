@@ -14,10 +14,10 @@ class PvE {
         $this->creatures = $creatures;
     }
 
-    public function battle($creature_id)
+    public function battle($creatureId)
     {
         $hero     = Auth::user();
-        $opponent = $this->getCreature($creature_id);
+        $opponent = $this->getCreature($creatureId);
 
         $rounds = [];
 
