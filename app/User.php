@@ -244,7 +244,11 @@ class User extends Authenticatable
         $this->total_mana = 100 + 15;
 
         $this->current_health = $this->total_health;
-        $this->current_stamina += $this->total_stamina / 2;
+
+        if ($this->level <= 20) {
+            $this->current_stamina += $this->total_stamina / 2;
+        }
+
         $this->current_mana = $this->total_mana;
 
         return $this;
