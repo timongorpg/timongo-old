@@ -5,8 +5,8 @@ namespace App\Timongo\Battle;
 use Auth;
 use App\Creature;
 
-class PvE {
-
+class PvE
+{
     protected $creatures;
 
     public function __construct(Creature $creatures)
@@ -64,6 +64,11 @@ class PvE {
     {
         $goldDrop = $opponent->getGoldDrop();
         $expEarned = ceil(($opponent->experience) + ($opponent->experience * 0.05 * $hero->learning_level));
+
+        if ($hero->level >= ($opponent->level + 3)) {
+            $expEarned /= 2;
+        }
+
         $hero->experience += $expEarned;
         $hero->gold += $goldDrop;
 
