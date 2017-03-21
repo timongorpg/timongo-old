@@ -429,4 +429,11 @@ class User extends Authenticatable
 
         return $this;
     }
+
+    public function isWorthyOpponent(User $user)
+    {
+        $minLevel = $this->level - 10;
+        $maxLevel = $this->level + 10;
+        return $user->level >= $minLevel && $user->level <= $maxLevel;
+    }
 }
