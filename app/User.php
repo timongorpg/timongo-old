@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->belongsTo(Guild::class);
     }
 
+    public function applications()
+    {
+        return $this->belongsToMany(Guild::class, 'guild_candidates');
+    }
+
     public function arena()
     {
         return $this->belongsToMany(Arena::class);

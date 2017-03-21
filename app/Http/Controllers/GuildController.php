@@ -21,8 +21,7 @@ class GuildController extends Controller
 
     public function index()
     {
-        $user = $this->guard->user();
-        $guild = $user->guild;
+        $guild = $this->guard->user()->guild;
 
         return $guild ? $this->renderGuildDashboard($guild) : $this->renderGuildIndex();
     }
@@ -30,8 +29,9 @@ class GuildController extends Controller
     protected function renderGuildIndex()
     {
         $availableGuilds = $this->guilds->with('leader')->orderBy('name', 'ASC')->get();
+        $applications = $this->guard->user()->applications;
 
-        return view('guilds.index', compact('availableGuilds'));
+        return view('guilds.index', compact('availableGuilds', 'applications'));
     }
 
     protected function renderGuildDashboard($guild)
@@ -53,6 +53,14 @@ class GuildController extends Controller
         ]);
 
         $user = $this->guard->user();
+
+        if ($user->gold < $this->getGuildCost()) {
+            return redirect()->back()
+                ->withError('Você não tem dinheiro para fundar uma guild.');
+        }
+
+        $user->gold -= $this->getGuildCost();
+
         $guild = $this->guilds->newInstance([
             'name' => $request->name,
             'leader_id' => $user->id
@@ -60,6 +68,7 @@ class GuildController extends Controller
 
         $guild->save();
         $user->guild()->associate($guild)->save();
+        $user->save();
 
         return redirect()->back();
     }
@@ -69,6 +78,11 @@ class GuildController extends Controller
         $guild = $this->guilds->with('leader', 'candidates')->findOrFail($guildId);
         $user = $this->guard->user();
 
+        if ($user->guild_id) {
+            return redirect()->back()
+                ->withMessage("Você já está em uma guild.");
+        }
+
         if (! $guild->candidates->find($user->id)) {
             $guild->candidates()->save($user);
         }
@@ -77,4 +91,54 @@ class GuildController extends Controller
             ->withMessage("Sua aplicação foi enviada para {$guild->leader->nickname}, líder da $guild->name.");
     }
 
+    public function accept($userId)
+    {
+        $user = $this->guard->user();
+        $guild = $user->guild;
+
+        if ($guild->leader_id != $user->id) {
+            return redirect()->back()
+                ->withError('Você não é o líder da guild');
+        }
+
+        if (! $candidate = $guild->candidates->find($userId)) {
+            return redirect()->back()
+                ->withError('Esse usuário não é um candidato');
+        }
+
+        $candidate->guild()->associate($guild)->save();
+        $guild->candidates()->detach($userId);
+
+        $candidate->applications()->detach();
+
+
+        return redirect()->back()
+            ->withMessage($candidate->nickname . ' foi aceito.');
+    }
+
+    public function decline($userId)
+    {
+        $user = $this->guard->user();
+        $guild = $user->guild;
+
+        if ($guild->leader_id != $user->id) {
+            return redirect()->back()
+                ->withError('Você não é o líder da guild');
+        }
+
+        if (! $candidate = $guild->candidates->find($userId)) {
+            return redirect()->back()
+                ->withError('Esse usuário não é um candidato');
+        }
+
+        $guild->candidates()->detach($userId);
+
+        return redirect()->back()
+            ->withMessage($candidate->nickname . ' foi negado como membro.');
+    }
+
+    public function getGuildCost()
+    {
+        return 10000;
+    }
 }
