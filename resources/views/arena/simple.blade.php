@@ -9,8 +9,8 @@
             </div>
             <div class="col-xs-6">
                 <div class="pull-right">
-                    A: <span class="label">{{ $user->arena_kills }}</span>
-                    D: <span class="label">{{ $user->arena_deaths }}</span>
+                    A: <span class="label label-success">{{ $user->arena_kills }}</span>
+                    D: <span class="label label-danger">{{ $user->arena_deaths }}</span>
                 </div>
             </div>
         </div>
