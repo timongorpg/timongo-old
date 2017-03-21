@@ -22,16 +22,16 @@ class ArenaController extends Controller
     public function index()
     {
         $arena = $this->arenas->with('participants')->whereStatus('open')->first();
-        $userId = Auth::user()->id;
+        $loggedUser = Auth::user();
 
         if (! $arena) {
             return view('arena.unavailable');
         }
 
-        if ($arena->isSubscribed($userId)) {
+        if ($arena->isSubscribed($loggedUser->id)) {
             //Remove logged in user
-            $arena->participants = $arena->participants->filter(function($user) use ($userId) {
-                return $userId != $user->id;
+            $arena->participants = $arena->participants->filter(function($user) use ($loggedUser) {
+                return $loggedUser->id != $user->id && $loggedUser->isWorthyOpponent($user);
             });
 
             return view('arena.simple', compact('arena'));
