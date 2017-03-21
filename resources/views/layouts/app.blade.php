@@ -104,8 +104,6 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ url('donations') }}">{{ trans('menus.donations') }}</a>
-                                        <a href="#">Feedback</a>
-                                        {{-- <a href="{{ url('/donation') }}">Donation</a> --}}
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li>
