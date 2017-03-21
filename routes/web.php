@@ -23,9 +23,11 @@ Route::group(['middleware' => 'auth:web'], function(){
     Route::post('/arena', 'ArenaController@signUp');
     Route::post('/pvp/{userId}', 'ArenaController@battle');
     Route::get('/ranking', 'GameController@ranking');
-    // Route::get('/guild', 'GuildController@index');
-    // Route::post('guild', ['as' => 'guild.create', 'uses' => 'GuildController@create']);
-    // Route::post('guild/{guildId}', ['as' => 'guild.apply', 'uses' => 'GuildController@apply']);
+    Route::get('/guild', 'GuildController@index');
+    Route::post('guild', ['as' => 'guild.create', 'uses' => 'GuildController@create']);
+    Route::post('guild/{guildId}', ['as' => 'guild.apply', 'uses' => 'GuildController@apply']);
+    Route::post('guild/{userId}/accept', ['as' => 'guild.accept', 'uses' => 'GuildController@accept']);
+    Route::post('guild/{userId}/decline', ['as' => 'guild.decline', 'uses' => 'GuildController@decline']);
     Route::post('/battle', 'GameController@battle');
     Route::post('/level-up', 'GameController@levelUp');
     Route::patch('/profession', 'GameController@profession');
