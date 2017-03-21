@@ -27,6 +27,19 @@
                 </div>
             @endif
 
+            <h2>Resumo da luta</h2>
+
+            <div class="alert alert-info clearfix">
+                <img src="/img/icons/attack.png" class="battle-icon" alt="">
+                Total de dano causado: {{ $log['summary']['hero_total_damage'] }}
+            </div>
+
+            <div class="alert alert-warning clearfix">
+                Total de dano recebido: {{ $log['summary']['opponent_total_damage'] }}
+            </div>
+
+            <hr>
+
             <h2>Turnos da luta</h2>
 
             <hr>
