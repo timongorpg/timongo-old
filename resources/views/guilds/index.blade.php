@@ -12,7 +12,7 @@
                 <input type="text" name="name" class="form-control" placeholder="Escolha um nome para guild">
             </div>
             <div class="form-group clearfix">
-                <button type="submit" class="btn btn-primary pull-right">Criar Guild</button>
+                <button type="submit" class="btn btn-success pull-right">Criar Guild</button>
             </div>
         </form>
 
@@ -44,7 +44,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <th>No guilds available.</th>
+                        <th>Nenhuma guild disponível.</th>
                     </tr>
                 @endforelse
             </tbody>
