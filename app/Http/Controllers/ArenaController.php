@@ -3,26 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Timongo\Battle\PvP;
 use App\Arena;
 use Auth;
 
 class ArenaController extends Controller
 {
-    public function __construct(Arena $arenas)
+    protected $arenas;
+
+    protected $pvp;
+
+    public function __construct(Arena $arenas, PvP $pvp)
     {
         $this->arenas = $arenas;
+        $this->pvp = $pvp;
     }
 
     public function index()
     {
         $arena = $this->arenas->with('participants')->whereStatus('open')->first();
+        $userId = Auth::user()->id;
 
         if (! $arena) {
             return view('arena.unavailable');
         }
-        $isSubscribed = $arena->isSubscribed(Auth::user()->id);
 
-        return view('arena.index', compact('arena', 'isSubscribed'));
+        if ($arena->isSubscribed($userId)) {
+            //Remove logged in user
+            $arena->participants = $arena->participants->filter(function($user) use ($userId) {
+                return $userId != $user->id;
+            });
+
+            return view('arena.simple', compact('arena'));
+        }
+
+        return  view('arena.subscribe', compact('arena'));
     }
 
     public function signUp(Request $request)
@@ -30,10 +45,10 @@ class ArenaController extends Controller
         $arena = $this->arenas->with('participants')->whereStatus('open')->first();
         $user = Auth::user();
 
-        if (! $arena->isOpen()) {
-            return redirect()->back()
-                ->withError('Essa arena está fechada para inscrições');
-        }
+        // if (! $arena->isOpen()) {
+        //     return redirect()->back()
+        //         ->withError('Essa arena está fechada para inscrições');
+        // }
 
         if ($arena->isSubscribed($user->id)) {
             return redirect()->back()
@@ -50,5 +65,34 @@ class ArenaController extends Controller
         $arena->participants()->save($user);
 
         return redirect()->back();
+    }
+
+    public function battle(Request $request, $userId)
+    {
+        $user = Auth::user();
+
+        if ($user->current_stamina < 10) {
+            return redirect('/arena')
+                ->with('error', 'Você não tem energia o suficiente. A energia recupera com o tempo.');
+        }
+
+        $arena = $this->arenas->with('participants')->whereStatus('open')->first();
+
+        if (! $hero = $arena->participants->find($user->id)) {
+            return redirect('/arena')
+                ->withError('Você só pode enfrentar alguém que está na arena.');
+        }
+
+        if (! $opponent = $arena->participants->find($userId)) {
+            return redirect('/arena')
+                ->withError('Você só pode enfrentar alguém que está na arena.');
+        }
+
+        $log = $this->pvp->battle($hero, $opponent);
+
+        return view('battle-pvp-results', [
+            'log' => $log,
+            'opponent' => $opponent
+        ]);
     }
 }

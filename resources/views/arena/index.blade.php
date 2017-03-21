@@ -35,7 +35,7 @@
                 <td>{{ $participant->arena_kills }}</td>
                 <td>{{ $participant->arena_deaths }}</td>
                 <td>
-                    @if ($participant->id != $user->id && $isSubscribed)
+                    @if ($participant->id != $user->id)
                         <button class="btn btn-danger">Lutar</button>
                     @else
 

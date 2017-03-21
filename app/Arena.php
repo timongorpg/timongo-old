@@ -17,11 +17,6 @@ class Arena extends Model
         return $this->participants->contains($userId);
     }
 
-    public function isOpen()
-    {
-        return $this->created_at->diffInMinutes() < 1;
-    }
-
     public function getCost()
     {
         return 100;
