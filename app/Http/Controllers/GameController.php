@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\User;
 use App\Creature;
 use App\Mastery;
@@ -70,11 +71,17 @@ class GameController extends Controller
 
     public function battle(Request $request)
     {
+        $user = Auth::user();
+
         $this->validate($request, [
-            'creature_id' => 'required'
+            'creature_id' =>
+                [
+                    'required',
+                    Rule::in(array_column($user->getOpponents()->toArray(), 'id'))
+                ]
         ]);
 
-        if (Auth::user()->current_stamina < 5) {
+        if ($user->current_stamina < 5) {
             return redirect('/adventures')
                 ->with('error', 'Você não tem energia o suficiente. A energia recupera com o tempo.');
         }

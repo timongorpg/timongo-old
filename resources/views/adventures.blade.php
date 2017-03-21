@@ -22,7 +22,38 @@
                 @foreach($creatures as $creature)
                     <tr>
                         <td>
-                            <img src="{{ $creature->image }}" alt="{{ $creature->name }}" data-toggle="popover" data-trigger="hover" data-placement="right" title="<strong>Atributos</strong>" data-content="<img src='/img/icons/health.png'> {{ $creature->health }} <br> <img src='/img/icons/sword.png'> {{ $creature->attack }} <br> <img src='/img/icons/shield.png'> {{ $creature->armor }}<br> <img src='/img/icons/magic.png'> {{$creature->magic_resistance}}">
+                            <img src="{{ $creature->image }}" alt="{{ $creature->name }}" data-toggle="popover" data-trigger="hover" data-placement="right" title="<strong>Atributos</strong>" data-content="
+                                <table class='table table-condensed'>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>{{ $user->nickname }}</th>
+                                            <th>{{ $creature->name }}</th>
+                                        </tr>
+                                    </thead>
+                                        <tr>
+                                            <td><img src='/img/icons/health.png'></td>
+                                            <td><div class='text-center'>{{ $user->current_health }}</div></td>
+                                            <td><div class='text-center'>{{ $creature->health }}</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src='/img/icons/sword.png'></td>
+                                            <td><div class='text-center'>{{ $user->getBonusDamage() }}</div></td>
+                                            <td><div class='text-center'>{{ $creature->attack }}</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src='/img/icons/shield.png'></td>
+                                            <td><div class='text-center'>{{ $user->melee_defence }}</div></td>
+                                            <td><div class='text-center'>{{ $creature->armor }}</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src='/img/icons/magic.png'></td>
+                                            <td><div class='text-center'>-</div></td>
+                                            <td><div class='text-center'>{{ $creature->magic_resistance }}</div></td>
+                                        </tr>
+                                    <tbody>
+                                    </tbody>
+                                </table>">
                         </td>
                         <td>
                             {{ $creature->name }} <span class="label label-default">Lv. {{ $creature->level }}</span>
