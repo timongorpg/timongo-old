@@ -139,9 +139,6 @@
         <chat></chat>
     </div>
 
-
-
-
     @if(! $user->hasNickname())
         @include('modals/ask-name-modal')
     @endif
