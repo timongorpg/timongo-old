@@ -9,6 +9,7 @@
             <thead>
                 <tr>
                     <th></th>
+                    <th></th>
                     <th>Nome</th>
                     <th>Level</th>
                     <th>Arena</th>
@@ -18,6 +19,7 @@
             <tbody>
                 @foreach($users as $ranked)
                     <tr>
+                        <td>#{{ $counter++ }}</td>
                         <td>
                             <img src="{{ $ranked->picture }}" alt="{{ $ranked->nickname }}" class="img-responsive img-rounded">
                         </td>

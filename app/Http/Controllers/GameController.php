@@ -64,9 +64,10 @@ class GameController extends Controller
 
     public function ranking()
     {
-        return view('ranking', [
-            'users' => $this->users->with('profession')->orderBy('level', 'DESC')->paginate(10)
-        ]);
+        $users = $this->users->with('profession')->orderBy('level', 'DESC')->paginate(10);
+        $counter = ($users->currentPage() - 1) * $users->perPage() + 1;
+
+        return view('ranking', compact('users', 'counter'));
     }
 
     public function battle(Request $request)
