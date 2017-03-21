@@ -22,8 +22,15 @@ class GameController extends Controller
 
     protected $pve;
 
-    public function __construct(User $users, Creature $creatures, Mastery $masteries, Potion $potions, PvE $pve)
-    {
+    protected $pvp;
+
+    public function __construct(
+        User $users,
+        Creature $creatures,
+        Mastery $masteries,
+        Potion $potions,
+        PvE $pve
+    ){
         $this->users = $users;
         $this->creatures = $creatures;
         $this->masteries = $masteries;

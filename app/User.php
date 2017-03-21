@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->belongsTo(Guild::class);
     }
 
+    public function arena()
+    {
+        return $this->belongsToMany(Arena::class);
+    }
+
     public function hasNickname()
     {
         return $this->attributes['nickname'] != null;
@@ -79,8 +84,7 @@ class User extends Authenticatable
 
     public function getOpponents()
     {
-        return Creature::where('level', '>=', $this->level - 30)
-            ->where('level', '<=', $this->level +1)
+        return Creature::where('level', '<=', $this->level + 1)
             ->orderBy('level', 'DESC')
             ->get();
     }
@@ -169,6 +173,13 @@ class User extends Authenticatable
     public function dropStamina()
     {
         $this->current_stamina -= 5;
+
+        return $this;
+    }
+
+    public function dropStaminaPvp()
+    {
+        $this->current_stamina -= 10;
 
         return $this;
     }
@@ -373,6 +384,16 @@ class User extends Authenticatable
         $this->current_mana += $this->total_mana * ($this->intelligence / 10);
 
         return $this;
+    }
+
+    public function setHealthAttribute($value)
+    {
+        $this->current_health = $value;
+    }
+
+    public function getHealthAttribute()
+    {
+        return $this->current_health;
     }
 
     public function reset()

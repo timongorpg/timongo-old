@@ -65,11 +65,11 @@ class PvE
         $goldDrop = $opponent->getGoldDrop();
         $expEarned = ceil(($opponent->experience) + ($opponent->experience * 0.05 * $hero->learning_level));
 
-        if ($hero->level >= ($opponent->level + 3)) {
-            $expEarned /= 2;
+        if ($hero->level >= ($opponent->level + 5)) {
+            $expEarned /= 3;
         }
 
-        $hero->experience += $expEarned;
+        $hero->experience += intval($expEarned);
         $hero->gold += $goldDrop;
 
         return [

@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth:web'], function(){
     Route::get('/treasures', 'GameController@treasures');
     Route::get('/arena', 'ArenaController@index');
     Route::post('/arena', 'ArenaController@signUp');
+    Route::post('/pvp/{userId}', 'ArenaController@battle');
     Route::get('/ranking', 'GameController@ranking');
     // Route::get('/guild', 'GuildController@index');
     // Route::post('guild', ['as' => 'guild.create', 'uses' => 'GuildController@create']);
