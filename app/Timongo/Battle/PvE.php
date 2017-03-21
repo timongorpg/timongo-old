@@ -20,6 +20,10 @@ class PvE {
         $opponent = $this->getCreature($creatureId);
 
         $rounds = [];
+        $summary = [
+            'hero_total_damage' => 0,
+            'opponent_total_damage' => 0
+        ];
 
         while( $hero->stands() && $opponent->stands() ){
             $damage = $hero->strikes($opponent);
@@ -29,6 +33,8 @@ class PvE {
                 'hero' => true
             ]);
 
+            $summary['hero_total_damage'] += $damage;
+
             if (! $opponent->stands()) break;
 
             $damage = $opponent->strikes($hero);
@@ -37,6 +43,8 @@ class PvE {
                 'message' => "{$opponent->fancyName} causou $damage de dano em {$hero->fancyName}",
                 'hero' => false
             ]);
+
+            $summary['opponent_total_damage'] += $damage;
 
             if (! $hero->stands()) break;
         }
@@ -56,7 +64,8 @@ class PvE {
 
         return [
             'fight' => $rounds,
-            'results' => $results
+            'results' => $results,
+            'summary' => $summary
         ];
     }
 
