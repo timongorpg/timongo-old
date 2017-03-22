@@ -72,7 +72,7 @@ class PvE
     protected function battleWin($hero, $opponent)
     {
         $goldDrop = $opponent->getGoldDrop();
-        $expEarned = ceil(($opponent->experience) + ($opponent->experience * 0.05 * $hero->learning_level));
+        $expEarned = $this->expEarned($opponent->experience, $hero->learning_level);
 
         if ($hero->level >= ($opponent->level + 5)) {
             $expEarned /= 3;
@@ -100,6 +100,13 @@ class PvE
             'win' => false,
             'gold' => 0
         ];
+    }
+
+    private function expEarned($expEarned, $learningLevel)
+    {
+        return (int)round(
+            ceil(($expEarned) + ($expEarned * 0.05 * $learningLevel))
+        );
     }
 
     protected function getCreature($creatureId)
