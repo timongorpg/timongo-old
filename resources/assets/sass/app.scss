@@ -8,6 +8,9 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// Custom Scroll Bar
+@import "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar";
+
 .level-up-button {
     margin-bottom: 10px;
     animation: blinker 1s linear infinite;
@@ -46,6 +49,7 @@
 
 #chat {
     position: fixed;
+    z-index: 100;
     bottom: -300px;
     right: 20px;
     width: 30%;
@@ -67,4 +71,14 @@
     .message-box {
         padding: 10px 0px;
     }
+}
+
+/* Override custom bar icons */
+.mCSB_scrollTools .mCSB_buttonUp,
+.mCSB_scrollTools .mCSB_buttonDown,
+.mCSB_scrollTools .mCSB_buttonLeft,
+.mCSB_scrollTools .mCSB_buttonRight{
+    background-image: url(/img/mCSB_buttons.png); /* css sprites */
+    background-repeat: no-repeat;
+    opacity: 0.4; filter: "alpha(opacity=40)"; -ms-filter: "alpha(opacity=40)";
 }

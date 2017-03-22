@@ -16,5 +16,6 @@ require('laravel-elixir-vue-2');
 elixir(mix => {
     mix.sass('app.scss')
        .webpack('app.js')
-       .copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/','public/fonts/bootstrap');;
+       .copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/','public/fonts/bootstrap')
+       .copy('node_modules/malihu-custom-scrollbar-plugin/mCSB_buttons.png','public/img/mCSB_buttons.png');
 });

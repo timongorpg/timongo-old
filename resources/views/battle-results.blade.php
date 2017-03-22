@@ -44,17 +44,7 @@
 
             <hr>
 
-            <div id="battle-results">
-                @foreach(array_get($log, 'fight') as $message)
-                    <div class="alert {{ $message['hero'] ? 'alert-info' : 'alert-warning'}} clearfix">
-                        @if($message['hero'])
-                            <img src="/img/icons/attack.png" class="battle-icon" alt="">
-                        @endif
-
-                        {!! $message['message'] !!}
-                    </div>
-                @endforeach
-            </div>
+            <div id="battle-results" class="content mCustomScrollbar"></div>
         </div>
     </div>
 @endsection
@@ -72,14 +62,37 @@
 @endsection
 
 @section("scripts")
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
     <script type="text/javascript">
+        function addBattleResults (fights) {
+            var $battleResultsDiv = $('#battle-results .mCSB_container'),
+                currentBattle = 0,
+                battleResultInterval = setInterval(function () {
+                    var fight = fights[currentBattle];
+                    if (currentBattle < Object.entries(fights).length) {
+                        var $alert = $('<div/>', { 'class': 'alert clearfix alert-' + (fight.hero ? 'info' : 'warning') });
+                        if (fight.hero) {
+                            $alert.append($('<img/>', { 'class': 'battle-icon', 'alt': '', 'src': '/img/icons/attack.png' }));
+                        }
+                        $alert.append(fight.message);
+                        $battleResultsDiv.append($alert);
+                        currentBattle++;
+                    } else {
+                        clearInterval(battleResultInterval);
+                    }
+                    $('#battle-results').mCustomScrollbar('scrollTo', 'last');
+                }, 2000);
+        }
         $(function () {
-            $('#battle-results').slimScroll({
-                height: (73 * 5) + 'px',
-                color: '#' + '{{ $user->theme == 1 ? "8a9196" : "00f" }}',
-                alwaysVisible: true
+            $('#battle-results').mCustomScrollbar({
+                setHeight: 250,
+                theme: '{{ $user->theme == 1 ? "light-thick" : "minimal-dark" }}',
+                alwaysShowScrollbar: true,
+                live: true
             });
+
+            addBattleResults(
+                {!! json_encode(array_get($log, 'fight'), JSON_FORCE_OBJECT) !!}
+            )
         });
     </script >
 @endsection
