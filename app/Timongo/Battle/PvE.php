@@ -72,7 +72,7 @@ class PvE
     protected function battleWin($hero, $opponent)
     {
         $goldDrop = $opponent->getGoldDrop();
-        $expEarned = ceil(($opponent->experience) + ($opponent->experience * 0.05 * $hero->learning_level));
+        $expEarned = ceil(($opponent->experience) + ($opponent->experience * 0.04 * $hero->learning_level));
 
         if ($hero->level >= ($opponent->level + 5)) {
             $expEarned /= 3;
