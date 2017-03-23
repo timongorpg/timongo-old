@@ -68,6 +68,7 @@ class GuildController extends Controller
 
         $guild->save();
         $user->guild()->associate($guild)->save();
+        $user->applications()->detach();
         $user->save();
 
         return redirect()->back();
@@ -106,9 +107,13 @@ class GuildController extends Controller
                 ->withError('Esse usuário não é um candidato');
         }
 
+        if ($candidate->guild_id) {
+            return redirect()->back()
+                ->withError('Esse usuário já está em uma guild');
+        }
+
         $candidate->guild()->associate($guild)->save();
         $guild->candidates()->detach($userId);
-
         $candidate->applications()->detach();
 
 
