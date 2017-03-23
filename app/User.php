@@ -155,6 +155,9 @@ class User extends Authenticatable
     public function getBonusDamage()
     {
         switch ($this->profession_id) {
+            case 2: //Knight
+                return $this->strength + $this->sword_level;
+                break;
             case 3: //Mage
                 $damage = $this->secret_level;
 
@@ -170,7 +173,7 @@ class User extends Authenticatable
             case 4: //Hunter
                 return $this->thievery_level;
                 break;
-            default: //Apprentice & Knight
+            default: //Apprentice
                 return $this->strength;
         }
     }
