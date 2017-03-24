@@ -44,16 +44,17 @@
 
             <hr>
 
-            @foreach(array_get($log, 'fight') as $message)
-                <div class="alert {{ $message['hero'] ? 'alert-info' : 'alert-warning'}} clearfix">
-                    @if($message['hero'])
-                        <img src="/img/icons/attack.png" class="battle-icon" alt="">
-                        </object>
-                    @endif
+            <div id="battle-results">
+                @foreach(array_get($log, 'fight') as $message)
+                    <div class="alert {{ $message['hero'] ? 'alert-info' : 'alert-warning'}} clearfix">
+                        @if($message['hero'])
+                            <img src="/img/icons/attack.png" class="battle-icon" alt="">
+                        @endif
 
-                    {!! $message['message'] !!}
-                </div>
-            @endforeach
+                        {!! $message['message'] !!}
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection
@@ -68,4 +69,17 @@
             margin-bottom: 10px;
         }
     </style>
+@endsection
+
+@section("scripts")
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#battle-results').slimScroll({
+                height: (73 * 5) + 'px',
+                color: '#' + '{{ $user->theme == 1 ? "8a9196" : "00f" }}',
+                alwaysVisible: true
+            });
+        });
+    </script >
 @endsection
