@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Profession;
+use Illuminate\Database\Seeder;
 
 class ProfessionTableSeeder extends Seeder
 {
@@ -14,16 +14,16 @@ class ProfessionTableSeeder extends Seeder
     {
         $professions = [
             [
-                'name' => 'Apprentice'
+                'name' => 'Apprentice',
             ],
             [
-                'name' => 'Knight'
+                'name' => 'Knight',
             ],
             [
-                'name' => 'Mage'
+                'name' => 'Mage',
             ],
             [
-                'name' => 'Hunter'
+                'name' => 'Hunter',
             ],
         ];
 

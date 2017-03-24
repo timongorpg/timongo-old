@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Potion;
+use Illuminate\Database\Seeder;
 
 class PotionTableSeeder extends Seeder
 {
@@ -14,23 +14,23 @@ class PotionTableSeeder extends Seeder
     {
         $potions = [
             [
-                'name' => 'Healing flask',
+                'name'  => 'Healing flask',
                 'price' => 15,
-                'icon' => 'life-flask.gif',
+                'icon'  => 'life-flask.gif',
                 'field' => 'life_potions',
             ],
             [
-                'name' => 'Mana flask',
+                'name'  => 'Mana flask',
                 'price' => 15,
-                'icon' => 'mana-flask.gif',
+                'icon'  => 'mana-flask.gif',
                 'field' => 'mana_potions',
             ],
             [
-                'name' => 'Stamina flask',
+                'name'  => 'Stamina flask',
                 'price' => 30,
-                'icon' => 'stamina-flask.gif',
+                'icon'  => 'stamina-flask.gif',
                 'field' => 'stamina_potions',
-            ]
+            ],
         ];
 
         foreach ($potions as $potion) {

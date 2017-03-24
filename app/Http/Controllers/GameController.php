@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use App\User;
 use App\Creature;
 use App\Mastery;
 use App\Potion;
 use App\Timongo\Battle\PvE;
+use App\User;
 use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class GameController extends Controller
 {
@@ -31,7 +31,7 @@ class GameController extends Controller
         Mastery $masteries,
         Potion $potions,
         PvE $pve
-    ){
+    ) {
         $this->users = $users;
         $this->creatures = $creatures;
         $this->masteries = $masteries;
@@ -42,23 +42,23 @@ class GameController extends Controller
     public function profile()
     {
         return view('me', [
-            'masteries' => $this->masteries->orderBy('name')->get(),
-            'masteryTip' => $this->getMasteryTip()
+            'masteries'  => $this->masteries->orderBy('name')->get(),
+            'masteryTip' => $this->getMasteryTip(),
         ]);
     }
 
     public function adventures()
     {
         return view('adventures', [
-            'creatures' => Auth::user()->getOpponents(),
-            'adventureTip' => $this->getAdventureTip()
+            'creatures'    => Auth::user()->getOpponents(),
+            'adventureTip' => $this->getAdventureTip(),
         ]);
     }
 
     public function treasures()
     {
         return view('treasures', [
-            'potions' => $this->potions->whereAvailableOnShop(true)->orderBy('name')->get()
+            'potions' => $this->potions->whereAvailableOnShop(true)->orderBy('name')->get(),
         ]);
     }
 
@@ -75,11 +75,10 @@ class GameController extends Controller
         $user = Auth::user();
 
         $this->validate($request, [
-            'creature_id' =>
-                [
+            'creature_id' => [
                     'required',
-                    Rule::in(array_column($user->getOpponents()->toArray(), 'id'))
-                ]
+                    Rule::in(array_column($user->getOpponents()->toArray(), 'id')),
+                ],
         ]);
 
         if ($user->current_stamina < 5) {
@@ -90,8 +89,8 @@ class GameController extends Controller
         $log = $this->pve->battle($request->creature_id);
 
         return view('battle-results', [
-            'log' => $log,
-            'creature_id' => $request->creature_id
+            'log'         => $log,
+            'creature_id' => $request->creature_id,
         ]);
     }
 
@@ -99,7 +98,7 @@ class GameController extends Controller
     {
         $user = Auth::user();
 
-        if (! $user->hasEnoughExperience()) {
+        if (!$user->hasEnoughExperience()) {
             return redirect('/me');
         }
 
@@ -108,14 +107,14 @@ class GameController extends Controller
 
         return redirect('/me')
             ->with([
-                'levelUp' => true
+                'levelUp' => true,
             ]);
     }
 
     public function profession(Request $request)
     {
         $this->validate($request, [
-            'profession_id' => 'required|in:2,3,4'
+            'profession_id' => 'required|in:2,3,4',
         ]);
 
         $user = Auth::user();
@@ -129,14 +128,14 @@ class GameController extends Controller
         $user->save();
 
         return redirect('/me')->with([
-            'newClass' => true
+            'newClass' => true,
         ]);
     }
 
     public function mastery(Request $request)
     {
         $this->validate($request, [
-            'mastery_id' => 'required|integer'
+            'mastery_id' => 'required|integer',
         ]);
 
         $user = Auth::user();
@@ -157,7 +156,7 @@ class GameController extends Controller
     {
         $user = Auth::user();
 
-        if (! $user->trainFinished()) {
+        if (!$user->trainFinished()) {
             return redirect('/me');
         }
 
@@ -172,7 +171,7 @@ class GameController extends Controller
         $this->validate($request, [
             //TODO: change to validate if it's available on shop
             'potion_id' => 'required|in:1, 2',
-            'amount' => 'required'
+            'amount'    => 'required',
         ]);
 
         Auth::user()->buyPotion($request->potion_id, $request->amount)
@@ -184,7 +183,7 @@ class GameController extends Controller
     public function usePotion(Request $request)
     {
         $this->validate($request, [
-            'potion_id' => 'required|in:1,2'
+            'potion_id' => 'required|in:1,2',
         ]);
 
         Auth::user()->usePotion($request->potion_id)
@@ -196,7 +195,7 @@ class GameController extends Controller
     public function pickNickname(Request $request)
     {
         $this->validate($request, [
-            'nickname' => 'required|min:3|unique:users|max:16|alpha'
+            'nickname' => 'required|min:3|unique:users|max:16|alpha',
         ]);
 
         $user = Auth::user();

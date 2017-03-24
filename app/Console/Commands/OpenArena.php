@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Arena;
+use Illuminate\Console\Command;
 use Log;
 
 class OpenArena extends Command
@@ -49,6 +49,6 @@ class OpenArena extends Command
 
         $arena->save();
 
-        Log::info('Arena ' . $arena->id . ' is open.');
+        Log::info('Arena '.$arena->id.' is open.');
     }
 }

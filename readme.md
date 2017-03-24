@@ -1,5 +1,6 @@
 # Timongo RPG
 [![Official package](https://img.shields.io/badge/official-package-blue.svg)](https://timongo.com)
+[![StyleCI](https://styleci.io/repos/76034753/shield?branch=develop)](https://styleci.io/repos/76034753)
 
 Timongo RPG is a totally open sourced learning project. The main goal is to put RPG and coding together in order to learn faster enjoying and easing the process.
 

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Support\Collection;
 use App\Guild;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Request;
 
 class GuildController extends Controller
 {
@@ -45,11 +44,11 @@ class GuildController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|alpha|unique:guilds'
+            'name' => 'required|alpha|unique:guilds',
         ], [
             'name.required' => 'O nome da guild é obrigatório',
-            'name.alpha' => 'O nome da guild deve conter somente letras',
-            'name.unique' => 'O nome da guild deve ser único'
+            'name.alpha'    => 'O nome da guild deve conter somente letras',
+            'name.unique'   => 'O nome da guild deve ser único',
         ]);
 
         $user = $this->guard->user();
@@ -62,8 +61,8 @@ class GuildController extends Controller
         $user->gold -= $this->getGuildCost();
 
         $guild = $this->guilds->newInstance([
-            'name' => $request->name,
-            'leader_id' => $user->id
+            'name'      => $request->name,
+            'leader_id' => $user->id,
         ]);
 
         $guild->save();
@@ -81,10 +80,10 @@ class GuildController extends Controller
 
         if ($user->guild_id) {
             return redirect()->back()
-                ->withMessage("Você já está em uma guild.");
+                ->withMessage('Você já está em uma guild.');
         }
 
-        if (! $guild->candidates->find($user->id)) {
+        if (!$guild->candidates->find($user->id)) {
             $guild->candidates()->save($user);
         }
 
@@ -102,7 +101,7 @@ class GuildController extends Controller
                 ->withError('Você não é o líder da guild');
         }
 
-        if (! $candidate = $guild->candidates->find($userId)) {
+        if (!$candidate = $guild->candidates->find($userId)) {
             return redirect()->back()
                 ->withError('Esse usuário não é um candidato');
         }
@@ -116,9 +115,8 @@ class GuildController extends Controller
         $guild->candidates()->detach($userId);
         $candidate->applications()->detach();
 
-
         return redirect()->back()
-            ->withMessage($candidate->nickname . ' foi aceito.');
+            ->withMessage($candidate->nickname.' foi aceito.');
     }
 
     public function decline($userId)
@@ -131,7 +129,7 @@ class GuildController extends Controller
                 ->withError('Você não é o líder da guild');
         }
 
-        if (! $candidate = $guild->candidates->find($userId)) {
+        if (!$candidate = $guild->candidates->find($userId)) {
             return redirect()->back()
                 ->withError('Esse usuário não é um candidato');
         }
@@ -139,7 +137,7 @@ class GuildController extends Controller
         $guild->candidates()->detach($userId);
 
         return redirect()->back()
-            ->withMessage($candidate->nickname . ' foi negado como membro.');
+            ->withMessage($candidate->nickname.' foi negado como membro.');
     }
 
     public function getGuildCost()

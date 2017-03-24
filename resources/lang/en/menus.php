@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'status' => 'Status',
+    'status'     => 'Status',
     'adventures' => 'Adventures',
-    'treasures' => 'Treasures',
-    'arena' => 'Arena',
-    'completed' => 'completed',
-    'donations' => 'Donations',
-    'ranking' => 'Ranking',
+    'treasures'  => 'Treasures',
+    'arena'      => 'Arena',
+    'completed'  => 'completed',
+    'donations'  => 'Donations',
+    'ranking'    => 'Ranking',
 ];

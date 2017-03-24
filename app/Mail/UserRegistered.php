@@ -2,11 +2,10 @@
 
 namespace App\Mail;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use App\User;
 
 class UserRegistered extends Mailable
 {
@@ -32,6 +31,6 @@ class UserRegistered extends Mailable
     public function build()
     {
         return $this->markdown('emails.welcome')
-            ->subject($this->user->name . ', seja bem vindo(a) ao Timongo RPG');
+            ->subject($this->user->name.', seja bem vindo(a) ao Timongo RPG');
     }
 }

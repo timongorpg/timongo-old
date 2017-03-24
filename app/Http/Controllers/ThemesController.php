@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 
 class ThemesController extends Controller
 {
     public function changeTheme(Request $request)
     {
         $this->validate($request, [
-            'theme' => 'required|numeric'
+            'theme' => 'required|numeric',
         ]);
 
         $user = Auth::user();
