@@ -1,27 +1,41 @@
-# Laravel PHP Framework
+# Timongo RPG
+[![Official package](https://img.shields.io/badge/official-package-blue.svg)](https://timongo.com)
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Timongo RPG is a totally open sourced learning project. The main goal is to put RPG and coding together in order to learn faster enjoying and easing the process.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+![RPG](https://upload.wikimedia.org/wikipedia/commons/2/2d/Dados_4_a_20_caras_trans.png)
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## Installation
 
-## Official Documentation
+Clone the repository.
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+```bash
+git clone git@github.com:timongorpg/timongo.git
+```
+
+Install composer dependencies.
+```bash
+composer install
+```
+
+Install npm packages and publish assets.
+```bash
+npm install
+gulp
+```
+
+## Production/Development Server
+
+- Ubuntu 16.04 LTS
+- PHP 7.0.8
+- Laravel PHP Framework 5.4.15
+- VueJS is used to some components (we are actually thinking in creating a entire SPA on top of vuejs, check this out)
+- MySQL Database
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Pull requests should aim to `develop`. You're free to open issues to suggest changes. If you want to work on a hard feature i'd recommend you to join slack to be sure we are all on the same page.
 
-## Security Vulnerabilities
+## Slack
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+I'm setting up a slack auto inviter for this project. Meanwhile, if you want to join us you should communicate it on timongo's global chat.
