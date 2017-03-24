@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Creature;
+use Illuminate\Database\Seeder;
 use Timongo\Creatures\FileCreaturesRepository;
 
 class CreatureTableSeeder extends Seeder
@@ -13,12 +13,12 @@ class CreatureTableSeeder extends Seeder
      */
     public function run()
     {
-        $creatures = (new FileCreaturesRepository)->fetchAll();
+        $creatures = (new FileCreaturesRepository())->fetchAll();
 
         foreach ($creatures as $row) {
-            $creature = Creature::whereImage($row->image)->first() ?: new Creature;
+            $creature = Creature::whereImage($row->image)->first() ?: new Creature();
 
-            $creature->fill((array)$row)
+            $creature->fill((array) $row)
                 ->save();
         }
     }

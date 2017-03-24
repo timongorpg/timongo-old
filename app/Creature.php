@@ -8,7 +8,7 @@ class Creature extends Model
 {
     public function getImageAttribute($value)
     {
-        return url('/img/creatures/' . $value);
+        return url('/img/creatures/'.$value);
     }
 
     public function getFancyNameAttribute()

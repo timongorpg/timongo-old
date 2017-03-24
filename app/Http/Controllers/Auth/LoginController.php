@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Socialite;
-use Auth;
 use App\User;
-use App\Events\UserRegistered;
+use Auth;
+use Illuminate\Http\Request;
+use Socialite;
 
 class LoginController extends Controller
 {

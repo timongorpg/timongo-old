@@ -8,6 +8,6 @@ class Profession extends Model
 {
     public function getNameAttribute($value)
     {
-        return trans('professions.' . $this->id);
+        return trans('professions.'.$this->id);
     }
 }

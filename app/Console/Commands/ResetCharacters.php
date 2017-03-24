@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\User;
+use Illuminate\Console\Command;
 
 class ResetCharacters extends Command
 {
@@ -39,7 +39,7 @@ class ResetCharacters extends Command
      */
     public function handle()
     {
-        $this->users->all()->each(function($user) {
+        $this->users->all()->each(function ($user) {
             $user->reset()
                 ->save();
         });

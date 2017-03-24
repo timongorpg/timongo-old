@@ -2,7 +2,6 @@
 
 namespace App\Timongo\Battle;
 
-use Auth;
 use App\User;
 
 class PvP
@@ -11,24 +10,28 @@ class PvP
     {
         $rounds = [];
 
-        while( $hero->stands() && $opponent->stands() ){
+        while ($hero->stands() && $opponent->stands()) {
             $damage = $hero->strikes($opponent);
 
             array_push($rounds, [
                 'message' => "{$hero->nickname} causou $damage de dano em {$opponent->nickname}",
-                'hero' => true
+                'hero'    => true,
             ]);
 
-            if (! $opponent->stands()) break;
+            if (!$opponent->stands()) {
+                break;
+            }
 
             $damage = $opponent->strikes($hero);
 
             array_push($rounds, [
                 'message' => "{$opponent->nickname} causou $damage de dano em {$hero->nickname}",
-                'hero' => false
+                'hero'    => false,
             ]);
 
-            if (! $hero->stands()) break;
+            if (!$hero->stands()) {
+                break;
+            }
         }
 
         $results = [];
@@ -42,8 +45,8 @@ class PvP
         $opponent->save();
 
         return [
-            'fight' => $rounds,
-            'results' => $results
+            'fight'   => $rounds,
+            'results' => $results,
         ];
     }
 
@@ -55,7 +58,6 @@ class PvP
         $this->removeArenaSubscription($opponent);
 
         $opponent->current_health = $opponent->total_health * 0.4;
-
 
         // $goldDrop = $opponent->getGoldDrop();
         // $expEarned = ceil(($opponent->experience) + ($opponent->experience * 0.05 * $hero->learning_level));
@@ -69,7 +71,7 @@ class PvP
 
         return [
             'message' => "{$opponent->name} foi derrotado!",
-            'win' => true
+            'win'     => true,
         ];
     }
 
@@ -84,7 +86,7 @@ class PvP
 
         return [
             'message' => 'Você foi derrotado!',
-            'win' => false,
+            'win'     => false,
         ];
     }
 
