@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\User;
+use Illuminate\Console\Command;
 use Log;
 
 class EnergyUp extends Command
@@ -45,7 +45,7 @@ class EnergyUp extends Command
         Log::info('energy up');
         $users = $this->users->all();
 
-        $users->each(function($user) {
+        $users->each(function ($user) {
             $user->increaseStamina();
             $user->increaseHealth();
             $user->increaseMana();

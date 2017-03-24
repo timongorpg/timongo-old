@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
 use Auth;
 
@@ -34,7 +33,7 @@ class HomeController extends Controller
         $welcomeView = config('app.locale') == 'pt-br' ? 'welcome' : 'welcome-en';
 
         return view($welcomeView, [
-            'elite' => $this->users->orderBy('level', 'DESC')->take(3)->get()
+            'elite' => $this->users->orderBy('level', 'DESC')->take(3)->get(),
         ]);
     }
 

@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'train' => 'Treinar',
+    'train'  => 'Treinar',
     'finish' => 'Finalizar',
-    'fight' => 'Lutar',
-    'buy' => 'Comprar',
+    'fight'  => 'Lutar',
+    'buy'    => 'Comprar',
 ];

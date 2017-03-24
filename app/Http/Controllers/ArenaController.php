@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Timongo\Battle\PvP;
 use App\Arena;
+use App\Timongo\Battle\PvP;
 use Auth;
+use Illuminate\Http\Request;
 
 class ArenaController extends Controller
 {
@@ -24,13 +24,13 @@ class ArenaController extends Controller
         $arena = $this->arenas->with('participants')->whereStatus('open')->first();
         $loggedUser = Auth::user();
 
-        if (! $arena) {
+        if (!$arena) {
             return view('arena.unavailable');
         }
 
         if ($arena->isSubscribed($loggedUser->id)) {
             //Remove logged in user
-            $arena->participants = $arena->participants->filter(function($user) use ($loggedUser) {
+            $arena->participants = $arena->participants->filter(function ($user) use ($loggedUser) {
                 return $loggedUser->id != $user->id && $loggedUser->isWorthyOpponent($user);
             });
 
@@ -78,12 +78,12 @@ class ArenaController extends Controller
 
         $arena = $this->arenas->with('participants')->whereStatus('open')->first();
 
-        if (! $hero = $arena->participants->find($user->id)) {
+        if (!$hero = $arena->participants->find($user->id)) {
             return redirect('/arena')
                 ->withError('Você só pode enfrentar alguém que está na arena.');
         }
 
-        if (! $opponent = $arena->participants->find($userId)) {
+        if (!$opponent = $arena->participants->find($userId)) {
             return redirect('/arena')
                 ->withError('Você só pode enfrentar alguém que está na arena.');
         }
@@ -91,8 +91,8 @@ class ArenaController extends Controller
         $log = $this->pvp->battle($hero, $opponent);
 
         return view('battle-pvp-results', [
-            'log' => $log,
-            'opponent' => $opponent
+            'log'      => $log,
+            'opponent' => $opponent,
         ]);
     }
 }

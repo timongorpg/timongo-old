@@ -3,15 +3,15 @@
 namespace App\Listeners;
 
 use App\Events\UserRegistered;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Mail\UserRegistered as UserRegisteredMail;
-use Log;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 use Mail;
 
 class UserRegisteredListener implements ShouldQueue
 {
     use InteractsWithQueue;
+
     /**
      * Create the event listener.
      *
@@ -19,13 +19,13 @@ class UserRegisteredListener implements ShouldQueue
      */
     public function __construct()
     {
-
     }
 
     /**
      * Handle the event.
      *
-     * @param  UserRegistered  $event
+     * @param UserRegistered $event
+     *
      * @return void
      */
     public function handle(UserRegistered $event)

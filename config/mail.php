@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => 'hudson.byte@gmail.com',
-        'name' => 'Timongo RPG',
+        'name'    => 'Timongo RPG',
     ],
 
     /*

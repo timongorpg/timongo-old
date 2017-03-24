@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'hero_lv' => 'Level',
-    'gold' => 'Ouro',
+    'hero_lv'    => 'Level',
+    'gold'       => 'Ouro',
     'experience' => 'Experiência',
-    'health' => 'Vida',
-    'mana' => 'Mana',
-    'stamina' => 'Energia'
+    'health'     => 'Vida',
+    'mana'       => 'Mana',
+    'stamina'    => 'Energia',
 ];
