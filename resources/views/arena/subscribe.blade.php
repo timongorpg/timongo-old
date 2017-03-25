@@ -4,9 +4,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">Arena</div>
     <div class="panel-body">
-        @if ($users = $arena->participants->count() > 1)
-            <p>{{ $users }} estão participando da arena.</p>
-        @endif
+        <p>Participantes de mesmo nível: {{ $arena->participants->count() }}</p>
 
         <form method="POST" action="/arena">
             {{ csrf_field() }}
