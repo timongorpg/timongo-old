@@ -10,6 +10,8 @@ require('./moment');
 require('./blink-title');
 require('./form-functions');
 
+require('../../../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min')
+
 var db = require('./vuefire');
 
 Vue.filter('date', function(value) {
