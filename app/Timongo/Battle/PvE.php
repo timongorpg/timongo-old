@@ -2,8 +2,8 @@
 
 namespace App\Timongo\Battle;
 
-use Auth;
 use App\Creature;
+use Auth;
 
 class PvE
 {
@@ -16,37 +16,41 @@ class PvE
 
     public function battle($creatureId)
     {
-        $hero     = Auth::user();
+        $hero = Auth::user();
         $opponent = $this->getCreature($creatureId);
 
         $rounds = [];
         $summary = [
-            'hero_total_damage' => 0,
-            'opponent_total_damage' => 0
+            'hero_total_damage'     => 0,
+            'opponent_total_damage' => 0,
         ];
 
-        while( $hero->stands() && $opponent->stands() ){
+        while ($hero->stands() && $opponent->stands()) {
             $damage = $hero->strikes($opponent);
 
             array_push($rounds, [
                 'message' => "{$hero->fancyName} causou $damage de dano em {$opponent->fancyName}",
-                'hero' => true
+                'hero'    => true,
             ]);
 
             $summary['hero_total_damage'] += $damage;
 
-            if (! $opponent->stands()) break;
+            if (!$opponent->stands()) {
+                break;
+            }
 
             $damage = $opponent->strikes($hero);
 
             array_push($rounds, [
                 'message' => "{$opponent->fancyName} causou $damage de dano em {$hero->fancyName}",
-                'hero' => false
+                'hero'    => false,
             ]);
 
             $summary['opponent_total_damage'] += $damage;
 
-            if (! $hero->stands()) break;
+            if (!$hero->stands()) {
+                break;
+            }
         }
 
         $results = [];
@@ -63,29 +67,26 @@ class PvE
             ->save();
 
         return [
-            'fight' => $rounds,
+            'fight'   => $rounds,
             'results' => $results,
-            'summary' => $summary
+            'summary' => $summary,
         ];
     }
 
     protected function battleWin($hero, $opponent)
     {
         $goldDrop = $opponent->getGoldDrop();
-        $expEarned = ceil(($opponent->experience) + ($opponent->experience * 0.05 * $hero->learning_level));
 
-        if ($hero->level >= ($opponent->level + 5)) {
-            $expEarned /= 3;
-        }
+        $expEarned = $this->expEarned($hero, $opponent);
 
-        $hero->experience += intval($expEarned);
+        $hero->experience += $expEarned;
         $hero->gold += $goldDrop;
 
         return [
-            'message' => "{$opponent->name} foi derrotado!",
-            'win' => true,
+            'message'    => "{$opponent->name} foi derrotado!",
+            'win'        => true,
             'experience' => $expEarned,
-            'gold' => $goldDrop
+            'gold'       => $goldDrop,
         ];
     }
 
@@ -97,9 +98,22 @@ class PvE
 
         return [
             'message' => 'Você foi derrotado!',
-            'win' => false,
-            'gold' => 0
+            'win'     => false,
+            'gold'    => 0,
         ];
+    }
+
+    private function expEarned($hero, $opponent)
+    {
+        $expEarned = round(
+            ceil(($opponent->experience) + ($opponent->experience * 0.04 * $hero->learningLevel))
+        );
+
+        if ($hero->level >= ($opponent->level + 5)) {
+            $expEarned = $expEarned / 3;
+        }
+
+        return (int) $expEarned;
     }
 
     protected function getCreature($creatureId)

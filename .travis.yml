@@ -1,0 +1,25 @@
+language: php
+
+php:
+  - 7.0
+
+before_script:
+  - phpenv config-rm xdebug.ini
+  - cp .env.testing .env
+  - composer self-update
+  - composer install --no-interaction
+  - php artisan key:generate --env=testing
+  - php artisan migrate --env=testing
+
+before_install:
+  - mysql -e 'CREATE DATABASE timongo_test;'
+
+script:
+  - vendor/bin/kahlan
+
+services:
+  - mysql
+
+cache:
+  directories:
+    - vendor

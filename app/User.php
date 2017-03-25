@@ -2,10 +2,10 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Carbon\Carbon;
 use App\Events\UserRegistered;
+use Carbon\Carbon;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -26,11 +26,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'remember_token'
+        'remember_token',
     ];
 
     protected $dates = [
-        'end_training'
+        'end_training',
     ];
 
     protected $events = [
@@ -45,6 +45,11 @@ class User extends Authenticatable
     public function guild()
     {
         return $this->belongsTo(Guild::class);
+    }
+
+    public function applications()
+    {
+        return $this->belongsToMany(Guild::class, 'guild_candidates');
     }
 
     public function arena()
@@ -111,7 +116,7 @@ class User extends Authenticatable
 
     public function toNextLevel()
     {
-        return ($this->level * 100);
+        return $this->level * 100;
     }
 
     public function stands()
@@ -150,6 +155,9 @@ class User extends Authenticatable
     public function getBonusDamage()
     {
         switch ($this->profession_id) {
+            case 2: //Knight
+                return $this->strength + $this->sword_level;
+                break;
             case 3: //Mage
                 $damage = $this->secret_level;
 
@@ -165,7 +173,7 @@ class User extends Authenticatable
             case 4: //Hunter
                 return $this->thievery_level;
                 break;
-            default: //Apprentice & Knight
+            default: //Apprentice
                 return $this->strength;
         }
     }
@@ -318,11 +326,21 @@ class User extends Authenticatable
     {
         $level = $level ?: $this->level;
 
-        if ($level <= 9) return trans('titles.1');
-        if ($level <= 19) return trans('titles.2');
-        if ($level <= 29) return trans('titles.3');
-        if ($level <= 39) return trans('titles.4');
-        if ($level <= 49) return trans('titles.5');
+        if ($level <= 9) {
+            return trans('titles.1');
+        }
+        if ($level <= 19) {
+            return trans('titles.2');
+        }
+        if ($level <= 29) {
+            return trans('titles.3');
+        }
+        if ($level <= 39) {
+            return trans('titles.4');
+        }
+        if ($level <= 49) {
+            return trans('titles.5');
+        }
 
         return trans('titles.6');
     }
@@ -434,6 +452,7 @@ class User extends Authenticatable
     {
         $minLevel = $this->level - 10;
         $maxLevel = $this->level + 10;
+
         return $user->level >= $minLevel && $user->level <= $maxLevel;
     }
 }

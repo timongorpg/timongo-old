@@ -8,6 +8,6 @@ class Potion extends Model
 {
     public function getNameAttribute($value)
     {
-        return trans('potions.' . $this->id);
+        return trans('potions.'.$this->id);
     }
 }

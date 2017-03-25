@@ -4,14 +4,15 @@
 <div class="panel panel-default">
     <div class="panel-heading">{{ trans('sections.guild') }}</div>
     <div class="panel-body">
+        <div class="alert alert-info">Criar uma guild custa 10 mil peças de ouro.</div>
         <form method="POST" action="{{ route('guild.create') }}">
             <div class="form-group">
                 {{ csrf_field() }}
-                <label for="">Guild name</label>
+                <label for="">Nome da guild</label>
                 <input type="text" name="name" class="form-control" placeholder="Escolha um nome para guild">
             </div>
             <div class="form-group clearfix">
-                <button type="submit" class="btn btn-primary pull-right">Criar Guild</button>
+                <button type="submit" class="btn btn-success pull-right">Criar Guild</button>
             </div>
         </form>
 
@@ -33,15 +34,17 @@
                         <th>{{ $availableGuild->name }}</th>
                         <th>{{ $availableGuild->leader->nickname }}</th>
                         <th>
-                            <form method="POST" action="{{ route('guild.apply', $availableGuild->id) }}">
-                                {{ csrf_field() }}
-                                <button type="submit" class="btn btn-success">Apply</button>
-                            </form>
+                            @if (! $applications->contains($availableGuild->id))
+                                <form method="POST" action="{{ route('guild.apply', $availableGuild->id) }}">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-success">Aplicar</button>
+                                </form>
+                            @endif
                         </th>
                     </tr>
                 @empty
                     <tr>
-                        <th>No guilds available.</th>
+                        <th>Nenhuma guild disponível.</th>
                     </tr>
                 @endforelse
             </tbody>

@@ -6,5 +6,5 @@ return [
     3 => 'Aventureiro',
     4 => 'Adépto',
     5 => 'Veterano',
-    6 => 'Especialista'
+    6 => 'Especialista',
 ];
