@@ -77,13 +77,9 @@ class PvE
     {
         $goldDrop = $opponent->getGoldDrop();
 
-        $expEarned = $this->expEarned($opponent->experience, $hero->learning_level);
+        $expEarned = $this->expEarned($hero, $opponent);
 
-        if ($hero->level >= ($opponent->level + 5)) {
-            $expEarned /= 3;
-        }
-
-        $hero->experience += intval($expEarned);
+        $hero->experience += $expEarned;
         $hero->gold += $goldDrop;
 
         return [
@@ -107,11 +103,17 @@ class PvE
         ];
     }
 
-    private function expEarned($expEarned, $learningLevel)
+    private function expEarned($hero, $opponent)
     {
-        return (int) round(
-            ceil(($expEarned) + ($expEarned * 0.05 * $learningLevel))
+        $expEarned = round(
+            ceil(($opponent->experience) + ($opponent->experience * 0.04 * $hero->learningLevel))
         );
+
+        if ($hero->level >= ($opponent->level + 5)) {
+            $expEarned = $expEarned / 3;
+        }
+
+        return (int) $expEarned;
     }
 
     protected function getCreature($creatureId)
