@@ -59,19 +59,21 @@ class PvP
 
         $opponent->current_health = $opponent->total_health * 0.4;
 
-        // $goldDrop = $opponent->getGoldDrop();
-        // $expEarned = ceil(($opponent->experience) + ($opponent->experience * 0.05 * $hero->learning_level));
+        $expEarned = 10 - abs($hero->level - $opponent->level);
 
-        // if ($hero->level >= ($opponent->level + 5)) {
-        //     $expEarned /= 3;
-        // }
+        if ($hero->level < $opponent->level) {
+            $expEarned += $opponent->level - $hero->level;
+        }
 
-        // $hero->experience += intval($expEarned);
-        // $hero->gold += $goldDrop;
+        if ($guild = $hero->guild) {
+            $guild->experience += $expEarned;
+            $guild->save();
+        }
 
         return [
-            'message' => "{$opponent->name} foi derrotado!",
-            'win'     => true,
+            'message'   => "{$opponent->name} foi derrotado!",
+            'win'       => true,
+            'expEarned' => $guild ? $expEarned : 0,
         ];
     }
 

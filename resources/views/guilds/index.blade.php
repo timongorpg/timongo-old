@@ -31,7 +31,7 @@
             <tbody>
                 @forelse ($availableGuilds as $availableGuild)
                     <tr>
-                        <th>{{ $availableGuild->name }}</th>
+                        <th>{{ $availableGuild->name }} <span class="label label-success">{{ $availableGuild->level }}</span></th>
                         <th>{{ $availableGuild->leader->nickname }}</th>
                         <th>
                             @if (! $applications->contains($availableGuild->id))
