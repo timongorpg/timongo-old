@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Arena;
 use App\Timongo\Battle\PvP;
-use Auth;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
 class ArenaController extends Controller
@@ -13,16 +13,19 @@ class ArenaController extends Controller
 
     protected $pvp;
 
-    public function __construct(Arena $arenas, PvP $pvp)
+    protected $guard;
+
+    public function __construct(Arena $arenas, PvP $pvp, Guard $guard)
     {
         $this->arenas = $arenas;
         $this->pvp = $pvp;
+        $this->guard = $guard;
     }
 
     public function index()
     {
         $arena = $this->arenas->with('participants')->whereStatus('open')->first();
-        $loggedUser = Auth::user();
+        $loggedUser = $this->guard->user();
 
         if (!$arena) {
             return view('arena.unavailable');
@@ -42,12 +45,7 @@ class ArenaController extends Controller
     public function signUp(Request $request)
     {
         $arena = $this->arenas->with('participants')->whereStatus('open')->first();
-        $user = Auth::user();
-
-        // if (! $arena->isOpen()) {
-        //     return redirect()->back()
-        //         ->withError('Essa arena está fechada para inscrições');
-        // }
+        $user = $this->guard->user();
 
         if ($arena->isSubscribed($user->id)) {
             return redirect()->back()
@@ -68,7 +66,7 @@ class ArenaController extends Controller
 
     public function battle(Request $request, $userId)
     {
-        $user = Auth::user();
+        $user = $this->guard->user();
 
         if ($user->current_stamina < 10) {
             return redirect('/arena')

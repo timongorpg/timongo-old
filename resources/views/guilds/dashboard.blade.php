@@ -4,6 +4,21 @@
     <div class="panel panel-default">
     <div class="panel-heading">{{ trans('sections.guild') }} {{ $guild ? $guild->name : null }} <span class="label label-info">{{ $guild->level }}</span></div>
     <div class="panel-body">
+        @if ($guild->hasEnoughExperience())
+            <div class="level-up-button">
+                <form action="/guild/level-up" method="POST">
+                    {{ csrf_field() }}
+                    <button type="submit" class="btn btn-success">
+                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Level Up
+                    </button>
+                </form>
+            </div>
+        @else
+        <label for="">Experiência:</label>
+        <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="{{ $guild->experience_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $guild->experience_percentage }}%;">{{ $guild->experience }}/{{ $guild->toNextLevel() }}</div>
+        </div>
+        @endif
         @unless($members->isEmpty())
             <ul class="list-group">
                 @foreach($members as $member)
