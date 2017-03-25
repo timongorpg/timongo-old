@@ -140,7 +140,25 @@ class GuildController extends Controller
             ->withMessage($candidate->nickname.' foi negado como membro.');
     }
 
-    public function getGuildCost()
+    public function levelUp()
+    {
+        $user = $this->guard->user();
+        $guild = $user->guild;
+
+        if (!$guild->hasEnoughExperience()) {
+            return redirect('/guild');
+        }
+
+        $guild->levelUp()
+            ->save();
+
+        return redirect('/guild')
+            ->with([
+                'guildLevelUp' => true,
+            ]);
+    }
+
+    protected function getGuildCost()
     {
         return 10000;
     }
