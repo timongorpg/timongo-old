@@ -28,16 +28,15 @@ class ArenaController extends Controller
             return view('arena.unavailable');
         }
 
-        //Remove logged in user
-        $arena->participants = $arena->participants->filter(function ($user) use ($loggedUser) {
+        $participants = $arena->participants->filter(function ($user) use ($loggedUser) {
             return $loggedUser->id != $user->id && $loggedUser->isWorthyOpponent($user);
         });
 
         if ($arena->isSubscribed($loggedUser->id)) {
-            return view('arena.simple', compact('arena'));
+            return view('arena.simple', compact('arena', 'participants'));
         }
 
-        return  view('arena.subscribe', compact('arena'));
+        return  view('arena.subscribe', compact('arena', 'participants'));
     }
 
     public function signUp(Request $request)
