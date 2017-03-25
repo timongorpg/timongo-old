@@ -28,12 +28,12 @@ class ArenaController extends Controller
             return view('arena.unavailable');
         }
 
-        if ($arena->isSubscribed($loggedUser->id)) {
-            //Remove logged in user
-            $arena->participants = $arena->participants->filter(function ($user) use ($loggedUser) {
-                return $loggedUser->id != $user->id && $loggedUser->isWorthyOpponent($user);
-            });
+        //Remove logged in user
+        $arena->participants = $arena->participants->filter(function ($user) use ($loggedUser) {
+            return $loggedUser->id != $user->id && $loggedUser->isWorthyOpponent($user);
+        });
 
+        if ($arena->isSubscribed($loggedUser->id)) {
             return view('arena.simple', compact('arena'));
         }
 
