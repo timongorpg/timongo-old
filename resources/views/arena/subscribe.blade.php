@@ -4,7 +4,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">Arena</div>
     <div class="panel-body">
-        <p>Participantes de mesmo nível: {{ $arena->participants->count() }}</p>
+        <p>Participantes de mesmo nível: {{ $participants->count() }}</p>
 
         <form method="POST" action="/arena">
             {{ csrf_field() }}
