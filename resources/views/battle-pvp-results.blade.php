@@ -8,6 +8,12 @@
                 <div class="alert alert-success">
                     Você derrotou {{ $opponent->nickname }}
                 </div>
+
+                @if($expEarned = array_get($log, 'results.expEarned') > 0)
+                    <div class="alert alert-success">
+                        Sua guilda recebeu {{ array_get($log, 'results.expEarned') }} ponto(s) de experiência.
+                    </div>
+                @endif
             @else
                 <div class="alert alert-danger">
                     Você foi derrotado por {{ $opponent->nickname }}

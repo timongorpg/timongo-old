@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ee1f57e4480c6888b25d1593c8f2eb0",
+    "content-hash": "ddb7c8454405e2b5ba035f9f6f29084f",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -415,16 +415,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.4.15",
+            "version": "v5.4.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ecc6468b8af30b77566a8519ce8898740ef691d7"
+                "reference": "6cf379ec34d08bcdc9c7183e369a8fdf04ade80d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ecc6468b8af30b77566a8519ce8898740ef691d7",
-                "reference": "ecc6468b8af30b77566a8519ce8898740ef691d7",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6cf379ec34d08bcdc9c7183e369a8fdf04ade80d",
+                "reference": "6cf379ec34d08bcdc9c7183e369a8fdf04ade80d",
                 "shasum": ""
             },
             "require": {
@@ -540,7 +540,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-03-02T14:41:40+00:00"
+            "time": "2017-03-21T19:34:41+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -2393,6 +2393,61 @@
             "time": "2015-05-11T14:41:42+00:00"
         },
         {
+            "name": "kahlan/kahlan",
+            "version": "3.1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kahlan/kahlan.git",
+                "reference": "c2bd27299a373c76fe8278a24226d818e2ce7505"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kahlan/kahlan/zipball/c2bd27299a373c76fe8278a24226d818e2ce7505",
+                "reference": "c2bd27299a373c76fe8278a24226d818e2ce7505",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "^2.7"
+            },
+            "bin": [
+                "bin/kahlan"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kahlan\\": "src/"
+                },
+                "files": [
+                    "src/init.php",
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CrysaLEAD"
+                }
+            ],
+            "description": "The PHP Test Framework for Freedom, Truth and Justice.",
+            "keywords": [
+                "BDD",
+                "Behavior-Driven Development",
+                "Monkey Patching",
+                "TDD",
+                "mock",
+                "stub",
+                "testing",
+                "unit test"
+            ],
+            "time": "2017-03-19T10:07:02+00:00"
+        },
+        {
             "name": "mockery/mockery",
             "version": "0.9.9",
             "source": {
@@ -3610,6 +3665,52 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2016-10-03T07:35:21+00:00"
+        },
+        {
+            "name": "sofa/laravel-kahlan",
+            "version": "v5.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jarektkaczyk/laravel-kahlan.git",
+                "reference": "8f2f9657cd56635b158b1e690db5391c5d1f070e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jarektkaczyk/laravel-kahlan/zipball/8f2f9657cd56635b158b1e690db5391c5d1f070e",
+                "reference": "8f2f9657cd56635b158b1e690db5391c5d1f070e",
+                "shasum": ""
+            },
+            "require": {
+                "kahlan/kahlan": "^3.0",
+                "laravel/framework": "5.4.*",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sofa\\LaravelKahlan\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jarek Tkaczyk",
+                    "email": "jarek@softonsofa.com"
+                }
+            ],
+            "description": "Kahlan specs suite for testing Laravel applications",
+            "keywords": [
+                "BDD",
+                "Kahlan",
+                "TDD",
+                "laravel",
+                "spec",
+                "testing"
+            ],
+            "time": "2017-03-08T02:12:37+00:00"
         },
         {
             "name": "symfony/dom-crawler",

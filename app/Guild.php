@@ -9,6 +9,7 @@ class Guild extends Model
     protected $fillable = [
         'name',
         'leader_id',
+        'experience',
     ];
 
     public function members()
@@ -25,5 +26,28 @@ class Guild extends Model
     {
         return $this->belongsToMany(User::class, 'guild_candidates')
             ->withTimestamps();
+    }
+
+    public function hasEnoughExperience()
+    {
+        return $this->experience >= $this->toNextLevel();
+    }
+
+    public function toNextLevel()
+    {
+        return $this->level * 1000;
+    }
+
+    public function levelUp()
+    {
+        $this->level += 1;
+        $this->experience = 0;
+
+        return $this;
+    }
+
+    public function getExperiencePercentageAttribute()
+    {
+        return round($this->experience / ($this->level * 1000) * 100);
     }
 }

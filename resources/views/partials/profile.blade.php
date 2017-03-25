@@ -31,7 +31,6 @@
             @if($user->hasEnoughExperience())
 
                 <div class="level-up-button">
-
                     <form action="/level-up" method="POST">
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-primary">
