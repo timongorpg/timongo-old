@@ -9,3 +9,4 @@ Homestead.yaml
 .env
 .DS_Store
 /public/img/creatures/*gif
+laravel-echo-server.json
