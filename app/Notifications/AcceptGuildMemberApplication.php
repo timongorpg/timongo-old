@@ -44,7 +44,7 @@ class AcceptGuildMemberApplication extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'message' => "Você foi aceito como mebro da guilda {$this->guild}.",
+            'message' => "Você foi aceito como membro da guilda {$this->guild}.",
             'alert'   => 'success',
         ];
     }
