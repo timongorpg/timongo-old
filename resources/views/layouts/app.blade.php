@@ -24,8 +24,10 @@
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
+            'userId' => $user->id
         ]); ?>
     </script>
+    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 </head>
 <body>
     <div id="app">

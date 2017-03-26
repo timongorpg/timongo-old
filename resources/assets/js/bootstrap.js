@@ -8,6 +8,14 @@ window._ = require('lodash');
  */
 
 window.$ = window.jQuery = require('jquery');
+window.toastr = require('toastr');
+
+window.toastr.options = {
+    positionClass: 'toast-bottom-left',
+    showMethod: 'show',
+    progressBar: true
+};
+
 require('bootstrap-sass');
 
 /**
@@ -43,3 +51,5 @@ Vue.http.interceptors.push((request, next) => {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+
