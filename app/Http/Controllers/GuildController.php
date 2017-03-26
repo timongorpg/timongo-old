@@ -89,7 +89,7 @@ class GuildController extends Controller
         if (!$guild->candidates->find($user->id)) {
             $guild->candidates()->save($user);
 
-            $guild->leader->notify(new GuildMemberApplication($user->name));
+            $guild->leader->notify(new GuildMemberApplication($user->nickname));
         }
 
         return redirect()->back()
