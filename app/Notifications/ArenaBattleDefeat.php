@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
+use Illuminate\Notifications\Messages\DatabaseMessage;
 use Illuminate\Notifications\Notification;
 
 class ArenaBattleDefeat extends Notification implements ShouldQueue
@@ -35,7 +36,7 @@ class ArenaBattleDefeat extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['broadcast'];
+        return ['broadcast', 'database'];
     }
 
     /**
@@ -49,6 +50,15 @@ class ArenaBattleDefeat extends Notification implements ShouldQueue
     {
         return new BroadcastMessage([
             'message' => "{$this->who} te derrotou na arena.",
+        ]);
+    }
+
+    public function toDatabase($notifiable)
+    {
+        return new DatabaseMessage([
+            'message' => "{$this->who} te derrotou na arena.",
+            'when'    => $this->when,
+            'alert'   => 'danger',
         ]);
     }
 }
