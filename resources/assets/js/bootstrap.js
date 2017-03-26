@@ -13,7 +13,8 @@ window.toastr = require('toastr');
 window.toastr.options = {
     positionClass: 'toast-bottom-left',
     showMethod: 'show',
-    progressBar: true
+    progressBar: true,
+    timeOut: 7000
 };
 
 require('bootstrap-sass');

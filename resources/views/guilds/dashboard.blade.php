@@ -51,6 +51,7 @@
                         <td>{{ $candidate->getProfessionName() }}</td>
                         <td>{{ $candidate->level }}</td>
                         <td>
+                            @if ($user->id == $guild->leader_id)
                             <form method="POST" action="guild/{{ $candidate->id }}/accept">
                                 {{ csrf_field() }}
                                 <button class="btn btn-info">Aceitar</button>
@@ -60,6 +61,7 @@
                                 {{ csrf_field() }}
                                 <button class="btn btn-danger">Negar</button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @empty

@@ -9,11 +9,16 @@ window.Echo.private('App.User.' + Laravel.userId)
     .notification((notification) => {
         var type = notification.type;
 
-        if (type == 'App\\Notifications\\ArenaBattleDefeat') {
-            return toastr.error(notification.message);
-        }
+        window.document.getElementById('notification-audio').play();
 
-        if (type == 'App\\Notifications\\ArenaBattleVictory') {
-            return toastr.success(notification.message);
+        switch (notification.alert) {
+            case 'success':
+                return toastr.success(notification.message);
+                break;
+            case 'danger':
+                return toastr.error(notification.message);
+                break;
+            default:
+                return toastr.info(notification.message);
         }
     });
