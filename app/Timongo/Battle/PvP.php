@@ -2,7 +2,10 @@
 
 namespace App\Timongo\Battle;
 
+use App\Notifications\ArenaBattleDefeat;
+use App\Notifications\ArenaBattleVictory;
 use App\User;
+use Carbon\Carbon;
 
 class PvP
 {
@@ -55,6 +58,8 @@ class PvP
         $hero->arena_kills++;
         $opponent->arena_deaths++;
 
+        $opponent->notify(new ArenaBattleDefeat($hero->nickname, Carbon::now()));
+
         $this->removeArenaSubscription($opponent);
 
         $opponent->current_health = $opponent->total_health * 0.4;
@@ -81,6 +86,8 @@ class PvP
     {
         $hero->arena_deaths++;
         $opponent->arena_kills++;
+
+        $opponent->notify(new ArenaBattleVictory($hero->nickname, Carbon::now()));
 
         $this->removeArenaSubscription($hero);
 
