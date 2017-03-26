@@ -44,7 +44,7 @@ class DeclineGuildMemberApplication extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'message' => "Você não foi aceito como mebro da guilda {$this->guild}.",
+            'message' => "Você não foi aceito como membro da guilda {$this->guild}.",
             'alert'   => 'danger',
         ];
     }
