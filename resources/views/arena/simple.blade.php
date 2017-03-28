@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($arena->participants as $participant)
+                @forelse ($participants as $participant)
                     <tr>
                         <td><img src="{{ $participant->picture }}" alt="{{ $participant->nickname }}" class="img-responsive img-rounded"></td>
                         <td>{{ $participant->nickname }}</td>

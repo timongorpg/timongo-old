@@ -24,10 +24,13 @@
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
+            'userId' => $user->id
         ]); ?>
     </script>
+    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 </head>
 <body>
+    <audio id="notification-audio" src="sounds/arpeggio.mp3"></audio>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -85,41 +88,38 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
-                        @else
-                            <li class="navbar-form">
-                                <form method="POST" action="{{ url('change-theme') }}">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="theme" value="{{ $user->theme == 1 ? 0 : 1}}">
-                                    <button class="btn btn-default" type="submit">Trocar Tema</button>
-                                </form>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->nickname }} <span class="caret"></span>
-                                </a>
+                        <li>
+                            <a href="{{ url('notifications') }}"><i style="font-size: 1.4em" class="glyphicon glyphicon-bell" aria-hidden="true"></i>
+                            @if ($unreadNotifications)
+                                <span class="label label-danger">{{ $unreadNotifications }}</span>
+                            @endif
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->nickname }} <span class="caret"></span>
+                            </a>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ url('donations') }}">{{ trans('menus.donations') }}</a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ url('settings') }}">{{ trans('menus.settings') }}</a>
+                                    <a href="{{ url('donations') }}">{{ trans('menus.donations') }}</a>
+                                    <a href="https://github.com/timongorpg/timongo" target="_blank">Github</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="{{ url('/logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
 
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -15,6 +15,8 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth:web'], function () {
     Route::get('/me', 'GameController@profile');
+    Route::get('/notifications', 'UsersController@notifications');
+    Route::get('/settings', 'UsersController@settings');
     Route::get('/donations', 'GameController@donations');
     Route::patch('/pick-nickname', 'GameController@pickNickname');
     Route::get('/adventures', 'GameController@adventures');
@@ -24,6 +26,7 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::post('/pvp/{userId}', 'ArenaController@battle');
     Route::get('/ranking', 'GameController@ranking');
     Route::get('/guild', 'GuildController@index');
+    Route::post('/guild/level-up', 'GuildController@levelUp');
     Route::post('guild', ['as' => 'guild.create', 'uses' => 'GuildController@create']);
     Route::post('guild/{guildId}', ['as' => 'guild.apply', 'uses' => 'GuildController@apply']);
     Route::post('guild/{userId}/accept', ['as' => 'guild.accept', 'uses' => 'GuildController@accept']);

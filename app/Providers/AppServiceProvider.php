@@ -20,8 +20,9 @@ class AppServiceProvider extends ServiceProvider
             //If the user is logged in bind it to the view
             if ($user = Auth::user()) {
                 $view->with([
-                    'user'         => $user,
-                    'current_time' => Carbon::now(),
+                    'user'                => $user,
+                    'unreadNotifications' => $user->unreadNotifications()->count(),
+                    'current_time'        => Carbon::now(),
                 ]);
             }
         });

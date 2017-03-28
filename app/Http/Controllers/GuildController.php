@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Guild;
+use App\Notifications\AcceptGuildMemberApplication;
+use App\Notifications\DeclineGuildMemberApplication;
+use App\Notifications\GuildMemberApplication;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
@@ -85,6 +88,8 @@ class GuildController extends Controller
 
         if (!$guild->candidates->find($user->id)) {
             $guild->candidates()->save($user);
+
+            $guild->leader->notify(new GuildMemberApplication($user->nickname));
         }
 
         return redirect()->back()
@@ -114,6 +119,7 @@ class GuildController extends Controller
         $candidate->guild()->associate($guild)->save();
         $guild->candidates()->detach($userId);
         $candidate->applications()->detach();
+        $candidate->notify(new AcceptGuildMemberApplication($guild->name));
 
         return redirect()->back()
             ->withMessage($candidate->nickname.' foi aceito.');
@@ -135,12 +141,31 @@ class GuildController extends Controller
         }
 
         $guild->candidates()->detach($userId);
+        $candidate->notify(new DeclineGuildMemberApplication($guild->name));
 
         return redirect()->back()
             ->withMessage($candidate->nickname.' foi negado como membro.');
     }
 
-    public function getGuildCost()
+    public function levelUp()
+    {
+        $user = $this->guard->user();
+        $guild = $user->guild;
+
+        if (!$guild->hasEnoughExperience()) {
+            return redirect('/guild');
+        }
+
+        $guild->levelUp()
+            ->save();
+
+        return redirect('/guild')
+            ->with([
+                'guildLevelUp' => true,
+            ]);
+    }
+
+    protected function getGuildCost()
     {
         return 10000;
     }
