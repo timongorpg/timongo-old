@@ -25,28 +25,29 @@
                 </div>
             </div>
 
+            @if(!$user->isMaxLevel())
             <hr>
             <label for="experience">{{ trans('profile.experience') }}</label>
+                @if($user->hasEnoughExperience())
 
-            @if($user->hasEnoughExperience())
-
-                <div class="level-up-button">
-                    <form action="/level-up" method="POST">
-                        {{ csrf_field() }}
-                        <button type="submit" class="btn btn-primary">
-                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Level Up
-                        </button>
-                    </form>
-                </div>
-
-            @else
-
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped active progress-bar-info" role="progressbar" aria-valuenow="{{ $user->experience_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->experience_percentage }}%;">
-                        {{ $user->experience }}/{{ $user->toNextLevel() }}
+                    <div class="level-up-button">
+                        <form action="/level-up" method="POST">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-primary">
+                              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Level Up
+                            </button>
+                        </form>
                     </div>
-                </div>
 
+                @else
+
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active progress-bar-info" role="progressbar" aria-valuenow="{{ $user->experience_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->experience_percentage }}%;">
+                            {{ $user->experience }}/{{ $user->toNextLevel() }}
+                        </div>
+                    </div>
+
+                @endif
             @endif
 
             <hr />

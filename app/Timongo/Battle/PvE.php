@@ -76,9 +76,13 @@ class PvE
     protected function battleWin($hero, $opponent)
     {
         $goldDrop = $this->getGoldDrop($hero, $opponent);
-        $expEarned = $this->getExpEarned($hero, $opponent);
 
-        $hero->experience += $expEarned;
+        if (!$hero->isMaxLevel()) {
+            $expEarned = $this->getExpEarned($hero, $opponent);
+            $hero->experience += $expEarned;
+        } else {
+            $expEarned = 0;
+        }
         $hero->gold += $goldDrop;
 
         return [
