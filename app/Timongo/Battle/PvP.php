@@ -87,8 +87,18 @@ class PvP
         $hero->arena_deaths++;
         $opponent->arena_kills++;
 
-        $opponent->notify(new ArenaBattleVictory($hero->nickname, Carbon::now()));
+        $expEarned = 10 - abs($hero->level - $opponent->level);
 
+        if ($opponent->level < $hero->level) {
+            $expEarned += $hero->level - $opponent->level;
+        }
+
+        if ($guild = $opponent->guild) {
+            $guild->experience += $expEarned;
+            $guild->save();
+        }
+
+        $opponent->notify(new ArenaBattleVictory($hero->nickname, Carbon::now()));
         $this->removeArenaSubscription($hero);
 
         $hero->current_health = $hero->total_health * 0.4;
