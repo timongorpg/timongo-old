@@ -148,7 +148,7 @@
     <script>
         @if($user->hasEnoughExperience())
             window.onload = function(){
-                blinkTitle('You leveled up! ');
+                blinkTitle('{{ trans('general.levelup') }} ');
             }
         @endif
 

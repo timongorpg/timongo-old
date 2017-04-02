@@ -83,7 +83,7 @@ class GameController extends Controller
 
         if ($user->current_stamina < 5) {
             return redirect('/adventures')
-                ->with('error', 'Você não tem energia o suficiente. A energia recupera com o tempo.');
+                ->with('error', trans('general.not-enough-energy'));
         }
 
         $log = $this->pve->battle($request->creature_id);
@@ -217,17 +217,14 @@ class GameController extends Controller
         $level = Auth::user()->level;
 
         if ($level <= 2) {
-            // return 'Creatures are filtered by hero\'s current level. We don\'t want you messing up with <strong>dragons</strong> too soon.';
-            return 'As criaturas são filtradas de acordo com seu level. Não queremos você irritando dragões tão cedo.';
+            return trans('general.adventures.tips.1');
         }
 
         if ($level <= 5) {
-            return 'As criaturas fracas sumirão quando você ficar mais forte.';
-            // return 'Weak creatures will stop showing as you get stronger.';
+            return trans('general.adventures.tips.2');
         }
 
-        return 'Você é um ótimo caçador. Não esqueça de fazer alguns amigos.';
-        // return 'You are such a good hunter. Do not forget to make some friends.';
+        return trans('general.adventures.tips.3');
     }
 
     private function getMasteryTip()
@@ -235,16 +232,13 @@ class GameController extends Controller
         $level = Auth::user()->level;
 
         if ($level == 1) {
-            return 'Volte aqui quando atingir level 2.';
-            // return 'Make sure to come back when you hit level 2.';
+            return trans('general.masteries.tips.1');
         }
 
         if ($level <= 2) {
-            return 'Escolha uma habilidade e volte quando o treino estiver completo.';
-            // return 'Choose what to master and come back later when you are ready.';
+            return trans('general.masteries.tips.2');
         }
 
-        // return 'Masteries are important to tell what your character is capable of. Think twice when picking one of them.';
-        return 'Habilidades são importantes para o desempenho do personagem. Pense duas vezes antes de escolher.';
+        return trans('general.masteries.tips.3');
     }
 }

@@ -29,7 +29,11 @@ class PvE
             $damage = $hero->strikes($opponent);
 
             array_push($rounds, [
-                'message' => "{$hero->fancyName} causou $damage de dano em {$opponent->fancyName}",
+                'message' => trans('battle.damage', [
+                    'who' => $hero->nickname,
+                    'damage' => $damage,
+                    'whom' => $opponent->name
+                ]),
                 'hero'    => true,
             ]);
 
@@ -42,7 +46,11 @@ class PvE
             $damage = $opponent->strikes($hero);
 
             array_push($rounds, [
-                'message' => "{$opponent->fancyName} causou $damage de dano em {$hero->fancyName}",
+                'message' => trans('battle.damage', [
+                    'who' => $opponent->name,
+                    'damage' => $damage,
+                    'whom' => $hero->nickname,
+                ]),
                 'hero'    => false,
             ]);
 

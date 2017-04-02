@@ -17,7 +17,7 @@ class PvP
             $damage = $hero->strikes($opponent);
 
             array_push($rounds, [
-                'message' => "{$hero->nickname} causou $damage de dano em {$opponent->nickname}",
+                'message' => trans('pvp.damage', [$hero->nickname, $damage, $opponent->nickname]),
                 'hero'    => true,
             ]);
 
