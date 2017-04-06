@@ -23,6 +23,11 @@
                     <h4 id="profile-nickname">{{ $user->nickname }}</h4>
                     {{ $user->getProfessionName() }}
                 </div>
+                <div class="col-xs-7">
+                    <img src='/img/icons/health.png' data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="{{ trans('profile.health') }}"> {{ $user->total_health }}
+                    <img src='/img/icons/mana.png' data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="{{ trans('profile.mana') }}"> {{ $user->total_mana }}
+                    <img src='/img/icons/stamina.png' data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="{{ trans('profile.stamina') }}"> {{ $user->total_stamina }}
+                </div>
             </div>
 
             <hr>
