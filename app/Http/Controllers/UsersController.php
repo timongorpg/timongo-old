@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Contracts\Auth\Guard;
 
 class UsersController extends Controller
 {
     protected $guard;
 
-    public function __construct(Guard $guard)
+    protected $users;
+
+    public function __construct(Guard $guard, User $users)
     {
         $this->guard = $guard;
+        $this->users = $users;
     }
 
     public function notifications()
@@ -25,5 +29,12 @@ class UsersController extends Controller
     public function settings()
     {
         return view('users.settings');
+    }
+
+    public function profile($slug)
+    {
+        $profile = $this->users->with('guild')->where('nickname', $slug)->first();
+
+        return $profile ? view('users.profile', compact('profile')) : view('users.not-found');
     }
 }
