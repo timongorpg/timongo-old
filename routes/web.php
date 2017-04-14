@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth:web'], function () {
     Route::get('/me', 'GameController@profile');
+    Route::get('u/{slug}', 'UsersController@profile');
     Route::get('/notifications', 'UsersController@notifications');
     Route::get('/settings', 'UsersController@settings');
     Route::get('/donations', 'GameController@donations');

@@ -16,7 +16,7 @@
                 <div class="col-xs-5">
                     <a href="{{ url('/me') }}">
 
-                  <img class="img-responsive" src="{{ $user->picture }}" alt="{{ $user->nickname }}">
+                  <img class="img-responsive img-rounded" src="{{ $user->picture }}" alt="{{ $user->nickname }}">
                     </a>
                 </div>
                 <div class="col-xs-7">

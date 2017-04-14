@@ -27,7 +27,9 @@
                             @if ($ranked->guild)
                                 <span class="label label-info">{{ $ranked->guild->name }}</span>
                             @endif
-                            {{ $ranked->nickname }}
+                            <a href="/u/{{ strtolower($ranked->nickname) }}">
+                                {{ $ranked->nickname }}
+                            </a>
                         </td>
                         <td><span class="label label-success">{{ $ranked->level }}</span></td>
                         <td>Abates: {{ $ranked->arena_kills }} / Derrotas: {{ $ranked->arena_deaths }}</td>
