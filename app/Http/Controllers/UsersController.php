@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Auth\Guard;
 use App\User;
+use Illuminate\Contracts\Auth\Guard;
 
 class UsersController extends Controller
 {
