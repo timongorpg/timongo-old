@@ -136,7 +136,7 @@
             </div>
         </div>
 
-        <chat></chat>
+        {{-- <chat></chat> --}}
     </div>
 
     @if(! $user->hasNickname())
