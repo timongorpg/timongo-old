@@ -49,7 +49,8 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize",
             "cp -R vendor/timongorpg/creatures/img/*.gif public/img/creatures"
-        ]
+        ],
+        "test": "vendor/bin/phpunit"
     },
     "config": {
         "preferred-install": "dist"

@@ -18,9 +18,11 @@
                     <p>{{ $log['results']['message'] }} Você encontrou <strong>{{ $log['results']['gold'] }} peças de ouro</strong>.</p>
                 </div>
 
-                <div class="alert alert-success">
-                    Você recebeu <strong>{{ $log['results']['experience'] }} pontos de experiência</strong>.
-                </div>
+                @if(!$user->isMaxLevel())
+                    <div class="alert alert-success">
+                        Você recebeu <strong>{{ $log['results']['experience'] }} pontos de experiência</strong>.
+                    </div>
+                @endif
             @else
                 <div class="alert alert-danger">
                     <p>{{ $log['results']['message'] }}</p>

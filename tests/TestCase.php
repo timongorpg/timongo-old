@@ -1,5 +1,7 @@
 <?php
 
+use Mockery;
+
 abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
     /**
@@ -21,5 +23,27 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    protected function tearDown()
+    {
+        parent::tearDown();
+        Mockery::close();
+    }
+
+    /**
+     * Create a mock object to the referred class
+     *
+     * @param $class
+     *
+     * @return Mockery\MockInterface
+     */
+    public function mock($class)
+    {
+        $mockObject = Mockery::mock($class);
+
+        $this->app->instance($class, $mockObject);
+
+        return $mockObject;
     }
 }

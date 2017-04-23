@@ -98,7 +98,7 @@ class GameController extends Controller
     {
         $user = Auth::user();
 
-        if (!$user->hasEnoughExperience()) {
+        if (!$user->hasEnoughExperience() || $user->isMaxLevel()) {
             return redirect('/me');
         }
 
