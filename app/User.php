@@ -238,37 +238,39 @@ class User extends Authenticatable
 
     public function levelUp()
     {
-        $this->level += 1;
-        $this->experience = 0;
-        $this->mastery_points += 1;
+        if (!$this->isMaxLevel()) {
+            $this->level += 1;
+            $this->experience = 0;
+            $this->mastery_points += 1;
 
-        $healthPerLevel = 0;
+            $healthPerLevel = 0;
 
-        switch ($this->profession_id) {
-            case 2:
-                //Knight
-                $healthPerLevel = 30;
-                break;
-            case 3:
-                //Mage
-                $healthPerLevel = 17;
-                break;
-            case 4:
-                //Hunter
-                $healthPerLevel = 20;
-                break;
+            switch ($this->profession_id) {
+                case 2:
+                    //Knight
+                    $healthPerLevel = 30;
+                    break;
+                case 3:
+                    //Mage
+                    $healthPerLevel = 17;
+                    break;
+                case 4:
+                    //Hunter
+                    $healthPerLevel = 20;
+                    break;
+            }
+
+            $this->total_health = 150 + ($healthPerLevel * $this->level);
+            $this->total_mana = 100 + 15;
+
+            $this->current_health = $this->total_health;
+
+            if ($this->level <= 20) {
+                $this->current_stamina += $this->total_stamina / 2;
+            }
+
+            $this->current_mana = $this->total_mana;
         }
-
-        $this->total_health = 150 + ($healthPerLevel * $this->level);
-        $this->total_mana = 100 + 15;
-
-        $this->current_health = $this->total_health;
-
-        if ($this->level <= 20) {
-            $this->current_stamina += $this->total_stamina / 2;
-        }
-
-        $this->current_mana = $this->total_mana;
 
         return $this;
     }
@@ -454,5 +456,17 @@ class User extends Authenticatable
         $maxLevel = $this->level + 10;
 
         return $user->level >= $minLevel && $user->level <= $maxLevel;
+    }
+
+    public function isMaxLevel()
+    {
+        return $this->level == (env('USER_MAX_LEVEL', 300));
+    }
+
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
     }
 }

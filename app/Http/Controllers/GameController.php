@@ -102,12 +102,16 @@ class GameController extends Controller
             return redirect('/me');
         }
 
-        $user->levelUp()
-            ->save();
+        $canLevelUp = !$user->isMaxLevel();
+
+        if ($canLevelUp) {
+            $user->levelUp()
+                ->save();
+        }
 
         return redirect('/me')
             ->with([
-                'levelUp' => true,
+                'levelUp' => $canLevelUp,
             ]);
     }
 
