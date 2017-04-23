@@ -104,14 +104,18 @@ class PvE
 
     private function getExpEarned($hero, $opponent)
     {
-        $learningLevelBonus = $opponent->experience * 0.04 * $hero->learning_level;
-        $expEarned = $opponent->experience + $learningLevelBonus;
+        if (!$hero->isMaxLevel()) {
+            $learningLevelBonus = $opponent->experience * 0.04 * $hero->learning_level;
+            $expEarned = $opponent->experience + $learningLevelBonus;
 
-        if ($hero->level >= ($opponent->level + 5)) {
-            $expEarned = $expEarned / 3;
+            if ($hero->level >= ($opponent->level + 5)) {
+                $expEarned = $expEarned / 3;
+            }
+
+            return (int) round($expEarned);
+        } else {
+            return 0;
         }
-
-        return (int) round($expEarned);
     }
 
     private function getGoldDrop($hero, $opponent)
