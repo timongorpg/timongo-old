@@ -50,7 +50,7 @@
             };
         },
         firebase: {
-            messages: db.ref('/messages').limitToLast(25)
+            messages: db.ref('/chat').limitToLast(25)
         },
         methods: {
             sendMessage(){

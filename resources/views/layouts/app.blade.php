@@ -27,7 +27,7 @@
             'userId' => $user->id
         ]); ?>
     </script>
-    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+    {{-- <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script> --}}
 </head>
 <body>
     <audio id="notification-audio" src="sounds/arpeggio.mp3"></audio>

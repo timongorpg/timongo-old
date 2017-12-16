@@ -9,7 +9,7 @@ require('./bootstrap');
 require('./moment');
 require('./blink-title');
 require('./form-functions');
-require('./broadcast');
+// require('./broadcast');
 
 require('../../../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min')
 
