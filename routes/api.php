@@ -19,4 +19,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/creatures', function () {
     return App\Creature::all();
-})
+});
