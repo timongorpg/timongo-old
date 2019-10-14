@@ -91,7 +91,7 @@
             });
 
             addBattleResults(
-                {!! json_encode(array_get($log, 'fight'), JSON_FORCE_OBJECT) !!}
+                {!! json_encode(Arr::get($log, 'fight'), JSON_FORCE_OBJECT) !!}
             )
         });
     </script >
